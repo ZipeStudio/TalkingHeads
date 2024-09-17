@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "me.zipestudio.talkingheads.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "AnimalModelMixin",
+    "ArmorFeatureRendererMixin",
+    "HeadFeatureRendererMixin",
+    "LivingEntityRendererMixin",
+    "ModelPartMixin"
+  ]
+}

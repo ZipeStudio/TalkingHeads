@@ -104,14 +104,14 @@ publishing {
     }
 }
 
-build {
-    doLast {
-        def provider = project.rootProject.layout.buildDirectory.file("libs/")
-        if (provider.isPresent()) {
-            File file = provider.get().getAsFile()
-            if (file.exists() && file.isDirectory()) {
-                Desktop.getDesktop().open(file)
-            }
-        }
-    }
-}
+//build {
+//    doLast {
+//        def provider = project.rootProject.layout.buildDirectory.file("libs/")
+//        if (provider.isPresent()) {
+//            File file = provider.get().getAsFile()
+//            if (file.exists() && file.isDirectory()) {
+//                Desktop.getDesktop().open(file)
+//            }
+//        }
+//    }
+//}

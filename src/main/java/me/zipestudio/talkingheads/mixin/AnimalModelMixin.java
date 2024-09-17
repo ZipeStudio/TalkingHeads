@@ -16,10 +16,9 @@ public abstract class AnimalModelMixin {
     @Inject(at = @At(value = "HEAD"), method = "method_22949")
     private static void renderBeforeHead(MatrixStack matrixStack, VertexConsumer vertexConsumer, int i, int j, int k, ModelPart modelPart, CallbackInfo ci) {
         if (modelPart instanceof ResizableModelPart p && p.talkingHeads$getSize() != p.talkingHeads$getDefaultSize()) {
-            if (THClient.getClientConfig().isToggle()) {
-                matrixStack.push();
-                matrixStack.scale((float) p.talkingHeads$getSize(), (float) p.talkingHeads$getSize(), (float) p.talkingHeads$getSize());
-            }
+
+            matrixStack.push();
+            matrixStack.scale((float) p.talkingHeads$getSize(), (float) p.talkingHeads$getSize(), (float) p.talkingHeads$getSize());
         }
     }
 
@@ -27,9 +26,7 @@ public abstract class AnimalModelMixin {
     private static void renderAfterHead(MatrixStack matrixStack, VertexConsumer vertexConsumer, int i, int j, int k, ModelPart modelPart, CallbackInfo ci) {
         if (modelPart instanceof ResizableModelPart p && p.talkingHeads$getSize() != p.talkingHeads$getDefaultSize()) {
 
-            if (THClient.getClientConfig().isToggle()) {
-                matrixStack.pop();
-            }
+            matrixStack.pop();
         }
     }
 
@@ -37,19 +34,15 @@ public abstract class AnimalModelMixin {
     private static void renderBeforeHat(MatrixStack matrixStack, VertexConsumer vertexConsumer, int i, int j, int k, ModelPart modelPart, CallbackInfo ci) {
         if (modelPart instanceof ResizableModelPart p && p.talkingHeads$getSize() != p.talkingHeads$getDefaultSize()) {
 
-            if (THClient.getClientConfig().isToggle()) {
-                matrixStack.push();
-                matrixStack.scale((float) p.talkingHeads$getSize(), (float) p.talkingHeads$getSize(), (float) p.talkingHeads$getSize());
-            }
+            matrixStack.push();
+            matrixStack.scale((float) p.talkingHeads$getSize(), (float) p.talkingHeads$getSize(), (float) p.talkingHeads$getSize());
         }
     }
 
     @Inject(at = @At(value = "TAIL"), method = "method_22947")
     private static void renderAfterHat(MatrixStack matrixStack, VertexConsumer vertexConsumer, int i, int j, int k, ModelPart modelPart, CallbackInfo ci) {
         if (modelPart instanceof ResizableModelPart p && p.talkingHeads$getSize() != p.talkingHeads$getDefaultSize()) {
-            if (THClient.getClientConfig().isToggle()) {
-                matrixStack.pop();
-            }
+            matrixStack.pop();
         }
     }
 

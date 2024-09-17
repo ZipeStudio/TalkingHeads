@@ -31,10 +31,7 @@ public abstract class ArmorFeatureRendererMixin {
             return;
         }
 
-        if (THClient.getClientConfig().isToggle()) {
-            UUID uuid = entity.getUuid();
-            THAddon.renderHead(uuid, model);
-        }
-
+        UUID uuid = entity.getUuid();
+        THAddon.renderHead(uuid, model);
     }
 }

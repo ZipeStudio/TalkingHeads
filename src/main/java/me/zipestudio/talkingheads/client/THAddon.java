@@ -45,7 +45,11 @@ public class THAddon implements AddonInitializer {
 
     @EventSubscribe
     public void onSourceWrite(@NotNull AudioSourceWriteEvent event) {
-        var sourceInfo = event.getSource().getSourceInfo(); 
+        if (!THClient.getClientConfig().isToggle()) {
+            return;
+        }
+
+        var sourceInfo = event.getSource().getSourceInfo();
         if (!(sourceInfo instanceof PlayerSourceInfo playerSourceInfo)) return;
 
         VoicePlayerInfo playerInfo = playerSourceInfo.getPlayerInfo();
@@ -65,6 +69,10 @@ public class THAddon implements AddonInitializer {
 
     @EventSubscribe
     public void onSelfAudioPacket(@NotNull UdpClientPacketReceivedEvent event) {
+        if (!THClient.getClientConfig().isToggle()) {
+            return;
+        }
+
         var packet = event.getPacket();
         if (!(packet instanceof SelfAudioInfoPacket infoPacket)) {
             return;
@@ -95,7 +103,11 @@ public class THAddon implements AddonInitializer {
 
     @EventSubscribe
     public void onAudioCapture(@NotNull AudioCaptureProcessedEvent event) {
-            this.lastClientAudioLevel = AudioUtil.calculateHighestAudioLevel(event.getProcessed().getMono());
+        if (!THClient.getClientConfig().isToggle()) {
+            return;
+        }
+
+        this.lastClientAudioLevel = AudioUtil.calculateHighestAudioLevel(event.getProcessed().getMono());
     }
 
     public static void renderHead(UUID uuid, BipedEntityModel<?> model) {

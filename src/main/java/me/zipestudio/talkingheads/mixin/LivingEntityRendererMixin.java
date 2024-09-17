@@ -33,10 +33,7 @@ public abstract class LivingEntityRendererMixin {
             return;
         }
 
-        if (THClient.getClientConfig().isToggle()) {
-            THAddon.renderHead(uuid, model);
-        }
-
+        THAddon.renderHead(uuid, model);
     }
 
 }

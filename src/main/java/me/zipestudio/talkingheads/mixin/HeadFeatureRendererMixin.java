@@ -27,11 +27,8 @@ public class HeadFeatureRendererMixin {
             return;
         }
 
-        if (THClient.getClientConfig().isToggle()) {
             UUID uuid = livingEntity.getUuid();
             THAddon.renderHead(uuid, instance);
-        }
-
     }
 
 }

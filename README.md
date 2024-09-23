@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://cdn.modrinth.com/data/Os35nfkh/images/5bd3ef3d021de23d80e81918bd8ed49ce89c56f4.png" width="500px" alt="mod banner"/>
+  <img src="https://cdn.modrinth.com/data/Os35nfkh/images/5bd3ef3d021de23d80e81918bd8ed49ce89c56f4.png" width="1000px" alt="mod banner"/>
   <div>
     <a href="https://modrinth.com/mod/talkingheads">Modrinth</a>
     <span> | </span>

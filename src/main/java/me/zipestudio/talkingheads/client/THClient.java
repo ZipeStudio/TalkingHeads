@@ -7,10 +7,10 @@ public class THClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        THManager.setClientConfig(THConfig.getInstance());
+
         //? plasmovoice {
         su.plo.voice.api.client.PlasmoVoiceClient.getAddonsLoader().load(new PlasmoVoiceAddon());
         //?}
-
-        THManager.setClientConfig(THConfig.getInstance());
     }
 }

@@ -20,8 +20,6 @@ import su.plo.voice.proto.packets.udp.clientbound.SelfAudioInfoPacket;
 
 import java.util.*;
 
-
-//TODO: изменить в build.gradle константы, что бы подставить с одного места данные везде где нужно
 @Addon(
         id = "pv-addon-" + TalkingHeads.MOD_ID,
         name = TalkingHeads.MOD_NAME,

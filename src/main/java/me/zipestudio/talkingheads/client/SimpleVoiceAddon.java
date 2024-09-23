@@ -1,5 +1,12 @@
 package me.zipestudio.talkingheads.client;
 
+
+//? plasmovoice {
+public class SimpleVoiceAddon {
+
+}
+//?}
+
 //? voicechat {
 /*import de.maxhenkel.voicechat.api.*;
 import de.maxhenkel.voicechat.api.events.*;
@@ -20,7 +27,7 @@ public class SimpleVoiceAddon implements VoicechatPlugin {
 
     @Override
     public String getPluginId() {
-        return "sv-addon-" + TalkingHeads.MOD_ID;
+        return "vc-addon-" + TalkingHeads.MOD_ID;
     }
 
     @Override

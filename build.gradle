@@ -13,10 +13,10 @@ stonecutter.const("plasmovoice", isPlasmoVoice)
 stonecutter.const("voicechat", !isPlasmoVoice)
 
 group = project.maven_group
-version = "${mod_id}-${voiceMod}-${mod_version}+${minecraft_version}"
+version = "${voiceMod}-${mod_version}+${minecraft_version}"
 
 base {
-    archivesName = ""
+    archivesName = mod_name_split
 }
 
 repositories {

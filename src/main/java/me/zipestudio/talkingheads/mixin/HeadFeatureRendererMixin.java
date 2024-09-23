@@ -3,8 +3,7 @@ package me.zipestudio.talkingheads.mixin;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
-import me.zipestudio.talkingheads.client.THAddon;
-import me.zipestudio.talkingheads.client.THClient;
+import me.zipestudio.talkingheads.client.THManager;
 import net.minecraft.client.render.entity.feature.HeadFeatureRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
@@ -27,8 +26,8 @@ public class HeadFeatureRendererMixin {
             return;
         }
 
-            UUID uuid = livingEntity.getUuid();
-            THAddon.renderHead(uuid, instance);
+        UUID uuid = livingEntity.getUuid();
+        THManager.renderHead(uuid, instance);
     }
 
 }

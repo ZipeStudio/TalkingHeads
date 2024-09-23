@@ -1,9 +1,8 @@
 package me.zipestudio.talkingheads.client;
 
+//? plasmovoice {
 import lombok.Getter;
-import me.zipestudio.talkingheads.utils.ResizableModelPart;
-import net.minecraft.client.render.entity.model.BipedEntityModel;
-import net.minecraft.client.util.math.MatrixStack;
+import me.zipestudio.talkingheads.TalkingHeads;
 import org.jetbrains.annotations.NotNull;
 import su.plo.voice.api.addon.AddonInitializer;
 import su.plo.voice.api.addon.InjectPlasmoVoice;
@@ -21,20 +20,22 @@ import su.plo.voice.proto.packets.udp.clientbound.SelfAudioInfoPacket;
 
 import java.util.*;
 
+
+//TODO: изменить в build.gradle константы, что бы подставить с одного места данные везде где нужно
 @Addon(
-        id = "pv-addon-talkingheads",
-        name = "Talking Heads",
-        version = "1.0.0",
-        authors = {"ZipeStudio"}
+        id = "pv-addon-" + TalkingHeads.MOD_ID,
+        name = TalkingHeads.MOD_NAME,
+        version = TalkingHeads.MOD_VERSION,
+        authors = {TalkingHeads.MOD_AUTHORS}
 )
-public class THAddon implements AddonInitializer {
+public class PlasmoVoiceAddon implements AddonInitializer {
 
     @InjectPlasmoVoice
     @Getter
     public static PlasmoVoiceClient voiceClient;
     private ClientActivation activation;
 
-    public static final HashMap<UUID, THPlayerInfo> PLAYERS_MAP = new HashMap<>();
+    HashMap<UUID, THPlayer> PLAYERS_MAP = THManager.getPLAYERS();
     private double lastClientAudioLevel;
 
     @Override
@@ -45,7 +46,7 @@ public class THAddon implements AddonInitializer {
 
     @EventSubscribe
     public void onSourceWrite(@NotNull AudioSourceWriteEvent event) {
-        if (!THClient.getClientConfig().isToggle()) {
+        if (isModDisabled()) {
             return;
         }
 
@@ -54,22 +55,20 @@ public class THAddon implements AddonInitializer {
 
         VoicePlayerInfo playerInfo = playerSourceInfo.getPlayerInfo();
         UUID uuid = playerInfo.getPlayerId();
+
         double audioLevel = AudioUtil.calculateHighestAudioLevel(event.getSamples());
-
-        System.out.println("audio: " + audioLevel);
-
-        if (audioLevel <= -60D) {
-            PLAYERS_MAP.put(uuid, new THPlayerInfo(playerInfo, 0));
+        if (audioLevel <= -50D) {
+            PLAYERS_MAP.put(uuid, new THPlayer(uuid, 0));
             return;
         }
 
         double voiceVolume = 0.8D * (1D - (Math.abs(audioLevel) / 60D));
-        PLAYERS_MAP.put(uuid, new THPlayerInfo(playerInfo, voiceVolume));
+        PLAYERS_MAP.put(uuid, new THPlayer(uuid, voiceVolume));
     }
 
     @EventSubscribe
     public void onSelfAudioPacket(@NotNull UdpClientPacketReceivedEvent event) {
-        if (!THClient.getClientConfig().isToggle()) {
+        if (isModDisabled()) {
             return;
         }
 
@@ -91,69 +90,22 @@ public class THAddon implements AddonInitializer {
         UUID uuid = playerInfo.getPlayerId();
 
         double audioLevel = lastClientAudioLevel;
-        double voiceVolume = 0.8D * (1D - (Math.abs(audioLevel) / 60D));
-
-        if (audioLevel <= -60D) {
+        if (audioLevel <= -50D) {
             PLAYERS_MAP.remove(uuid);
             return;
         }
 
-        PLAYERS_MAP.put(uuid, new THPlayerInfo(playerInfo, voiceVolume));
+        double voiceVolume = 0.8D * (1D - (Math.abs(audioLevel) / 60D));
+        PLAYERS_MAP.put(uuid, new THPlayer(uuid, voiceVolume));
     }
 
     @EventSubscribe
     public void onAudioCapture(@NotNull AudioCaptureProcessedEvent event) {
-        if (!THClient.getClientConfig().isToggle()) {
+        if (isModDisabled()) {
             return;
         }
 
         this.lastClientAudioLevel = AudioUtil.calculateHighestAudioLevel(event.getProcessed().getMono());
-    }
-
-    public static void renderHead(UUID uuid, BipedEntityModel<?> model) {
-        THPlayerInfo thPlayerInfo = PLAYERS_MAP.get(uuid);
-
-        if (thPlayerInfo != null) {
-
-            double playerVolume = thPlayerInfo.getPlayerVolume();
-            double size = 1 + playerVolume;
-
-            if (playerVolume <= 0.01) {
-                PLAYERS_MAP.remove(uuid);
-                ((ResizableModelPart) model.head).talkingHeads$setSize(size);
-                ((ResizableModelPart) model.hat).talkingHeads$setSize(size);
-                return;
-            }
-
-            ((ResizableModelPart) model.head).talkingHeads$setSize(size);
-            ((ResizableModelPart) model.hat).talkingHeads$setSize(size);
-            thPlayerInfo.setPlayerVolume(playerVolume - 0.0020);
-        } else {
-            PLAYERS_MAP.remove(uuid);
-            ((ResizableModelPart) model.head).talkingHeads$setDefaultSize();
-            ((ResizableModelPart) model.hat).talkingHeads$setDefaultSize();
-        }
-    }
-
-    public static void renderHead(UUID uuid, MatrixStack matrixStack) {
-        THPlayerInfo thPlayerInfo = PLAYERS_MAP.get(uuid);
-
-        if (thPlayerInfo != null) {
-
-            double playerVolume = thPlayerInfo.getPlayerVolume();
-            double size = 1 + playerVolume;
-
-            if (playerVolume <= 0.01) {
-                PLAYERS_MAP.remove(uuid);
-                matrixStack.scale((float) 1, (float) 1, (float) 1);
-                return;
-            }
-
-            matrixStack.scale((float) size, (float) size, (float) size);
-            thPlayerInfo.setPlayerVolume(playerVolume - 0.0020);
-        } else {
-            matrixStack.scale((float) 1, (float) 1, (float) 1);
-        }
     }
 
     @Override
@@ -161,4 +113,9 @@ public class THAddon implements AddonInitializer {
 
         System.out.println("Addon shut down");
     }
+
+    private boolean isModDisabled() {
+        return !THManager.getClientConfig().isToggle();
+    }
 }
+//?}

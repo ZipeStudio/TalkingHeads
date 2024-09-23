@@ -1,10 +1,36 @@
+import groovy.json.JsonSlurper
+import groovy.json.JsonBuilder
+
 pluginManagement {
-	repositories {
-		maven {
-			name = 'Fabric'
-			url = 'https://maven.fabricmc.net/'
-		}
-		mavenCentral()
-		gradlePluginPortal()
-	}
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+        maven {
+            name "Fabric"
+            url "https://maven.fabricmc.net/"
+        }
+        maven {
+            name "Kiku Snapshots"
+            url "https://maven.kikugie.dev/snapshots"
+        }
+        maven {
+            name "Kiku Releases"
+            url "https://maven.kikugie.dev/releases"
+        }
+    }
+}
+
+plugins {
+    id "dev.kikugie.stonecutter" version "0.4.4"
+}
+
+stonecutter {
+    shared {
+        vers("plasmovoice", "0")
+        vers("voicechat", "0")
+        vcsVersion = "plasmovoice"
+    }
+
+    create rootProject
 }

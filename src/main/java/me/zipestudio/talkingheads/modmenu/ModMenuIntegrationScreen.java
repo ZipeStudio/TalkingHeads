@@ -5,6 +5,7 @@ import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 
 import me.zipestudio.talkingheads.client.THClient;
+import me.zipestudio.talkingheads.client.THManager;
 import me.zipestudio.talkingheads.config.THConfig;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.MutableText;
@@ -22,7 +23,7 @@ public class ModMenuIntegrationScreen {
                 .setTitle(modmenuTitle)
                 .setSavingRunnable(() -> {
                     config.save();
-                    THClient.setConfig(config);
+                    THManager.setClientConfig(config);
                 });
 
         ConfigCategory category = configBuilder.getOrCreateCategory(modmenuTitle);

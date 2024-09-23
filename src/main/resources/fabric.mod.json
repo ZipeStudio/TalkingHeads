@@ -1,11 +1,11 @@
 {
 	"schemaVersion": 1,
-	"id": "talking-heads",
-	"version": "${version}",
-	"name": "Talking Heads",
+	"id": "${mod_id}",
+	"version": "${mod_version}",
+	"name": "${mod_name}",
 	"description": "Client side mod (addon) for PlasmoVoice, that scales player heads when they're talking.",
 	"authors": [
-		"ZipeStudio"
+		"${mod_authors}"
 	],
 	"contact": {
 		"discord": "https://discord.com/users/339471364312530945",
@@ -25,6 +25,9 @@
 		],
 		"modmenu": [
 			"me.zipestudio.talkingheads.modmenu.ModMenuIntegration"
+		],
+		"voicechat": [
+			"me.zipestudio.talkingheads.client.SimpleVoiceAddon"
 		]
 	},
 	"mixins": [
@@ -35,7 +38,7 @@
 		"minecraft": "~1.21",
 		"java": ">=21",
 		"fabric-api": "*",
-		"plasmovoice": ">=2.1.0"
+		"${voice_mod}": ">=${voice_mod_version}"
 	},
 	"suggests": {
 		"another-mod": "*"

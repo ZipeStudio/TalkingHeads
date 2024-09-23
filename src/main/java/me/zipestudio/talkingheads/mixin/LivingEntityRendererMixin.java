@@ -1,7 +1,6 @@
 package me.zipestudio.talkingheads.mixin;
 
-import me.zipestudio.talkingheads.client.THAddon;
-import me.zipestudio.talkingheads.client.THClient;
+import me.zipestudio.talkingheads.client.THManager;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.render.entity.model.*;
@@ -33,7 +32,7 @@ public abstract class LivingEntityRendererMixin {
             return;
         }
 
-        THAddon.renderHead(uuid, model);
+        THManager.renderHead(uuid, model);
     }
 
 }

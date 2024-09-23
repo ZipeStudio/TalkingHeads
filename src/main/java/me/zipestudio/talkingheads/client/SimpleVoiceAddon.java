@@ -1,12 +1,5 @@
 package me.zipestudio.talkingheads.client;
 
-
-//? plasmovoice {
-public class SimpleVoiceAddon {
-
-}
-//?}
-
 //? voicechat {
 /*import de.maxhenkel.voicechat.api.*;
 import de.maxhenkel.voicechat.api.events.*;

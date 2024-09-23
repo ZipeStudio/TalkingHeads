@@ -25,6 +25,9 @@
 		],
 		"modmenu": [
 			"me.zipestudio.talkingheads.modmenu.ModMenuIntegration"
+		],
+		"voicechat": [
+			"me.zipestudio.talkingheads.client.SimpleVoiceAddon"
 		]
 	},
 	"mixins": [

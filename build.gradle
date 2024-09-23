@@ -13,7 +13,7 @@ stonecutter.const("plasmovoice", isPlasmoVoice)
 stonecutter.const("voicechat", !isPlasmoVoice)
 
 group = project.maven_group
-version = "${voiceMod}-${mod_version}+${minecraft_version}"
+version = "${mod_version}+${minecraft_version}+${voiceMod}"
 
 base {
     archivesName = mod_name_split
@@ -83,7 +83,8 @@ stonecutter {
 processResources {
     def props = [:]
 
-    props.put("mod_version", project.mod_version)
+
+    props.put("version", version.toString())
     props.put("voice_mod", voiceMod)
     props.put("voice_mod_version", isPlasmoVoice ? voiceModVersion : "${project.minecraft_version}-${voiceModVersion}")
 
@@ -91,6 +92,7 @@ processResources {
     props.put("mod_id", project.mod_id)
     props.put("mod_version", project.mod_version)
     props.put("mod_authors", project.mod_authors)
+    props.put("minecraft_version", project.minecraft_version)
 
     props.each { key, value ->
         inputs.property key, value

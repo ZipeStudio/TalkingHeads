@@ -12,9 +12,8 @@ public class THServer implements ModInitializer {
 
     public static final String MOD_NAME = /*$ mod_name*/ "Talking Heads";
     public static final String MOD_ID = /*$ mod_id*/ "talkingheads";
-    public static final String MOD_VERSION = /*$ mod_version*/ "1.0.2";
+    public static final String MOD_VERSION = /*$ mod_version*/ "1.0.3";
     public static final String MOD_AUTHORS = /*$ mod_authors*/ "ZipeStudio";
-
 
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
 
@@ -26,16 +25,8 @@ public class THServer implements ModInitializer {
         return Text.translatable(String.format("%s.%s", MOD_ID, path), args);
     }
 
-    @Getter
-    private static THConfig thConfig;
-
-
     @Override
     public void onInitialize() {
-
-        if (THConfig.GSON.load()) {
-            thConfig = THConfig.GSON.instance();
-        }
 
     }
 }

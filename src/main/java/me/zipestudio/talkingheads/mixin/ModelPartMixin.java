@@ -34,6 +34,13 @@ public abstract class ModelPartMixin implements ResizableModelPart {
     }
 
     @Override
+    public void talkingHeads$setDefaultSize() {
+        this.sizeX = 1;
+        this.sizeY = 1;
+        this.sizeZ = 1;
+    }
+
+    @Override
     public double talkingHeads$getSizeX() {
         return this.sizeX;
     }
@@ -48,18 +55,10 @@ public abstract class ModelPartMixin implements ResizableModelPart {
         return this.sizeZ;
     }
 
-    @Override
-    public void talkingHeads$setDefaultSize() {
-        this.sizeX = 1;
-        this.sizeY = 1;
-        this.sizeZ = 1;
-    }
-
-    //? if <1.21 {
-    /*@Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;IIFFFF)V",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;push()V",
-                    shift = At.Shift.AFTER))
-    public void scaleHead(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha, CallbackInfo ci) {
+    @Inject(method = "rotate(Lnet/minecraft/client/util/math/MatrixStack;)V",
+            at = @At(value = "HEAD")
+    )
+    public void scaleHead(MatrixStack matrices, CallbackInfo ci) {
 
         double x = this.talkingHeads$getSizeX();
         double y = this.talkingHeads$getSizeY();
@@ -74,24 +73,5 @@ public abstract class ModelPartMixin implements ResizableModelPart {
         }
 
     }
-    *///?} else {
-    @Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;III)V",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;push()V",
-                    shift = At.Shift.AFTER))
-    public void scaleHead(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color, CallbackInfo ci) {
 
-        double x = this.talkingHeads$getSizeX();
-        double y = this.talkingHeads$getSizeY();
-        double z = this.talkingHeads$getSizeZ();
-
-        boolean xScale = x != this.talkingHeads$getDefaultSize();
-        boolean yScale = y != this.talkingHeads$getDefaultSize();
-        boolean zScale = z != this.talkingHeads$getDefaultSize();
-
-        if (xScale || yScale || zScale) {
-            matrices.scale((float) x, (float) y, (float) z);
-        }
-
-    }
-    //?}
 }

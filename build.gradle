@@ -36,11 +36,20 @@ repositories {
         name = "henkelmax.public"
         url = 'https://maven.maxhenkel.de/repository/public'
     }
+
+    maven {
+        name = "tom5454 maven"
+        url = "https://raw.githubusercontent.com/tom5454/maven/main"
+    }
+
 }
 
 dependencies {
     implementation("su.plo.voice.api:client:${MossyPlugin.substringSinceLast(prop("dep.plasmo-voice"), "-") + "-SNAPSHOT"}")
     implementation("de.maxhenkel.voicechat:voicechat-api:${MossyPlugin.substringSinceLast(prop("dep.simple-voice-chat"), "-")}")
+
+//    implementation ("com.tom5454.cpm:CustomPlayerModels-API:0.6.21a")
+//    implementation ("com.tom5454.cpm:CustomPlayerModels-Fabric-0.6.21a:0.6.21a")
 }
 
 mossyResources {

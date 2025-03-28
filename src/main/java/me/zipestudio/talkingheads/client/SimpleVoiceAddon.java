@@ -2,6 +2,7 @@ package me.zipestudio.talkingheads.client;
 
 import de.maxhenkel.voicechat.api.*;
 import de.maxhenkel.voicechat.api.events.*;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import me.zipestudio.talkingheads.THServer;
 import me.zipestudio.talkingheads.config.THConfig;
@@ -14,7 +15,8 @@ import java.util.UUID;
 @Slf4j
 public class SimpleVoiceAddon implements VoicechatPlugin {
 
-    VoicechatApi voicechatApi;
+    @Getter
+    private static VoicechatApi voicechatApi;
 
     @Override
     public String getPluginId() {
@@ -33,7 +35,7 @@ public class SimpleVoiceAddon implements VoicechatPlugin {
     }
 
     public void onReceiveAudioEntity(ClientReceiveSoundEvent.EntitySound event) {
-        if (THConfig.isModDisabled()) {
+        if (THConfig.isModDisabled() || !THConfig.useSimpleVoiceChat()) {
             return;
         }
 
@@ -44,7 +46,7 @@ public class SimpleVoiceAddon implements VoicechatPlugin {
     }
 
     public void onClientSoundEvent(ClientSoundEvent event) {
-        if (THConfig.isModDisabled()) {
+        if (THConfig.isModDisabled() || !THConfig.useSimpleVoiceChat()) {
             return;
         }
 

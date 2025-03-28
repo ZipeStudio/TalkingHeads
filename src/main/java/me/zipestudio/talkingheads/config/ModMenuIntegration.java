@@ -4,16 +4,18 @@ import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.controller.*;
+import dev.isxander.yacl3.gui.controllers.BooleanController;
 import dev.isxander.yacl3.gui.controllers.string.number.DoubleFieldController;
 import net.minecraft.text.Text;
 
 public class ModMenuIntegration implements ModMenuApi {
+
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return parent -> thConfig().generateScreen(parent);
+        return parent -> config().generateScreen(parent);
     }
 
-    public static YetAnotherConfigLib thConfig() {
+    public static YetAnotherConfigLib config() {
         return YetAnotherConfigLib.create(THConfig.GSON, (def, config, builder) -> builder
 
                 .title(Text.translatable("text.title"))
@@ -28,9 +30,29 @@ public class ModMenuIntegration implements ModMenuApi {
                                                 .name(Text.translatable("text.option.general.enableMod"))
                                                 .description(OptionDescription.of(Text.translatable("text.option.general.enableMod.desc")))
                                                 .stateManager(StateManager.createInstant(def.isEnableMod(), config::isEnableMod, config::setEnableMod))
-                                                .controller(opt -> BooleanControllerBuilder.create(opt).onOffFormatter())
+                                                .customController(BooleanController::new)
                                                 .build()
                                 )
+
+                                .option(
+                                        Option.<Boolean>createBuilder()
+                                                .name(Text.translatable("text.option.general.use_plasmo_voice"))
+                                                .stateManager(StateManager.createInstant(def.isUsePlasmoVoice(), config::isUsePlasmoVoice, config::setUsePlasmoVoice))
+                                                .customController(BooleanController::new)
+                                                .build()
+                                )
+
+                                .option(
+                                        Option.<Boolean>createBuilder()
+                                                .name(Text.translatable("text.option.general.use_simple_voice_chat"))
+                                                .stateManager(StateManager.createInstant(def.isUseSimpleVoiceChat(), config::isUseSimpleVoiceChat, config::setUseSimpleVoiceChat))
+                                                .customController(BooleanController::new)
+                                                .build()
+                                )
+
+                                .build())
+
+                        .group(OptionGroup.createBuilder()
 
                                 .option(
                                         Option.<Double>createBuilder()

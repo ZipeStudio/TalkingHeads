@@ -1,15 +1,17 @@
 {
   "modmenu.descriptionTranslation.${mod_id}": "Client-Side Fabric mod (addon) for PlasmoVoice & SimpleVoiceChat, that scales player heads when they're talking.",
 
-
   "text.title": "§l Configuration ${mod_name}",
   "text.category.general": "General Settings",
 
   "text.option.general.enableMod": "Enable mod",
   "text.option.general.enableMod.desc": "Turns all mod features on or off.",
 
-  "text.option.general.removedVolume": "Attenuation rate",
-  "text.option.general.removedVolume.desc": "Controls how quickly the effect fades after speaking.",
+  "text.option.general.use_plasmo_voice": "Use PlasmoVoice",
+  "text.option.general.use_simple_voice_chat": "Use SimpleVoiceChat",
+
+  "text.option.general.removedVolume": "Reverse interpolation",
+  "text.option.general.removedVolume.desc": "How quickly the head decreases after the end of speech.",
 
   "text.option.general.scaleX": "Head scale on X-axis",
   "text.option.general.scaleX.desc": "Adjusts head size along the horizontal (X) axis.",
@@ -18,5 +20,10 @@
   "text.option.general.scaleY.desc": "Adjusts head size along the vertical (Y) axis.",
 
   "text.option.general.scaleZ": "Head scale on Z-axis",
-  "text.option.general.scaleZ.desc": "Adjusts the depth of the head along the (Z) axis."
+  "text.option.general.scaleZ.desc": "Adjusts the depth of the head along the (Z) axis.",
+
+  "text.keybinding.modToggle": "Enable/Disable mod",
+  "text.keybinding.modSettings": "Settings Menu",
+  "text.keybinding.modToggle.actionbar.true": "§7enabled",
+  "text.keybinding.modToggle.actionbar.false": "§7disabled"
 }

@@ -7,8 +7,11 @@
   "text.option.general.enableMod": "Включить мод",
   "text.option.general.enableMod.desc": "Активирует или отключает все функции мода.",
 
-  "text.option.general.removedVolume": "Скорость затухания",
-  "text.option.general.removedVolume.desc": "Как быстро уменьшается эффект после завершения речи.",
+  "text.option.general.use_plasmo_voice": "Использовать PlasmoVoice",
+  "text.option.general.use_simple_voice_chat": "Использовать SimpleVoiceChat",
+
+  "text.option.general.removedVolume": "Обратная интерполяции",
+  "text.option.general.removedVolume.desc": "Как быстро уменьшается голова после завершения речи.",
 
   "text.option.general.scaleX": "Масштаб головы по X-оси",
   "text.option.general.scaleX.desc": "Изменяет размер головы по горизонтальной оси (X).",
@@ -17,5 +20,11 @@
   "text.option.general.scaleY.desc": "Изменяет размер головы по вертикальной оси (Y).",
 
   "text.option.general.scaleZ": "Масштаб головы по Z-оси",
-  "text.option.general.scaleZ.desc": "Изменяет глубину головы по оси (Z)."
+  "text.option.general.scaleZ.desc": "Изменяет глубину головы по оси (Z).",
+
+
+  "text.keybinding.modToggle": "Включить/Выключить мод",
+  "text.keybinding.modSettings": "Меню настроек",
+  "text.keybinding.modToggle.actionbar.true": "§7включён",
+  "text.keybinding.modToggle.actionbar.false": "§7выключен"
 }

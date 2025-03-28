@@ -2,6 +2,8 @@ package me.zipestudio.talkingheads.mixin;
 
 import me.zipestudio.talkingheads.client.THManager;
 import me.zipestudio.talkingheads.utils.interfaces.ResizableModelPart;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.model.Model;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
@@ -10,6 +12,7 @@ import net.minecraft.client.render.entity.model.*;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import org.joml.Vector3f;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -27,7 +30,8 @@ import net.minecraft.client.render.entity.state.PlayerEntityRenderState;
 @Mixin(LivingEntityRenderer.class)
 public abstract class LivingEntityRendererMixin {
 
-    @Shadow public abstract EntityModel<?> getModel();
+    @Shadow
+    public abstract EntityModel<?> getModel();
 
     //? >=1.21.2 {
 

@@ -6,7 +6,7 @@ import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
 import dev.isxander.yacl3.platform.YACLPlatform;
 import lombok.Getter;
 import lombok.Setter;
-import me.zipestudio.talkingheads.THServer;
+import me.zipestudio.talkingheads.client.THClient;
 
 @Setter
 @Getter
@@ -22,6 +22,12 @@ public class THConfig {
     private boolean enableMod = true;
 
     @SerialEntry
+    private boolean usePlasmoVoice = true;
+
+    @SerialEntry
+    private boolean useSimpleVoiceChat = true;
+
+    @SerialEntry
     private double removedVolume = 0.0020;
 
     @SerialEntry
@@ -33,7 +39,17 @@ public class THConfig {
     @SerialEntry
     private double scaleZ = 1;
 
+
     public static boolean isModDisabled() {
-        return !THServer.getThConfig().enableMod;
+        return !THClient.getConfig().isEnableMod();
     }
+
+    public static boolean usePlasmoVoice() {
+        return THClient.getConfig().isUsePlasmoVoice();
+    }
+
+    public static boolean useSimpleVoiceChat() {
+        return THClient.getConfig().isUseSimpleVoiceChat();
+    }
+
 }

@@ -29,19 +29,19 @@ public class PlasmoVoiceAddon implements AddonInitializer {
 
     @InjectPlasmoVoice
     @Getter
-    public static PlasmoVoiceClient voiceClient;
+    private static PlasmoVoiceClient voiceClient;
 
     private double lastClientAudioLevel;
 
     @Override
     public void onAddonInitialize() {
 
-        System.out.println("Addon initialized");
+        System.out.println("pv-addon-" + THServer.MOD_ID + " initialized");
     }
 
     @EventSubscribe
     public void onSourceWrite(@NotNull AudioSourceWriteEvent event) {
-        if (THConfig.isModDisabled()) {
+        if (THConfig.isModDisabled() || !THConfig.usePlasmoVoice()) {
             return;
         }
 
@@ -57,7 +57,7 @@ public class PlasmoVoiceAddon implements AddonInitializer {
 
     @EventSubscribe
     public void onSelfAudioPacket(@NotNull UdpClientPacketReceivedEvent event) {
-        if (THConfig.isModDisabled()) {
+        if (THConfig.isModDisabled() || !THConfig.usePlasmoVoice()) {
             return;
         }
 
@@ -84,7 +84,7 @@ public class PlasmoVoiceAddon implements AddonInitializer {
 
     @EventSubscribe
     public void onAudioCapture(@NotNull AudioCaptureProcessedEvent event) {
-        if (THConfig.isModDisabled()) {
+        if (THConfig.isModDisabled() || !THConfig.usePlasmoVoice()) {
             return;
         }
 

@@ -8,7 +8,6 @@ import me.zipestudio.talkingheads.utils.interfaces.ResizableModelPart;
 import me.zipestudio.talkingheads.utils.THVolumePlayer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
-import org.joml.Vector3f;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -21,8 +20,6 @@ public class THManager {
     @Getter
     public static final HashMap<UUID, THVolumePlayer> PLAYERS = new HashMap<>();
 
-    private static THConfig thConfig = THServer.getThConfig();
-
     public static void renderHead(UUID uuid, BipedEntityModel<?> model) {
         HashMap<UUID, THVolumePlayer> playersMap = getPLAYERS();
         THVolumePlayer thVolumePlayerInfo = playersMap.get(uuid);
@@ -30,6 +27,8 @@ public class THManager {
         if (thVolumePlayerInfo != null) {
 
             double playerVolume = thVolumePlayerInfo.getPlayerVolume();
+
+            THConfig thConfig = THClient.getConfig();
 
             double sizeX = 1 + thConfig.getScaleX() * playerVolume;
             double sizeY = 1 + thConfig.getScaleY() * playerVolume;
@@ -45,11 +44,11 @@ public class THManager {
                 return;
             }
 
+            ((ResizableModelPart) model.head).talkingHeads$setSize(sizeX, sizeY, sizeZ);
+
             //? <1.21.2 {
             /*((ResizableModelPart) model.hat).talkingHeads$setSize(sizeX, sizeY, sizeZ);
              *///?}
-
-            ((ResizableModelPart) model.head).talkingHeads$setSize(sizeX, sizeY, sizeZ);
 
             thVolumePlayerInfo.setPlayerVolume(playerVolume - thConfig.getRemovedVolume());
         } else {
@@ -68,6 +67,8 @@ public class THManager {
 
         if (thVolumePlayerInfo != null) {
             double playerVolume = thVolumePlayerInfo.getPlayerVolume();
+
+            THConfig thConfig = THClient.getConfig();
 
             double sizeX = 1 + thConfig.getScaleX() * playerVolume;
             double sizeY = 1 + thConfig.getScaleY() * playerVolume;

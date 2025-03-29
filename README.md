@@ -56,5 +56,3 @@
 - **Simple Voice Chat:** `>=2.5.27`
 
 ---
-
-test

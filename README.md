@@ -19,7 +19,7 @@
           </a>
         </div>
         <div style="display: flex;">
-          <a href="https://discord.com/users/339471364312530945">
+          <a href="https://discord.com/invite/XmGF7rkkuY">
             <img src="https://raw.githubusercontent.com/ZipeStudio/Vault/refs/heads/main/design/mods/main/discord.png" title="Discord account">
           </a>
           <a href="https://t.me/zipeleaf">

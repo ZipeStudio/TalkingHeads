@@ -39,7 +39,6 @@ public class THConfig {
     @SerialEntry
     private double scaleZ = 1;
 
-
     public static boolean isModDisabled() {
         return !THClient.getConfig().isEnableMod();
     }

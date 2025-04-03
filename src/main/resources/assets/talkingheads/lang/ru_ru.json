@@ -1,30 +1,29 @@
 {
   "modmenu.descriptionTranslation.${mod_id}": "Клиентский Fabric мод (аддон) для PlasmoVoice & SimpleVoiceChat, который масштабирует головы игроков во время разговора.",
 
-  "text.title": "§l Конфигурация ${mod_name}",
-  "text.category.general": "Общие настройки",
+  "talkingheads.modmenu.title": "§l Конфигурация ${mod_name}",
+  "talkingheads.category.general": "Общие настройки",
 
-  "text.option.general.enableMod": "Включить мод",
-  "text.option.general.enableMod.desc": "Активирует или отключает все функции мода.",
+  "talkingheads.option.enableMod": "Включить мод",
+  "talkingheads.option.enableMod.desc": "Активирует или отключает все функции мода.",
 
-  "text.option.general.use_plasmo_voice": "Использовать PlasmoVoice",
-  "text.option.general.use_simple_voice_chat": "Использовать SimpleVoiceChat",
+  "talkingheads.option.use_plasmo_voice": "Использовать PlasmoVoice",
+  "talkingheads.option.use_simple_voice_chat": "Использовать SimpleVoiceChat",
 
-  "text.option.general.removedVolume": "Обратная интерполяции",
-  "text.option.general.removedVolume.desc": "Как быстро уменьшается голова после завершения речи.",
+  "talkingheads.option.removedVolume": "Обратная интерполяции",
+  "talkingheads.option.removedVolume.desc": "Как быстро уменьшается голова после завершения речи.",
 
-  "text.option.general.scaleX": "Масштаб головы по X-оси",
-  "text.option.general.scaleX.desc": "Изменяет размер головы по горизонтальной оси (X).",
+  "talkingheads.option.scaleX": "Масштаб головы по X-оси",
+  "talkingheads.option.scaleX.desc": "Изменяет размер головы по горизонтальной оси (X).",
 
-  "text.option.general.scaleY": "Масштаб головы по Y-оси",
-  "text.option.general.scaleY.desc": "Изменяет размер головы по вертикальной оси (Y).",
+  "talkingheads.option.scaleY": "Масштаб головы по Y-оси",
+  "talkingheads.option.scaleY.desc": "Изменяет размер головы по вертикальной оси (Y).",
 
-  "text.option.general.scaleZ": "Масштаб головы по Z-оси",
-  "text.option.general.scaleZ.desc": "Изменяет глубину головы по оси (Z).",
+  "talkingheads.option.scaleZ": "Масштаб головы по Z-оси",
+  "talkingheads.option.scaleZ.desc": "Изменяет глубину головы по оси (Z).",
 
-
-  "text.keybinding.modToggle": "Включить/Выключить мод",
-  "text.keybinding.modSettings": "Меню настроек",
-  "text.keybinding.modToggle.actionbar.true": "§7включён",
-  "text.keybinding.modToggle.actionbar.false": "§7выключен"
+  "talkingheads.keybinding.modToggle": "Включить/Выключить мод",
+  "talkingheads.keybinding.modSettings": "Меню настроек",
+  "talkingheads.keybinding.modToggle.actionbar.true": "§7включён",
+  "talkingheads.keybinding.modToggle.actionbar.false": "§7выключен"
 }

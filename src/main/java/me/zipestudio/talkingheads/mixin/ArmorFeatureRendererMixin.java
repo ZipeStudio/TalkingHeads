@@ -40,7 +40,7 @@ public abstract class ArmorFeatureRendererMixin {
                     ordinal = 3
             )
     )
-    private void renderInject(ArmorFeatureRenderer instance, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, ItemStack itemStack, EquipmentSlot equipmentSlot, int i, BipedEntityModel bipedEntityModel, Operation<Void> original, @Local(argsOnly = true) BipedEntityRenderState bipedEntityRenderState) {
+    private void renderInject(ArmorFeatureRenderer<?,?,?> instance, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, ItemStack itemStack, EquipmentSlot equipmentSlot, int i, BipedEntityModel bipedEntityModel, Operation<Void> original, @Local(argsOnly = true) BipedEntityRenderState bipedEntityRenderState) {
 
         boolean customRender = equipmentSlot == EquipmentSlot.HEAD && bipedEntityRenderState instanceof PlayerRenderStateWithParent;
 

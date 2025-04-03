@@ -14,13 +14,13 @@ import org.lwjgl.glfw.GLFW;
 public class THKeybinding {
 
     public static final KeyBinding THKEY_MOD_TOGGLE = new KeyBinding(
-            "text.keybinding.modToggle",
+            "talkingheads.keybinding.modToggle",
             InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_H,
             THServer.MOD_NAME
     );
 
     public static final KeyBinding THKEY_SETTINGS_MENU = new KeyBinding(
-            "text.keybinding.modSettings",
+            "talkingheads.keybinding.modSettings",
             InputUtil.Type.KEYSYM,
             InputUtil.UNKNOWN_KEY.getCode(),
             THServer.MOD_NAME
@@ -43,7 +43,7 @@ public class THKeybinding {
                 client.player.sendMessage(
                         Text.translatable(THServer.MOD_NAME)
                                 .append(" ")
-                                .append(Text.translatable("text.keybinding.modToggle.actionbar." + toggle)),
+                                .append(Text.translatable("talkingheads.keybinding.modToggle.actionbar" + toggle)),
                         true
                 );
             }

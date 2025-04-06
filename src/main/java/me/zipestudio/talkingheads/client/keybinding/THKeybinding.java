@@ -43,7 +43,7 @@ public class THKeybinding {
                 client.player.sendMessage(
                         Text.translatable(THServer.MOD_NAME)
                                 .append(" ")
-                                .append(Text.translatable("talkingheads.keybinding.modToggle.actionbar" + toggle)),
+                                .append(Text.translatable("talkingheads.keybinding.modToggle.actionbar." + toggle)),
                         true
                 );
             }

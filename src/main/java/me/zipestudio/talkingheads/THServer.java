@@ -12,7 +12,7 @@ public class THServer implements ModInitializer {
 
     public static final String MOD_NAME = /*$ mod_name*/ "Talking Heads";
     public static final String MOD_ID = /*$ mod_id*/ "talkingheads";
-    public static final String MOD_VERSION = /*$ mod_version*/ "1.0.4";
+    public static final String MOD_VERSION = /*$ mod_version*/ "1.0.6";
     public static final String MOD_AUTHORS = /*$ mod_authors*/ "ZipeStudio";
 
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);

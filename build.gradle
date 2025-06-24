@@ -17,12 +17,15 @@ mossyDependencies {
     fabricLoader = prop("build.fabric_loader")
 
     additional {
-        disable("plasmo-voice")
+//        disable("plasmo-voice")
         disable("simple-voice-chat")
     }
 }
 
 repositories {
+
+    mavenCentral()
+
     maven {
         name = 'plasmoverse-releases'
         url = 'https://repo.plasmoverse.com/releases'
@@ -37,6 +40,7 @@ repositories {
         url = 'https://maven.maxhenkel.de/repository/public'
     }
 
+    //TODO: hmm, CustomModels?
     maven {
         name = "tom5454 maven"
         url = "https://raw.githubusercontent.com/tom5454/maven/main"
@@ -47,6 +51,7 @@ repositories {
 dependencies {
     implementation("su.plo.voice.api:client:${MossyPlugin.substringSinceLast(prop("dep.plasmo-voice"), "-") + "-SNAPSHOT"}")
     implementation("de.maxhenkel.voicechat:voicechat-api:${MossyPlugin.substringSinceLast(prop("dep.simple-voice-chat"), "-")}")
+    modImplementation("me.lucko:fabric-permissions-api:${prop("dep.fabric-permissions-api")}")
 
 //    implementation ("com.tom5454.cpm:CustomPlayerModels-API:0.6.21a")
 //    implementation ("com.tom5454.cpm:CustomPlayerModels-Fabric-0.6.21a:0.6.21a")

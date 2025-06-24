@@ -2,7 +2,6 @@ package me.zipestudio.talkingheads.client;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.zipestudio.talkingheads.THServer;
 import me.zipestudio.talkingheads.config.THConfig;
 import me.zipestudio.talkingheads.utils.interfaces.ResizableModelPart;
 import me.zipestudio.talkingheads.utils.THVolumePlayer;
@@ -18,10 +17,10 @@ import java.util.UUID;
 public class THManager {
 
     @Getter
-    public static final HashMap<UUID, THVolumePlayer> PLAYERS = new HashMap<>();
+    public static final HashMap<UUID, THVolumePlayer> PLAYERS_MAP = new HashMap<>();
 
     public static void renderHead(UUID uuid, BipedEntityModel<?> model) {
-        HashMap<UUID, THVolumePlayer> playersMap = getPLAYERS();
+        HashMap<UUID, THVolumePlayer> playersMap = getPLAYERS_MAP();
         THVolumePlayer thVolumePlayerInfo = playersMap.get(uuid);
 
         if (thVolumePlayerInfo != null) {
@@ -62,7 +61,7 @@ public class THManager {
     }
 
     public static void renderHead(UUID uuid, MatrixStack matrixStack) {
-        HashMap<UUID, THVolumePlayer> playersMap = getPLAYERS();
+        HashMap<UUID, THVolumePlayer> playersMap = getPLAYERS_MAP();
         THVolumePlayer thVolumePlayerInfo = playersMap.get(uuid);
 
         if (thVolumePlayerInfo != null) {

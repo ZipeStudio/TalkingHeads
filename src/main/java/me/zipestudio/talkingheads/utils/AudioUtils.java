@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class AudioUtils {
 
-    static HashMap<UUID, THVolumePlayer> PLAYERS_MAP = THManager.getPLAYERS_MAP();
+    private static final HashMap<UUID, THVolumePlayer> PLAYERS_MAP = THManager.PLAYERS_MAP;
 
     public static double calculateAudioLevel(short[] samples) {
         if (samples == null || samples.length == 0) {

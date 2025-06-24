@@ -36,7 +36,7 @@ public class MossyLoomManager {
 		String playerNickname = getPlayerNickname(personalProperties);
 		UUID playerUuid = getPlayerUuid(personalProperties);
 		Object quickPlayWorld = personalProperties.get("quick_play_world");
-		Object pathToSpongeMixin = personalProperties.get("absolute_path_to_sponge_mixin");
+		//Object pathToSpongeMixin = personalProperties.get("absolute_path_to_sponge_mixin"); // TODO
 
 		for (RunConfigSettings runConfig : loom.getRunConfigs()) {
 			runConfig.setIdeConfigGenerated(true);
@@ -46,7 +46,7 @@ public class MossyLoomManager {
 				addProgramArg(runConfig, "--username", playerNickname);
 				addProgramArg(runConfig, "--uuid", playerUuid);
 				addProgramArg(runConfig, "--quickPlaySingleplayer", quickPlayWorld);
-				addVMArg(runConfig, "-javaagent", pathToSpongeMixin);
+				//addVMArg(runConfig, "-javaagent", pathToSpongeMixin); // TODO
 			}
  		}
 	}

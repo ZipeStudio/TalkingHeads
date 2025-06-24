@@ -15,13 +15,10 @@ import java.util.UUID;
 @Getter
 @Setter
 public class THManager {
-
-    @Getter
     public static final HashMap<UUID, THVolumePlayer> PLAYERS_MAP = new HashMap<>();
 
     public static void renderHead(UUID uuid, BipedEntityModel<?> model) {
-        HashMap<UUID, THVolumePlayer> playersMap = getPLAYERS_MAP();
-        THVolumePlayer thVolumePlayerInfo = playersMap.get(uuid);
+        THVolumePlayer thVolumePlayerInfo = PLAYERS_MAP.get(uuid);
 
         if (thVolumePlayerInfo != null) {
 
@@ -34,7 +31,7 @@ public class THManager {
             double sizeZ = 1 + thConfig.getScaleZ() * playerVolume;
 
             if (playerVolume <= 0.01) {
-                playersMap.remove(uuid);
+                PLAYERS_MAP.remove(uuid);
                 ((ResizableModelPart) model.head).talkingHeads$setDefaultSize();
 
                 //? <1.21.2 {
@@ -51,7 +48,7 @@ public class THManager {
 
             thVolumePlayerInfo.setPlayerVolume(playerVolume - thConfig.getRemovedVolume());
         } else {
-            playersMap.remove(uuid);
+            PLAYERS_MAP.remove(uuid);
             ((ResizableModelPart) model.head).talkingHeads$setDefaultSize();
 
             //? <1.21.2 {
@@ -61,8 +58,7 @@ public class THManager {
     }
 
     public static void renderHead(UUID uuid, MatrixStack matrixStack) {
-        HashMap<UUID, THVolumePlayer> playersMap = getPLAYERS_MAP();
-        THVolumePlayer thVolumePlayerInfo = playersMap.get(uuid);
+        THVolumePlayer thVolumePlayerInfo = PLAYERS_MAP.get(uuid);
 
         if (thVolumePlayerInfo != null) {
             double playerVolume = thVolumePlayerInfo.getPlayerVolume();
@@ -74,7 +70,7 @@ public class THManager {
             double sizeZ = 1 + thConfig.getScaleZ() * playerVolume;
 
             if (playerVolume <= 0.01) {
-                playersMap.remove(uuid);
+                PLAYERS_MAP.remove(uuid);
 
                 matrixStack.scale(1, 1, 1);
                 return;
@@ -84,7 +80,7 @@ public class THManager {
 
             thVolumePlayerInfo.setPlayerVolume(playerVolume - thConfig.getRemovedVolume());
         } else {
-            playersMap.remove(uuid);
+            PLAYERS_MAP.remove(uuid);
             matrixStack.scale(1, 1, 1);
         }
     }

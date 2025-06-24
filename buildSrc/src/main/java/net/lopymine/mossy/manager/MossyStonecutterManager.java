@@ -1,28 +1,43 @@
 package net.lopymine.mossy.manager;
 
-import dev.kikugie.stonecutter.*;
+import dev.kikugie.stonecutter.build.StonecutterBuildExtension;
 import lombok.experimental.ExtensionMethod;
 import org.gradle.api.Project;
 
 import net.lopymine.mossy.MossyPlugin;
 
+import java.util.Map;
 import org.jetbrains.annotations.NotNull;
 
 @ExtensionMethod(MossyPlugin.class)
 public class MossyStonecutterManager {
 
-	public static void apply(@NotNull Project project) {
-		StonecutterBuild stonecutter = project.getStonecutter();
+	public static void apply(@NotNull Project project, MossyPlugin plugin) {
+		StonecutterBuildExtension stonecutter = project.getStonecutter();
 
-		addSwap(stonecutter, project, "data.mod_version");
-		addSwap(stonecutter, project, "data.mod_id");
-		addSwap(stonecutter, project, "data.mod_name");
-		addSwap(stonecutter, project, "dep.yacl");
-	}
+		String mcVersion = plugin.getProjectMultiVersion().projectVersion();
+		Map<String, String> properties = project.getMossyProperties("data");
+		properties.putAll(project.getMossyProperties("build"));
+		Map<String, String> dependencies = project.getMossyProperties("dep");
+		properties.putAll(dependencies);
+		properties.put("java", String.valueOf(plugin.getJavaVersionIndex()));
+		properties.put("minecraft", mcVersion);
+		properties.put("fabric_api_id", project.getStonecutter().compare("1.19.1", mcVersion) >= 0 ? "fabric" : "fabric-api");
+		properties.put("mod_version", project.getVersion().toString());
 
-	private static void addSwap(StonecutterBuild stonecutter, @NotNull Project project, String propertyId) {
-		String property = project.getProperty(propertyId);
-		stonecutter.swap(propertyId.substringSince("."), getFormatted(property));
+		properties.forEach((key, value) -> {
+			stonecutter.getSwaps().put(key, getFormatted(value));
+		});
+
+		dependencies.forEach((modId, version) -> {
+			stonecutter.getConstants().put(modId, !version.equals("unknown"));
+			if (modId.equals("plasmo-voice") || modId.equals("simple-voice-chat")) {
+				String voiceModVersion = MossyPlugin.substringSinceLast(version, "-");
+				stonecutter.getDependencies().put(modId, voiceModVersion);
+			} else {
+				stonecutter.getDependencies().put(modId, version);
+			}
+		});
 	}
 
 	private static @NotNull String getFormatted(String modVersion) {

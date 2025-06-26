@@ -2,7 +2,7 @@ package me.zipestudio.talkingheads.mixin.state;
 
 //? >=1.21.2 {
 
-import net.minecraft.client.render.entity.PlayerEntityRenderer;
+/*import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -28,4 +28,4 @@ public class PlayerEntityRendererMixin {
     }
 
 }
-//?}
+*///?}

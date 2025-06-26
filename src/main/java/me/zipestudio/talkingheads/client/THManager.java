@@ -35,16 +35,16 @@ public class THManager {
                 ((ResizableModelPart) model.head).talkingHeads$setDefaultSize();
 
                 //? <1.21.2 {
-                /*((ResizableModelPart) model.hat).talkingHeads$setDefaultSize();
-                 *///?}
+                ((ResizableModelPart) model.hat).talkingHeads$setDefaultSize();
+                 //?}
                 return;
             }
 
             ((ResizableModelPart) model.head).talkingHeads$setSize(sizeX, sizeY, sizeZ);
 
             //? <1.21.2 {
-            /*((ResizableModelPart) model.hat).talkingHeads$setSize(sizeX, sizeY, sizeZ);
-             *///?}
+            ((ResizableModelPart) model.hat).talkingHeads$setSize(sizeX, sizeY, sizeZ);
+             //?}
 
             thVolumePlayerInfo.setPlayerVolume(playerVolume - thConfig.getRemovedVolume());
         } else {
@@ -52,8 +52,8 @@ public class THManager {
             ((ResizableModelPart) model.head).talkingHeads$setDefaultSize();
 
             //? <1.21.2 {
-            /*((ResizableModelPart) model.hat).talkingHeads$setDefaultSize();
-             *///?}
+            ((ResizableModelPart) model.hat).talkingHeads$setDefaultSize();
+             //?}
         }
     }
 

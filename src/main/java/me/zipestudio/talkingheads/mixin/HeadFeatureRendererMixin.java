@@ -24,15 +24,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.UUID;
 
 //? >=1.21.2 {
-import me.zipestudio.talkingheads.utils.interfaces.PlayerRenderStateWithParent;
+/*import me.zipestudio.talkingheads.utils.interfaces.PlayerRenderStateWithParent;
 import net.minecraft.client.render.entity.state.LivingEntityRenderState;
-//?}
+*///?}
 
 @Mixin(HeadFeatureRenderer.class)
 public class HeadFeatureRendererMixin {
 
     //? >=1.21.2 {
-    @Inject(
+    /*@Inject(
             at = @At(value = "INVOKE",
                     target = "Lnet/minecraft/client/util/math/MatrixStack;scale(FFF)V",
                     ordinal = 0,
@@ -49,8 +49,8 @@ public class HeadFeatureRendererMixin {
 
         THManager.renderHead(playerEntity.getUuid(), matrixStack);
     }
-    //?} else {
-         /*@Inject(
+    *///?} else {
+         @Inject(
             at = @At(value = "INVOKE",
                     target = "Lnet/minecraft/client/util/math/MatrixStack;scale(FFF)V   ",
                     ordinal = 0,
@@ -68,5 +68,5 @@ public class HeadFeatureRendererMixin {
         THManager.renderHead(uuid, matrixStack);
 
     }
-    *///?}
+    //?}
 }

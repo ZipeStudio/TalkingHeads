@@ -21,16 +21,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.UUID;
 
 //? >=1.21.2 {
-/*import me.zipestudio.talkingheads.utils.interfaces.PlayerRenderStateWithParent;
+import me.zipestudio.talkingheads.utils.interfaces.PlayerRenderStateWithParent;
 import net.minecraft.client.render.entity.state.BipedEntityRenderState;
-*///?}
+//?}
 
 @Mixin(ArmorFeatureRenderer.class)
 public abstract class ArmorFeatureRendererMixin {
 
     //? >=1.21.2 {
 
-    /*@WrapOperation(
+    @WrapOperation(
             method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/client/render/entity/state/BipedEntityRenderState;FF)V",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/feature/ArmorFeatureRenderer;renderArmor(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/EquipmentSlot;ILnet/minecraft/client/render/entity/model/BipedEntityModel;)V",
                     ordinal = 3
@@ -56,9 +56,9 @@ public abstract class ArmorFeatureRendererMixin {
         }
     }
 
-    *///?} else {
+    //?} else {
 
-    @Inject(
+    /*@Inject(
             at = @At("HEAD"),
             method = "renderArmor"
     )
@@ -73,6 +73,6 @@ public abstract class ArmorFeatureRendererMixin {
         THManager.renderHead(uuid, model);
     }
 
-    //?}
+    *///?}
 
 }

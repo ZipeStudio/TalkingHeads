@@ -14,7 +14,7 @@
         "discord_team": "https://discord.gg/XmGF7rkkuY"
     },
     "license": "${mod_license}",
-    "icon": "assets/icon/icon.png",
+    "icon": "icon/icon.png",
     "environment": "*",
     "entrypoints": {
         "main": [
@@ -24,7 +24,7 @@
             "me.zipestudio.talkingheads.client.THClient"
         ],
         "modmenu": [
-            "me.zipestudio.talkingheads.config.ModMenuIntegration"
+            "me.zipestudio.talkingheads.utils.modmenu.ModMenuIntegration"
         ],
         "voicechat": [
             "me.zipestudio.talkingheads.client.SimpleVoiceAddon"

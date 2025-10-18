@@ -1,66 +1,70 @@
 import net.lopymine.mossy.MossyPlugin
 
 plugins {
-    id("net.lopymine.mossy-plugin")
+	id("net.lopymine.mossy-plugin")
 }
 
 stonecutter {
-    swap("mod_version", "\"${findProperty("data.mod_version")}\";")
-    swap("mod_authors", "\"${findProperty("data.mod_authors")}\";")
+	swap("mod_version", "\"${findProperty("data.mod_version")}\";")
+	swap("mod_authors", "\"${findProperty("data.mod_authors")}\";")
 }
 
 mossyDependencies {
-    minecraft = stonecutter.current.version.toString()
-    mappings = prop("build.yarn")
-    lombok = prop("base.lombok_version")
-    fabricApi = prop("build.fabric_api")
-    fabricLoader = prop("build.fabric_loader")
+	minecraft = stonecutter.current.version.toString()
+	mappings = prop("build.yarn")
+	lombok = prop("base.lombok_version")
+	fabricApi = prop("build.fabric_api")
+	fabricLoader = prop("build.fabric_loader")
 
-    additional {
+	additional {
 //        disable("plasmo-voice")
-        disable("simple-voice-chat")
-    }
+		disable("simple-voice-chat")
+	}
+
 }
 
 repositories {
 
-    mavenCentral()
+	mavenCentral()
 
-    maven {
-        name = 'plasmoverse-releases'
-        url = 'https://repo.plasmoverse.com/releases'
-    }
-    maven {
-        name = 'plasmoverse-snapshots'
-        url = 'https://repo.plasmoverse.com/snapshots'
-    }
+	// Plasmo Voice
+	maven {
+		name = 'plasmoverse-releases'
+		url = 'https://repo.plasmoverse.com/releases'
+	}
+	maven {
+		name = 'plasmoverse-snapshots'
+		url = 'https://repo.plasmoverse.com/snapshots'
+	}
 
-    maven {
-        name = "henkelmax.public"
-        url = 'https://maven.maxhenkel.de/repository/public'
-    }
+	// Simple Voice
+	maven {
+		name = "henkelmax.public"
+		url = 'https://maven.maxhenkel.de/repository/public'
+	}
 
-    //TODO: hmm, CustomModels?
-    maven {
-        name = "tom5454 maven"
-        url = "https://raw.githubusercontent.com/tom5454/maven/main"
-    }
+	//TODO: hmm, CustomModels?
+// 	maven {
+//		name = "tom5454 maven"
+//		url = "https://raw.githubusercontent.com/tom5454/maven/main"
+//	}
 
 }
 
 dependencies {
-    implementation("su.plo.voice.api:client:${MossyPlugin.substringSinceLast(prop("dep.plasmo-voice"), "-") + "-SNAPSHOT"}")
-    implementation("de.maxhenkel.voicechat:voicechat-api:${MossyPlugin.substringSinceLast(prop("dep.simple-voice-chat"), "-")}")
-    modImplementation("me.lucko:fabric-permissions-api:${prop("dep.fabric-permissions-api")}")
+	implementation("su.plo.voice.api:client:${MossyPlugin.substringSinceLast(prop("dep.plasmo-voice"), "-") + "-SNAPSHOT"}")
+	implementation("de.maxhenkel.voicechat:voicechat-api:${MossyPlugin.substringSinceLast(prop("dep.simple-voice-chat"), "-")}")
+//	modImplementation("me.lucko:fabric-permissions-api:${prop("dep.fabric-permissions-api")}")
 
+	// TODO: hmm, CustomModels?
 //    implementation ("com.tom5454.cpm:CustomPlayerModels-API:0.6.21a")
 //    implementation ("com.tom5454.cpm:CustomPlayerModels-Fabric-0.6.21a:0.6.21a")
 }
 
 mossyResources {
-    //expandFiles = ["custom", "file", "patterns", "here"]
+	//expandFiles = ["custom", "file", "patterns", "here"]
 }
 
 String prop(String key) {
-    return findProperty(key).toString()
+	return findProperty(key).toString()
 }

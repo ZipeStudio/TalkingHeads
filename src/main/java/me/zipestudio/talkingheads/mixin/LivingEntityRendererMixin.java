@@ -1,27 +1,19 @@
 package me.zipestudio.talkingheads.mixin;
 
 import me.zipestudio.talkingheads.client.THManager;
-import me.zipestudio.talkingheads.utils.interfaces.ResizableModelPart;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.model.Model;
-import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
-import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.model.*;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import org.joml.Vector3f;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.UUID;
 
 //? >=1.21.2 {
-import me.zipestudio.talkingheads.utils.interfaces.PlayerRenderStateWithParent;
+import me.zipestudio.talkingheads.utils.talkingheads.interfaces.PlayerRenderStateWithParent;
 import net.minecraft.client.render.entity.state.EntityRenderState;
 import net.minecraft.client.render.entity.state.LivingEntityRenderState;
 import net.minecraft.client.render.entity.state.PlayerEntityRenderState;
@@ -44,9 +36,7 @@ public abstract class LivingEntityRendererMixin {
         }
 
         PlayerEntity playerEntity = ((PlayerRenderStateWithParent) livingEntityRenderState).talkingheads$getEntity();
-        if (playerEntity == null) {
-            return;
-        }
+        if (playerEntity == null) return;
 
         UUID uuid = playerEntity.getUuid();
 

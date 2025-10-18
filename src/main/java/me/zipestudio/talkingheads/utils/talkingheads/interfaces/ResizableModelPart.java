@@ -1,6 +1,7 @@
-package me.zipestudio.talkingheads.utils.interfaces;
+package me.zipestudio.talkingheads.utils.talkingheads.interfaces;
 
 public interface ResizableModelPart {
+
 	void talkingHeads$setSize(double sizeX, double sizeY, double sizeZ);
 	double talkingHeads$getSizeX();
 	double talkingHeads$getSizeY();

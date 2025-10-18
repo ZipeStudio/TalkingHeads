@@ -2,8 +2,8 @@ package me.zipestudio.talkingheads.client.keybinding;
 
 import me.zipestudio.talkingheads.THServer;
 import me.zipestudio.talkingheads.client.THClient;
-import me.zipestudio.talkingheads.config.ModMenuIntegration;
-import me.zipestudio.talkingheads.config.THConfig;
+import me.zipestudio.talkingheads.config.LeafyConfig;
+import me.zipestudio.talkingheads.config.YACLConfigurationScreen;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
@@ -36,9 +36,9 @@ public class THKeybinding {
                     return;
                 }
 
-                THConfig clientConfig = THClient.getConfig();
-                boolean toggle = !clientConfig.isEnableMod();
-                clientConfig.setEnableMod(toggle);
+                LeafyConfig leafyConfig = THClient.getLeafyConfig();
+                boolean toggle = !leafyConfig.isEnableMod();
+                leafyConfig.setEnableMod(toggle);
 
                 client.player.sendMessage(
                         Text.translatable(THServer.MOD_NAME)
@@ -53,7 +53,7 @@ public class THKeybinding {
                     return;
                 }
 
-                client.setScreen(ModMenuIntegration.config().generateScreen(client.currentScreen));
+                client.setScreen(YACLConfigurationScreen.createScreen(client.currentScreen));
             }
 
         }));

@@ -1,4 +1,4 @@
-package me.zipestudio.talkingheads.utils;
+package me.zipestudio.talkingheads.utils.talkingheads;
 
 import me.zipestudio.talkingheads.client.THManager;
 
@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class AudioUtils {
 
-    private static final HashMap<UUID, THVolumePlayer> PLAYERS_MAP = THManager.PLAYERS_MAP;
+    private static final HashMap<UUID, THPlayerProfile> ACTIVE_PLAYERS_MAP = THManager.PLAYERS_MAP;
 
     public static double calculateAudioLevel(short[] samples) {
         if (samples == null || samples.length == 0) {
@@ -30,11 +30,11 @@ public class AudioUtils {
 
     public static void applyHeadVolume(UUID playerUuid, double audioLevel) {
         if (audioLevel <= -50D) {
-            PLAYERS_MAP.put(playerUuid, new THVolumePlayer(playerUuid, 0));
+            ACTIVE_PLAYERS_MAP.put(playerUuid, new THPlayerProfile(playerUuid, 0));
             return;
         }
 
         double voiceVolume = 0.8D * (1D - (Math.abs(audioLevel) / 60D));
-        PLAYERS_MAP.put(playerUuid, new THVolumePlayer(playerUuid, (float) voiceVolume));
+        ACTIVE_PLAYERS_MAP.put(playerUuid, new THPlayerProfile(playerUuid, (float) voiceVolume));
     }
 }

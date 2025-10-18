@@ -1,29 +1,37 @@
 {
-  "modmenu.descriptionTranslation.${mod_id}": "Клиентский Fabric мод (аддон) для PlasmoVoice & SimpleVoiceChat, который масштабирует головы игроков во время разговора.",
+  "modmenu.descriptionTranslation.${mod_id}": "Клиентский Fabric мод (аддон) для PlasmoVoice и SimpleVoiceChat, который масштабирует головы игроков во время разговора.",
 
-  "talkingheads.modmenu.title": "§l Конфигурация ${mod_name}",
-  "talkingheads.category.general": "Общие настройки",
+  "${mod_id}.modmenu.title": "§lКонфигурация ${mod_name}",
+  "${mod_id}.modmenu.no_config_library_screen.message": "Необходимо установить §6§lYet Another Config Lib [YACL]§f, чтобы открыть экран настроек ${mod_name}\n\n§a§lОткрыть страницу §6§lYACL §a§lна Modrinth?",
 
-  "talkingheads.option.enableMod": "Включить мод",
-  "talkingheads.option.enableMod.desc": "Активирует или отключает все функции мода.",
+  "${mod_id}.modmenu.category.general.name": "§lОбщие настройки",
 
-  "talkingheads.option.use_plasmo_voice": "Использовать PlasmoVoice",
-  "talkingheads.option.use_simple_voice_chat": "Использовать SimpleVoiceChat",
+  "${mod_id}.modmenu.option.enableMod.name": "Включить мод",
+  "${mod_id}.modmenu.option.enableMod.description": "Активирует или отключает все функции мода.",
 
-  "talkingheads.option.removedVolume": "Обратная интерполяции",
-  "talkingheads.option.removedVolume.desc": "Как быстро уменьшается голова после завершения речи.",
+  "${mod_id}.modmenu.option.use_plasmo_voice.name": "Использовать PlasmoVoice",
+  "${mod_id}.modmenu.option.use_plasmo_voice.description": "Интегрировать TalkingHeads с PlasmoVoice для обнаружения речи.",
 
-  "talkingheads.option.scaleX": "Масштаб головы по X-оси",
-  "talkingheads.option.scaleX.desc": "Изменяет размер головы по горизонтальной оси (X).",
+  "${mod_id}.modmenu.option.use_simple_voice_chat.name": "Использовать SimpleVoiceChat",
+  "${mod_id}.modmenu.option.use_simple_voice_chat.description": "Интегрировать TalkingHeads с SimpleVoiceChat для обнаружения речи.",
 
-  "talkingheads.option.scaleY": "Масштаб головы по Y-оси",
-  "talkingheads.option.scaleY.desc": "Изменяет размер головы по вертикальной оси (Y).",
+  "${mod_id}.modmenu.option.removedVolume.name": "Обратная интерполяция",
+  "${mod_id}.modmenu.option.removedVolume.description": "Как быстро уменьшается голова после завершения речи.",
 
-  "talkingheads.option.scaleZ": "Масштаб головы по Z-оси",
-  "talkingheads.option.scaleZ.desc": "Изменяет глубину головы по оси (Z).",
+  "${mod_id}.modmenu.option.scaleX.name": "Масштаб головы по X-оси",
+  "${mod_id}.modmenu.option.scaleX.description": "Изменяет размер головы по горизонтальной оси (X).",
 
-  "talkingheads.keybinding.modToggle": "Включить/Выключить мод",
-  "talkingheads.keybinding.modSettings": "Меню настроек",
-  "talkingheads.keybinding.modToggle.actionbar.true": "§7включён",
-  "talkingheads.keybinding.modToggle.actionbar.false": "§7выключен"
+  "${mod_id}.modmenu.option.scaleY.name": "Масштаб головы по Y-оси",
+  "${mod_id}.modmenu.option.scaleY.description": "Изменяет размер головы по вертикальной оси (Y).",
+
+  "${mod_id}.modmenu.option.scaleZ.name": "Масштаб головы по Z-оси",
+  "${mod_id}.modmenu.option.scaleZ.description": "Изменяет глубину головы по оси Z.",
+
+  "${mod_id}.modmenu.formatter.enabled_or_disabled.true": "Включено",
+  "${mod_id}.modmenu.formatter.enabled_or_disabled.false": "Выключено",
+
+  "${mod_id}.keybinding.modToggle": "Включить/Выключить мод",
+  "${mod_id}.keybinding.modSettings": "Меню настроек",
+  "${mod_id}.keybinding.modToggle.actionbar.true": "§7включён",
+  "${mod_id}.keybinding.modToggle.actionbar.false": "§7выключен"
 }

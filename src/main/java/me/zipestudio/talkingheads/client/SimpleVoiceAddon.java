@@ -5,8 +5,8 @@ import de.maxhenkel.voicechat.api.events.*;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import me.zipestudio.talkingheads.THServer;
-import me.zipestudio.talkingheads.config.THConfig;
-import me.zipestudio.talkingheads.utils.AudioUtils;
+import me.zipestudio.talkingheads.config.LeafyConfig;
+import me.zipestudio.talkingheads.utils.talkingheads.AudioUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 
@@ -35,7 +35,8 @@ public class SimpleVoiceAddon implements VoicechatPlugin {
     }
 
     public void onReceiveAudioEntity(ClientReceiveSoundEvent.EntitySound event) {
-        if (THConfig.isModDisabled() || !THConfig.useSimpleVoiceChat()) {
+        LeafyConfig leafyConfig = THClient.getLeafyConfig();
+        if (!leafyConfig.isEnableMod() || !leafyConfig.isUseSimpleVoiceChat()) {
             return;
         }
 
@@ -46,7 +47,8 @@ public class SimpleVoiceAddon implements VoicechatPlugin {
     }
 
     public void onClientSoundEvent(ClientSoundEvent event) {
-        if (THConfig.isModDisabled() || !THConfig.useSimpleVoiceChat()) {
+        LeafyConfig leafyConfig = THClient.getLeafyConfig();
+        if (!leafyConfig.isEnableMod() || !leafyConfig.isUseSimpleVoiceChat()) {
             return;
         }
 

@@ -2,8 +2,8 @@ package me.zipestudio.talkingheads.client;
 
 import lombok.Getter;
 import me.zipestudio.talkingheads.THServer;
-import me.zipestudio.talkingheads.config.THConfig;
-import me.zipestudio.talkingheads.utils.AudioUtils;
+import me.zipestudio.talkingheads.config.LeafyConfig;
+import me.zipestudio.talkingheads.utils.talkingheads.AudioUtils;
 import org.jetbrains.annotations.NotNull;
 import su.plo.voice.api.addon.AddonInitializer;
 import su.plo.voice.api.addon.InjectPlasmoVoice;
@@ -41,7 +41,10 @@ public class PlasmoVoiceAddon implements AddonInitializer {
 
     @EventSubscribe
     public void onSourceWrite(@NotNull AudioSourceWriteEvent event) {
-        if (THConfig.isModDisabled() || !THConfig.usePlasmoVoice()) {
+
+        LeafyConfig leafyConfig = THClient.getLeafyConfig();
+
+        if (!leafyConfig.isEnableMod() || !leafyConfig.isUsePlasmoVoice()) {
             return;
         }
 
@@ -57,7 +60,9 @@ public class PlasmoVoiceAddon implements AddonInitializer {
 
     @EventSubscribe
     public void onSelfAudioPacket(@NotNull UdpClientPacketReceivedEvent event) {
-        if (THConfig.isModDisabled() || !THConfig.usePlasmoVoice()) {
+
+        LeafyConfig leafyConfig = THClient.getLeafyConfig();
+        if (!leafyConfig.isEnableMod() || !leafyConfig.isUsePlasmoVoice()) {
             return;
         }
 
@@ -84,7 +89,8 @@ public class PlasmoVoiceAddon implements AddonInitializer {
 
     @EventSubscribe
     public void onAudioCapture(@NotNull AudioCaptureProcessedEvent event) {
-        if (THConfig.isModDisabled() || !THConfig.usePlasmoVoice()) {
+        LeafyConfig leafyConfig = THClient.getLeafyConfig();
+        if (!leafyConfig.isEnableMod() || !leafyConfig.isUsePlasmoVoice()) {
             return;
         }
 

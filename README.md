@@ -42,17 +42,5 @@
 > Fully compatible with both **PlasmoVoice** and **SimpleVoiceChat**, and can be used with both at the same time!
 
 <div align="center">
-  <img src="https://cdn.modrinth.com/data/Os35nfkh/images/b01581dd52e32d703fbb5605f4851fbc639d024e.gif" width="1000px" alt="mod banner"/>
+  <img src="https://raw.githubusercontent.com/ZipeStudio/TalkingHeads/refs/heads/master/img/showcase.gif" width="1000px" alt="mod banner"/>
 </div>
-
----
-
-# ❗ Required updates
-
-🔹**Update `ModMenu`, `YACL`, (`PlasmoVoice` and/or `SimpleVoiceChat`) to the latest version!**  
-🔹**Supported Versions:**
-
-- **Plasmo Voice:** `>=2.1.0`
-- **Simple Voice Chat:** `>=2.5.27`
-
----

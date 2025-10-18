@@ -1,7 +1,7 @@
 package me.zipestudio.talkingheads;
 
 import lombok.Getter;
-import me.zipestudio.talkingheads.config.THConfig;
+import me.zipestudio.talkingheads.config.LeafyConfig;
 import net.minecraft.text.*;
 import net.minecraft.util.Identifier;
 import org.slf4j.*;
@@ -12,8 +12,10 @@ public class THServer implements ModInitializer {
 
     public static final String MOD_NAME = /*$ mod_name*/ "Talking Heads";
     public static final String MOD_ID = /*$ mod_id*/ "talkingheads";
-    public static final String MOD_VERSION = /*$ mod_version*/ "1.0.6";
+    public static final String YACL_DEPEND_VERSION = /*$ yacl*/ "3.7.1+1.21.6-fabric";
+    public static final String MOD_VERSION = /*$ mod_version*/ "1.0.7";
     public static final String MOD_AUTHORS = /*$ mod_authors*/ "ZipeStudio";
+
 
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
 

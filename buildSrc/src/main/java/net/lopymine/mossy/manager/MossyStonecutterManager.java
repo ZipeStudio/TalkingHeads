@@ -31,12 +31,6 @@ public class MossyStonecutterManager {
 
 		dependencies.forEach((modId, version) -> {
 			stonecutter.getConstants().put(modId, !version.equals("unknown"));
-			if (modId.equals("plasmo-voice") || modId.equals("simple-voice-chat")) {
-				String voiceModVersion = MossyPlugin.substringSinceLast(version, "-");
-				stonecutter.getDependencies().put(modId, voiceModVersion);
-			} else {
-				stonecutter.getDependencies().put(modId, version);
-			}
 		});
 	}
 

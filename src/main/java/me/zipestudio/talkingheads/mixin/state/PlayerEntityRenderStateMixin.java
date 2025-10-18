@@ -2,7 +2,7 @@ package me.zipestudio.talkingheads.mixin.state;
 
 //? >=1.21.2 {
 
-import me.zipestudio.talkingheads.utils.interfaces.PlayerRenderStateWithParent;
+import me.zipestudio.talkingheads.utils.talkingheads.interfaces.PlayerRenderStateWithParent;
 import net.minecraft.client.render.entity.state.PlayerEntityRenderState;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,6 +16,7 @@ public class PlayerEntityRenderStateMixin implements PlayerRenderStateWithParent
 
     @Override
     public void talkingheads$setEntity(PlayerEntity entity) {
+        if (entity == null) return;
         this.talkingheads$entity = entity;
     }
 

@@ -10,18 +10,13 @@ import net.minecraft.client.render.entity.feature.ArmorFeatureRenderer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import java.util.UUID;
 
 //? >=1.21.2 {
-import me.zipestudio.talkingheads.utils.interfaces.PlayerRenderStateWithParent;
+import me.zipestudio.talkingheads.utils.talkingheads.interfaces.PlayerRenderStateWithParent;
 import net.minecraft.client.render.entity.state.BipedEntityRenderState;
 //?}
 
@@ -36,24 +31,19 @@ public abstract class ArmorFeatureRendererMixin {
                     ordinal = 3
             )
     )
-    private void renderInject(ArmorFeatureRenderer<?,?,?> instance, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, ItemStack itemStack, EquipmentSlot equipmentSlot, int i, BipedEntityModel bipedEntityModel, Operation<Void> original, @Local(argsOnly = true) BipedEntityRenderState bipedEntityRenderState) {
+    private void renderInject(ArmorFeatureRenderer<?, ?, ?> instance, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, ItemStack itemStack, EquipmentSlot equipmentSlot, int i, BipedEntityModel<BipedEntityRenderState> bipedEntityModel, Operation<Void> original, @Local(argsOnly = true) BipedEntityRenderState bipedEntityRenderState) {
 
-        boolean customRender = equipmentSlot == EquipmentSlot.HEAD && bipedEntityRenderState instanceof PlayerRenderStateWithParent;
+        if (!(bipedEntityRenderState instanceof PlayerRenderStateWithParent playerState))
+            return;
 
-        if (customRender) {
+        PlayerEntity playerEntity = playerState.talkingheads$getEntity();
+        if (playerEntity == null) return;
 
-            matrixStack.push();
+        if (equipmentSlot != EquipmentSlot.HEAD) return;
 
-            PlayerEntity playerEntity = ((PlayerRenderStateWithParent) bipedEntityRenderState).talkingheads$getEntity();
-
-            THManager.renderHead(playerEntity.getUuid(), matrixStack);
-        }
-
-        original.call(instance, matrixStack, vertexConsumerProvider, itemStack, equipmentSlot, i, bipedEntityModel);
-
-        if (customRender) {
-            matrixStack.pop();
-        }
+        matrixStack.push();
+        THManager.renderHead(playerEntity.getUuid(), matrixStack);
+        matrixStack.pop();
     }
 
     //?} else {

@@ -1,30 +1,18 @@
 package me.zipestudio.talkingheads.mixin;
 
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.llamalad7.mixinextras.sugar.Local;
 import de.maxhenkel.voicechat.api.Player;
 import me.zipestudio.talkingheads.client.THManager;
-import net.minecraft.block.AbstractSkullBlock;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.HeadFeatureRenderer;
-import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.UUID;
-
 //? >=1.21.2 {
-import me.zipestudio.talkingheads.utils.interfaces.PlayerRenderStateWithParent;
+import me.zipestudio.talkingheads.utils.talkingheads.interfaces.PlayerRenderStateWithParent;
 import net.minecraft.client.render.entity.state.LivingEntityRenderState;
 //?}
 
@@ -46,6 +34,7 @@ public class HeadFeatureRendererMixin {
         }
 
         PlayerEntity playerEntity = playerRenderStateWithParent.talkingheads$getEntity();
+        if (playerEntity == null) return;
 
         THManager.renderHead(playerEntity.getUuid(), matrixStack);
     }

@@ -2,9 +2,9 @@ package me.zipestudio.talkingheads.client;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.zipestudio.talkingheads.config.THConfig;
-import me.zipestudio.talkingheads.utils.interfaces.ResizableModelPart;
-import me.zipestudio.talkingheads.utils.THVolumePlayer;
+import me.zipestudio.talkingheads.config.LeafyConfig;
+import me.zipestudio.talkingheads.utils.talkingheads.interfaces.ResizableModelPart;
+import me.zipestudio.talkingheads.utils.talkingheads.THPlayerProfile;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 
@@ -15,20 +15,20 @@ import java.util.UUID;
 @Getter
 @Setter
 public class THManager {
-    public static final HashMap<UUID, THVolumePlayer> PLAYERS_MAP = new HashMap<>();
+    public static final HashMap<UUID, THPlayerProfile> PLAYERS_MAP = new HashMap<>();
 
     public static void renderHead(UUID uuid, BipedEntityModel<?> model) {
-        THVolumePlayer thVolumePlayerInfo = PLAYERS_MAP.get(uuid);
+        THPlayerProfile thPlayerProfileInfo = PLAYERS_MAP.get(uuid);
 
-        if (thVolumePlayerInfo != null) {
+        if (thPlayerProfileInfo != null) {
 
-            double playerVolume = thVolumePlayerInfo.getPlayerVolume();
+            double playerVolume = thPlayerProfileInfo.getPlayerVolume();
 
-            THConfig thConfig = THClient.getConfig();
+            LeafyConfig leafyConfig = THClient.getLeafyConfig();
 
-            double sizeX = 1 + thConfig.getScaleX() * playerVolume;
-            double sizeY = 1 + thConfig.getScaleY() * playerVolume;
-            double sizeZ = 1 + thConfig.getScaleZ() * playerVolume;
+            double sizeX = 1 + leafyConfig.getScaleX() * playerVolume;
+            double sizeY = 1 + leafyConfig.getScaleY() * playerVolume;
+            double sizeZ = 1 + leafyConfig.getScaleZ() * playerVolume;
 
             if (playerVolume <= 0.01) {
                 PLAYERS_MAP.remove(uuid);
@@ -46,7 +46,7 @@ public class THManager {
             /*((ResizableModelPart) model.hat).talkingHeads$setSize(sizeX, sizeY, sizeZ);
              *///?}
 
-            thVolumePlayerInfo.setPlayerVolume(playerVolume - thConfig.getRemovedVolume());
+            thPlayerProfileInfo.setPlayerVolume(playerVolume - leafyConfig.getRemovedVolume());
         } else {
             PLAYERS_MAP.remove(uuid);
             ((ResizableModelPart) model.head).talkingHeads$setDefaultSize();
@@ -58,16 +58,16 @@ public class THManager {
     }
 
     public static void renderHead(UUID uuid, MatrixStack matrixStack) {
-        THVolumePlayer thVolumePlayerInfo = PLAYERS_MAP.get(uuid);
+        THPlayerProfile thPlayerProfileInfo = PLAYERS_MAP.get(uuid);
 
-        if (thVolumePlayerInfo != null) {
-            double playerVolume = thVolumePlayerInfo.getPlayerVolume();
+        if (thPlayerProfileInfo != null) {
+            double playerVolume = thPlayerProfileInfo.getPlayerVolume();
 
-            THConfig thConfig = THClient.getConfig();
+            LeafyConfig leafyConfig = THClient.getLeafyConfig();
 
-            double sizeX = 1 + thConfig.getScaleX() * playerVolume;
-            double sizeY = 1 + thConfig.getScaleY() * playerVolume;
-            double sizeZ = 1 + thConfig.getScaleZ() * playerVolume;
+            double sizeX = 1 + leafyConfig.getScaleX() * playerVolume;
+            double sizeY = 1 + leafyConfig.getScaleY() * playerVolume;
+            double sizeZ = 1 + leafyConfig.getScaleZ() * playerVolume;
 
             if (playerVolume <= 0.01) {
                 PLAYERS_MAP.remove(uuid);
@@ -78,7 +78,7 @@ public class THManager {
 
             matrixStack.scale((float) sizeX, (float) sizeY, (float) sizeZ);
 
-            thVolumePlayerInfo.setPlayerVolume(playerVolume - thConfig.getRemovedVolume());
+            thPlayerProfileInfo.setPlayerVolume(playerVolume - leafyConfig.getRemovedVolume());
         } else {
             PLAYERS_MAP.remove(uuid);
             matrixStack.scale(1, 1, 1);

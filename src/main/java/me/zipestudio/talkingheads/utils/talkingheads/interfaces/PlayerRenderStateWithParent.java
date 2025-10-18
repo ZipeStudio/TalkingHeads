@@ -1,4 +1,4 @@
-package me.zipestudio.talkingheads.utils.interfaces;
+package me.zipestudio.talkingheads.utils.talkingheads.interfaces;
 
 import net.minecraft.entity.player.PlayerEntity;
 

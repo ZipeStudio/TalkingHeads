@@ -1,19 +1,12 @@
 package me.zipestudio.talkingheads.mixin;
 
-import me.zipestudio.talkingheads.client.THManager;
-import me.zipestudio.talkingheads.utils.interfaces.ResizableModelPart;
-import net.minecraft.client.model.Model;
+import me.zipestudio.talkingheads.utils.talkingheads.interfaces.ResizableModelPart;
 import net.minecraft.client.model.ModelPart;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.util.math.MatrixStack;
-import org.joml.Vector3f;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import java.util.Map;
 
 @Mixin(ModelPart.class)
 public abstract class ModelPartMixin implements ResizableModelPart {
@@ -59,26 +52,11 @@ public abstract class ModelPartMixin implements ResizableModelPart {
     //? if <1.21.5 {
     /*@Inject(method = "rotate(Lnet/minecraft/client/util/math/MatrixStack;)V",
             at = @At(value = "HEAD")
-    )
-    public void scaleHead(MatrixStack matrices, CallbackInfo ci) {
-
-        double x = this.talkingHeads$getSizeX();
-        double y = this.talkingHeads$getSizeY();
-        double z = this.talkingHeads$getSizeZ();
-
-        boolean xScale = x != this.talkingHeads$getDefaultSize();
-        boolean yScale = y != this.talkingHeads$getDefaultSize();
-        boolean zScale = z != this.talkingHeads$getDefaultSize();
-
-        if (xScale || yScale || zScale) {
-            matrices.scale((float) x, (float) y, (float) z);
-        }
-
-    }
     *///?} else {
     @Inject(method = "applyTransform",
             at = @At(value = "HEAD")
     )
+    //?}
     public void scaleHeadNew(MatrixStack matrices, CallbackInfo ci) {
         double x = this.talkingHeads$getSizeX();
         double y = this.talkingHeads$getSizeY();
@@ -92,6 +70,5 @@ public abstract class ModelPartMixin implements ResizableModelPart {
             matrices.scale((float) x, (float) y, (float) z);
         }
     }
-     //?}
 
 }

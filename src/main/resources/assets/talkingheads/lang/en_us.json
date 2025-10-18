@@ -1,29 +1,37 @@
 {
-  "modmenu.descriptionTranslation.${mod_id}": "Client-Side Fabric mod (addon) for PlasmoVoice & SimpleVoiceChat, that scales player heads when they're talking.",
+  "modmenu.descriptionTranslation.${mod_id}": "Client-side Fabric mod (addon) for PlasmoVoice & SimpleVoiceChat that scales player heads when they're talking.",
 
-  "talkingheads.modmenu.title": "§l Configuration ${mod_name}",
-  "talkingheads.category.general": "General Settings",
+  "${mod_id}.modmenu.title": "§l${mod_name} Configuration",
+  "${mod_id}.modmenu.no_config_library_screen.message": "You need to install §6§lYet Another Config Lib [YACL]§f to open ${mod_name} Configuration Screen\n\n§a§lOpen §6§lYACL §a§lModrinth page?",
 
-  "talkingheads.option.enableMod": "Enable mod",
-  "talkingheads.option.enableMod.desc": "Turns all mod features on or off.",
+  "${mod_id}.modmenu.category.general.name": "§lGeneral",
 
-  "talkingheads.option.use_plasmo_voice": "Use PlasmoVoice",
-  "talkingheads.option.use_simple_voice_chat": "Use SimpleVoiceChat",
+  "${mod_id}.modmenu.option.enableMod.name": "Enable Mod",
+  "${mod_id}.modmenu.option.enableMod.description": "Turns all mod features on or off.",
 
-  "talkingheads.option.removedVolume": "Reverse interpolation",
-  "talkingheads.option.removedVolume.desc": "How quickly the head decreases after the end of speech.",
+  "${mod_id}.modmenu.option.use_plasmo_voice.name": "Use PlasmoVoice",
+  "${mod_id}.modmenu.option.use_plasmo_voice.description": "Integrate TalkingHeads with PlasmoVoice for talking detection.",
 
-  "talkingheads.option.scaleX": "Head scale on X-axis",
-  "talkingheads.option.scaleX.desc": "Adjusts head size along the horizontal (X) axis.",
+  "${mod_id}.modmenu.option.use_simple_voice_chat.name": "Use SimpleVoiceChat",
+  "${mod_id}.modmenu.option.use_simple_voice_chat.description": "Integrate TalkingHeads with SimpleVoiceChat for talking detection.",
 
-  "talkingheads.option.scaleY": "Head scale on Y-axis",
-  "talkingheads.option.scaleY.desc": "Adjusts head size along the vertical (Y) axis.",
+  "${mod_id}.modmenu.option.removedVolume.name": "Reverse interpolation",
+  "${mod_id}.modmenu.option.removedVolume.description": "How quickly the head decreases after the end of speech.",
 
-  "talkingheads.option.scaleZ": "Head scale on Z-axis",
-  "talkingheads.option.scaleZ.desc": "Adjusts the depth of the head along the (Z) axis.",
+  "${mod_id}.modmenu.option.scaleX.name": "Head Scale X",
+  "${mod_id}.modmenu.option.scaleX.description": "Adjusts head size along the X-axis (horizontal).",
 
-  "talkingheads.keybinding.modToggle": "Enable/Disable mod",
-  "talkingheads.keybinding.modSettings": "Settings Menu",
-  "talkingheads.keybinding.modToggle.actionbar.true": "§7enabled",
-  "talkingheads.keybinding.modToggle.actionbar.false": "§7disabled"
+  "${mod_id}.modmenu.option.scaleY.name": "Head Scale Y",
+  "${mod_id}.modmenu.option.scaleY.description": "Adjusts head size along the Y-axis (vertical).",
+
+  "${mod_id}.modmenu.option.scaleZ.name": "Head Scale Z",
+  "${mod_id}.modmenu.option.scaleZ.description": "Adjusts the depth of the head along the Z-axis.",
+
+  "${mod_id}.modmenu.formatter.enabled_or_disabled.true": "Enabled",
+  "${mod_id}.modmenu.formatter.enabled_or_disabled.false": "Disabled",
+
+  "${mod_id}.keybinding.modToggle": "Enable/Disable mod",
+  "${mod_id}.keybinding.modSettings": "Settings Menu",
+  "${mod_id}.keybinding.modToggle.actionbar.true": "§7enabled",
+  "${mod_id}.keybinding.modToggle.actionbar.false": "§7disabled"
 }

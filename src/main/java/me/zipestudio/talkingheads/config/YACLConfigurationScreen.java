@@ -62,29 +62,30 @@ public class YACLConfigurationScreen {
 						SimpleOption.<Double>startBuilder("removedVolume")
 								.withDescription(SimpleContent.NONE)
 								.withController(-Double.MAX_VALUE,Double.MAX_VALUE,0, false)
-								.withBinding(defConfig.getRemovedVolume(), config::getRemovedVolume, config::setRemovedVolume, false)
+								.withBinding(defConfig.getRemovedVolume(), config::getRemovedVolume, config::setRemovedVolume, true)
 								.build(),
 
 						// Scale X
 						SimpleOption.<Double>startBuilder("scaleX")
 								.withDescription(SimpleContent.NONE)
 								.withController(-Double.MAX_VALUE,Double.MAX_VALUE,0, false)
-								.withBinding(defConfig.getScaleX(), config::getScaleX, config::setScaleX, false)
+								.withBinding(defConfig.getScaleX(), config::getScaleX, config::setScaleX, true)
 								.build(),
 
 						// Scale Y
 						SimpleOption.<Double>startBuilder("scaleY")
 								.withDescription(SimpleContent.NONE)
 								.withController(-Double.MAX_VALUE,Double.MAX_VALUE,0, false)
-								.withBinding(defConfig.getScaleY(), config::getScaleY, config::setScaleY, false)
+								.withBinding(defConfig.getScaleY(), config::getScaleY, config::setScaleY, true)
 								.build(),
 
 						// Scale Z
 						SimpleOption.<Double>startBuilder("scaleZ")
 								.withDescription(SimpleContent.NONE)
 								.withController(-Double.MAX_VALUE,Double.MAX_VALUE,0, false)
-								.withBinding(defConfig.getScaleZ(), config::getScaleZ, config::setScaleZ, false)
+								.withBinding(defConfig.getScaleZ(), config::getScaleZ, config::setScaleZ, true)
 								.build()
+
 				)
 				.build();
 	}

@@ -30,6 +30,8 @@
   "${mod_id}.modmenu.formatter.enabled_or_disabled.true": "Включено",
   "${mod_id}.modmenu.formatter.enabled_or_disabled.false": "Выключено",
 
+  "key.category.${mod_id}.${mod_id}": "Talking Heads",
+
   "${mod_id}.keybinding.modToggle": "Включить/Выключить мод",
   "${mod_id}.keybinding.modSettings": "Меню настроек",
   "${mod_id}.keybinding.modToggle.actionbar.true": "§7включён",

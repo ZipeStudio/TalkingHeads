@@ -14,20 +14,22 @@ import org.lwjgl.glfw.GLFW;
 public class THKeybinding {
 
     //? if >=1.21.9 {
-    /*public static final KeyBinding THKEY_MOD_TOGGLE = new KeyBinding(
-            "${mod_id}.keybinding.modToggle",
+    private static final KeyBinding.Category TALKING_HEADS_CATEGORY =
+            KeyBinding.Category.create(THServer.id(THServer.MOD_ID));
+    public static final KeyBinding THKEY_MOD_TOGGLE = new KeyBinding(
+            THServer.MOD_ID + ".keybinding.modToggle",
             InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_H,
-            KeyBinding.Category.create(THServer.id(THServer.MOD_NAME))
+            TALKING_HEADS_CATEGORY
     );
     public static final KeyBinding THKEY_SETTINGS_MENU = new KeyBinding(
             THServer.MOD_ID + ".keybinding.modSettings",
             InputUtil.Type.KEYSYM,
             InputUtil.UNKNOWN_KEY.getCode(),
-            KeyBinding.Category.create(THServer.id(THServer.MOD_NAME))
+            TALKING_HEADS_CATEGORY
     );
-    *///?} else {
-    public static final KeyBinding THKEY_MOD_TOGGLE = new KeyBinding(
+    //?} else {
+    /*public static final KeyBinding THKEY_MOD_TOGGLE = new KeyBinding(
             "${mod_id}.keybinding.modToggle",
             InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_H,
             THServer.MOD_NAME
@@ -38,7 +40,7 @@ public class THKeybinding {
             InputUtil.UNKNOWN_KEY.getCode(),
             THServer.MOD_NAME
     );
-    //?}
+    *///?}
 
     public static void register() {
         registerDefaultKeys();

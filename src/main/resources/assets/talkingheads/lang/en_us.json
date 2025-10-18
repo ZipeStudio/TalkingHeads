@@ -30,6 +30,8 @@
   "${mod_id}.modmenu.formatter.enabled_or_disabled.true": "Enabled",
   "${mod_id}.modmenu.formatter.enabled_or_disabled.false": "Disabled",
 
+  "key.category.${mod_id}.${mod_id}": "Talking Heads",
+
   "${mod_id}.keybinding.modToggle": "Enable/Disable mod",
   "${mod_id}.keybinding.modSettings": "Settings Menu",
   "${mod_id}.keybinding.modToggle.actionbar.true": "§7enabled",

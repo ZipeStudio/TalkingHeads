@@ -30,12 +30,12 @@ public class THKeybinding {
     );
     //?} else {
     /*public static final KeyBinding THKEY_MOD_TOGGLE = new KeyBinding(
-            "${mod_id}.keybinding.modToggle",
+            THServer.MOD_ID + ".keybinding.modToggle",
             InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_H,
             THServer.MOD_NAME
     );
     public static final KeyBinding THKEY_SETTINGS_MENU = new KeyBinding(
-            "${mod_id}.keybinding.modSettings",
+            THServer.MOD_ID + ".keybinding.modSettings",
             InputUtil.Type.KEYSYM,
             InputUtil.UNKNOWN_KEY.getCode(),
             THServer.MOD_NAME

@@ -3,15 +3,23 @@ package me.zipestudio.talkingheads.mixin;
 import de.maxhenkel.voicechat.api.Player;
 import me.zipestudio.talkingheads.client.THManager;
 import net.minecraft.client.render.VertexConsumerProvider;
+
 import net.minecraft.client.render.entity.feature.HeadFeatureRenderer;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-//? >=1.21.2 {
+import java.util.UUID;
+
+//? if >=1.21.9 {
+/*import net.minecraft.client.render.command.OrderedRenderCommandQueue;
+*///?}
+
+//? if >=1.21.2 {
 import me.zipestudio.talkingheads.utils.talkingheads.interfaces.PlayerRenderStateWithParent;
 import net.minecraft.client.render.entity.state.LivingEntityRenderState;
 //?}
@@ -19,7 +27,28 @@ import net.minecraft.client.render.entity.state.LivingEntityRenderState;
 @Mixin(HeadFeatureRenderer.class)
 public class HeadFeatureRendererMixin {
 
-    //? >=1.21.2 {
+    //? if >=1.21.9 {
+    /*@Inject(
+            method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/command/OrderedRenderCommandQueue;ILnet/minecraft/client/render/entity/state/LivingEntityRenderState;FF)V",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/util/math/MatrixStack;scale(FFF)V",
+                    ordinal = 0,
+                    shift = At.Shift.AFTER
+            )
+    )
+    private void onRender(MatrixStack matrices, OrderedRenderCommandQueue queue, int light, LivingEntityRenderState state, float f, float g, CallbackInfo ci) {
+
+        if (!(state instanceof PlayerRenderStateWithParent playerState)) {
+            return;
+        }
+
+        PlayerEntity player = playerState.talkingheads$getEntity();
+        if (player == null) return;
+
+        THManager.renderHead(player.getUuid(), matrices);
+    }
+    *///?} else if >=1.21.2 {
     @Inject(
             at = @At(value = "INVOKE",
                     target = "Lnet/minecraft/client/util/math/MatrixStack;scale(FFF)V",

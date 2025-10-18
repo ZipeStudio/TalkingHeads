@@ -52,6 +52,7 @@ public abstract class ModelPartMixin implements ResizableModelPart {
     //? if <1.21.5 {
     /*@Inject(method = "rotate(Lnet/minecraft/client/util/math/MatrixStack;)V",
             at = @At(value = "HEAD")
+    )
     *///?} else {
     @Inject(method = "applyTransform",
             at = @At(value = "HEAD")

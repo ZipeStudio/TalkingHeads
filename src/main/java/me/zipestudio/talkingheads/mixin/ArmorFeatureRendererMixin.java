@@ -10,10 +10,18 @@ import net.minecraft.client.render.entity.feature.ArmorFeatureRenderer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import java.util.UUID;
+
+//? if >=1.21.9 {
+/*import net.minecraft.client.render.command.OrderedRenderCommandQueue;
+*///?}
 
 //? >=1.21.2 {
 import me.zipestudio.talkingheads.utils.talkingheads.interfaces.PlayerRenderStateWithParent;
@@ -23,8 +31,31 @@ import net.minecraft.client.render.entity.state.BipedEntityRenderState;
 @Mixin(ArmorFeatureRenderer.class)
 public abstract class ArmorFeatureRendererMixin {
 
-    //? >=1.21.2 {
 
+    //? if >=1.21.9 {
+    /*@WrapOperation(
+            method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/command/OrderedRenderCommandQueue;ILnet/minecraft/client/render/entity/state/BipedEntityRenderState;FF)V",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/render/entity/feature/ArmorFeatureRenderer;renderArmor(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/command/OrderedRenderCommandQueue;Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/EquipmentSlot;ILnet/minecraft/client/render/entity/state/BipedEntityRenderState;)V",
+                    ordinal = 3
+            )
+    )
+    private void onRenderArmor(ArmorFeatureRenderer<?, ?, ?> instance, MatrixStack matrixStack, OrderedRenderCommandQueue queue, ItemStack stack, EquipmentSlot slot, int light, BipedEntityRenderState state, Operation<Void> original, @Local(argsOnly = true) BipedEntityRenderState bipedState) {
+
+        if (!(state instanceof PlayerRenderStateWithParent playerState))
+            return;
+
+        PlayerEntity playerEntity = playerState.talkingheads$getEntity();
+        if (playerEntity == null) return;
+
+        if (slot != EquipmentSlot.HEAD) return;
+
+        matrixStack.push();
+        THManager.renderHead(playerEntity.getUuid(), matrixStack);
+        matrixStack.pop();
+    }
+    *///?} else if >=1.21.2 {
     @WrapOperation(
             method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/client/render/entity/state/BipedEntityRenderState;FF)V",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/feature/ArmorFeatureRenderer;renderArmor(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/EquipmentSlot;ILnet/minecraft/client/render/entity/model/BipedEntityModel;)V",

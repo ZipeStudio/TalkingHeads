@@ -13,18 +13,32 @@ import org.lwjgl.glfw.GLFW;
 
 public class THKeybinding {
 
+    //? if >=1.21.9 {
+    /*public static final KeyBinding THKEY_MOD_TOGGLE = new KeyBinding(
+            "${mod_id}.keybinding.modToggle",
+            InputUtil.Type.KEYSYM,
+            GLFW.GLFW_KEY_H,
+            KeyBinding.Category.create(THServer.id(THServer.MOD_NAME))
+    );
+    public static final KeyBinding THKEY_SETTINGS_MENU = new KeyBinding(
+            THServer.MOD_ID + ".keybinding.modSettings",
+            InputUtil.Type.KEYSYM,
+            InputUtil.UNKNOWN_KEY.getCode(),
+            KeyBinding.Category.create(THServer.id(THServer.MOD_NAME))
+    );
+    *///?} else {
     public static final KeyBinding THKEY_MOD_TOGGLE = new KeyBinding(
-            "talkingheads.keybinding.modToggle",
+            "${mod_id}.keybinding.modToggle",
             InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_H,
             THServer.MOD_NAME
     );
-
     public static final KeyBinding THKEY_SETTINGS_MENU = new KeyBinding(
-            "talkingheads.keybinding.modSettings",
+            "${mod_id}.keybinding.modSettings",
             InputUtil.Type.KEYSYM,
             InputUtil.UNKNOWN_KEY.getCode(),
             THServer.MOD_NAME
     );
+    //?}
 
     public static void register() {
         registerDefaultKeys();
@@ -43,7 +57,7 @@ public class THKeybinding {
                 client.player.sendMessage(
                         Text.translatable(THServer.MOD_NAME)
                                 .append(" ")
-                                .append(Text.translatable("talkingheads.keybinding.modToggle.actionbar." + toggle)),
+                                .append(Text.translatable(THServer.MOD_ID + ".keybinding.modToggle.actionbar." + toggle)),
                         true
                 );
             }

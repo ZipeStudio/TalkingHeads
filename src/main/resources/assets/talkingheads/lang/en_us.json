@@ -5,6 +5,8 @@
   "${mod_id}.modmenu.no_config_library_screen.message": "You need to install §6§lYet Another Config Lib [YACL]§f to open ${mod_name} Configuration Screen\n\n§a§lOpen §6§lYACL §a§lModrinth page?",
 
   "${mod_id}.modmenu.category.general.name": "§lGeneral",
+  "${mod_id}.modmenu.group.general.name": "§lGeneral",
+  "${mod_id}.modmenu.group.experimental.name": "§lExperimental",
 
   "${mod_id}.modmenu.option.enableMod.name": "Enable Mod",
   "${mod_id}.modmenu.option.enableMod.description": "Turns all mod features on or off.",
@@ -26,6 +28,12 @@
 
   "${mod_id}.modmenu.option.scaleZ.name": "Head Scale Z",
   "${mod_id}.modmenu.option.scaleZ.description": "Adjusts the depth of the head along the Z-axis.",
+
+  "${mod_id}.modmenu.option.helmetHideWhileTalking.name": "Hide Helmet While Talking",
+  "${mod_id}.modmenu.option.helmetHideWhileTalking.description": "Hides the helmet while the player is speaking, reappears after a short delay.",
+
+  "${mod_id}.modmenu.option.helmetShowDelay.name": "Helmet Show Delay (s)",
+  "${mod_id}.modmenu.option.helmetShowDelay.description": "Time in seconds to wait after the player stops talking before showing the helmet again.",
 
   "${mod_id}.modmenu.formatter.enabled_or_disabled.true": "Enabled",
   "${mod_id}.modmenu.formatter.enabled_or_disabled.false": "Disabled",

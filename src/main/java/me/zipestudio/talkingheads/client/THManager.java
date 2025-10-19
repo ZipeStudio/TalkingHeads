@@ -15,9 +15,26 @@ import java.util.UUID;
 @Getter
 @Setter
 public class THManager {
+
     public static final HashMap<UUID, THPlayerProfile> PLAYERS_MAP = new HashMap<>();
+    public static final HashMap<UUID, Long> LAST_TALK_TIME = new HashMap<>();
+
+    private static double MIN_VOICE_VALUE = 0.01;
+
+    public static boolean isPlayerTalking(UUID uuid) {
+        return (PLAYERS_MAP.get(uuid) != null && isPlayerTalking(PLAYERS_MAP.get(uuid)));
+    }
+
+    public static boolean isPlayerTalking(THPlayerProfile playerProfile) {
+        return playerProfile.getPlayerVolume() > MIN_VOICE_VALUE;
+    }
 
     public static void renderHead(UUID uuid, BipedEntityModel<?> model) {
+
+        if (isPlayerTalking(uuid)) {
+            LAST_TALK_TIME.put(uuid, System.currentTimeMillis());
+        }
+
         THPlayerProfile thPlayerProfileInfo = PLAYERS_MAP.get(uuid);
 
         if (thPlayerProfileInfo != null) {
@@ -30,13 +47,13 @@ public class THManager {
             double sizeY = 1 + leafyConfig.getScaleY() * playerVolume;
             double sizeZ = 1 + leafyConfig.getScaleZ() * playerVolume;
 
-            if (playerVolume <= 0.01) {
+            if (playerVolume <= MIN_VOICE_VALUE) {
                 PLAYERS_MAP.remove(uuid);
-                ((ResizableModelPart) model.head).talkingHeads$setDefaultSize();
+                ((ResizableModelPart) model.head).talkingHeads$setDefaultsSize();
 
                 //? <1.21.2 {
-                /*((ResizableModelPart) model.hat).talkingHeads$setDefaultSize();
-                 *///?}
+                /*((ResizableModelPart) model.hat).talkingHeads$setDefaultsSize();
+                *///?}
                 return;
             }
 
@@ -44,20 +61,25 @@ public class THManager {
 
             //? <1.21.2 {
             /*((ResizableModelPart) model.hat).talkingHeads$setSize(sizeX, sizeY, sizeZ);
-             *///?}
+            *///?}
 
             thPlayerProfileInfo.setPlayerVolume(playerVolume - leafyConfig.getRemovedVolume());
         } else {
             PLAYERS_MAP.remove(uuid);
-            ((ResizableModelPart) model.head).talkingHeads$setDefaultSize();
+            ((ResizableModelPart) model.head).talkingHeads$setDefaultsSize();
 
             //? <1.21.2 {
-            /*((ResizableModelPart) model.hat).talkingHeads$setDefaultSize();
-             *///?}
+            /*((ResizableModelPart) model.hat).talkingHeads$setDefaultsSize();
+            *///?}
         }
     }
 
     public static void renderHead(UUID uuid, MatrixStack matrixStack) {
+
+        if (isPlayerTalking(uuid)) {
+            LAST_TALK_TIME.put(uuid, System.currentTimeMillis());
+        }
+
         THPlayerProfile thPlayerProfileInfo = PLAYERS_MAP.get(uuid);
 
         if (thPlayerProfileInfo != null) {
@@ -69,7 +91,7 @@ public class THManager {
             double sizeY = 1 + leafyConfig.getScaleY() * playerVolume;
             double sizeZ = 1 + leafyConfig.getScaleZ() * playerVolume;
 
-            if (playerVolume <= 0.01) {
+            if (playerVolume <= MIN_VOICE_VALUE) {
                 PLAYERS_MAP.remove(uuid);
 
                 matrixStack.scale(1, 1, 1);

@@ -27,7 +27,9 @@ public class LeafyConfig {
 			option("removedVolume", 0.0020, Codec.DOUBLE, LeafyConfig::getRemovedVolume),
 			option("scaleX", 0.3, Codec.DOUBLE, LeafyConfig::getScaleX),
 			option("scaleY", 0.3, Codec.DOUBLE, LeafyConfig::getScaleY),
-			option("scaleZ", 0.3, Codec.DOUBLE, LeafyConfig::getScaleZ)
+			option("scaleZ", 0.3, Codec.DOUBLE, LeafyConfig::getScaleZ),
+			option("helmetHideWhileTalking", false, Codec.BOOL, LeafyConfig::isHelmetHideWhileTalking),
+			option("helmetShowDelay", 0.1, Codec.DOUBLE, LeafyConfig::getHelmetShowDelay)
 	).apply(instance, LeafyConfig::new));
 
 	private static final File CONFIG_FILE = FabricLoader.getInstance().getConfigDir().resolve(THServer.MOD_ID + ".json5").toFile();
@@ -41,6 +43,8 @@ public class LeafyConfig {
 	private double scaleX;
 	private double scaleY;
 	private double scaleZ;
+	private boolean helmetHideWhileTalking;
+	private double helmetShowDelay;
 
 	private LeafyConfig() {
 		throw new IllegalArgumentException();

@@ -5,6 +5,7 @@
   "${mod_id}.modmenu.no_config_library_screen.message": "Необходимо установить §6§lYet Another Config Lib [YACL]§f, чтобы открыть экран настроек ${mod_name}\n\n§a§lОткрыть страницу §6§lYACL §a§lна Modrinth?",
 
   "${mod_id}.modmenu.category.general.name": "§lОбщие настройки",
+  "${mod_id}.modmenu.category.experimental.name": "§lЭкспериментальные настройки",
 
   "${mod_id}.modmenu.option.enableMod.name": "Включить мод",
   "${mod_id}.modmenu.option.enableMod.description": "Активирует или отключает все функции мода.",
@@ -26,6 +27,12 @@
 
   "${mod_id}.modmenu.option.scaleZ.name": "Масштаб головы по Z-оси",
   "${mod_id}.modmenu.option.scaleZ.description": "Изменяет глубину головы по оси Z.",
+
+  "${mod_id}.modmenu.option.helmetHideWhileTalking.name": "Скрывать шлем во время разговора",
+  "${mod_id}.modmenu.option.helmetHideWhileTalking.description": "Скрывает шлем, пока игрок говорит, шлем появляется снова через короткую задержку.",
+
+  "${mod_id}.modmenu.option.helmetShowDelay.name": "Задержка показа шлема (сек)",
+  "${mod_id}.modmenu.option.helmetShowDelay.description": "Время в секундах до повторного отображения шлема после того, как игрок перестал говорить.",
 
   "${mod_id}.modmenu.formatter.enabled_or_disabled.true": "Включено",
   "${mod_id}.modmenu.formatter.enabled_or_disabled.false": "Выключено",

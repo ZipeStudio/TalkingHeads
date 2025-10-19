@@ -1,2 +1,4 @@
 v1.0.9:
-- Fixed armor renderer compatibility for MC 1.21.2–1.21.10
+- Fixed compatibility issues with helmet rendering on MC 1.21.2–1.21.10
+- Added a config option to hide the helmet while the player is speaking
+- Added a setting to delay the show of the helmet after the player stops speaking.

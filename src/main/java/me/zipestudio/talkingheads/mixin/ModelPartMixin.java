@@ -1,5 +1,6 @@
 package me.zipestudio.talkingheads.mixin;
 
+import lombok.Getter;
 import me.zipestudio.talkingheads.utils.talkingheads.interfaces.ResizableModelPart;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.util.math.MatrixStack;
@@ -28,10 +29,16 @@ public abstract class ModelPartMixin implements ResizableModelPart {
     }
 
     @Override
-    public void talkingHeads$setDefaultSize() {
-        this.sizeX = 1;
-        this.sizeY = 1;
-        this.sizeZ = 1;
+    public void talkingHeads$setDefaultsSize() {
+        this.sizeX = talkingHeads$getDefaultSize();
+        this.sizeY = talkingHeads$getDefaultSize();
+        this.sizeZ = talkingHeads$getDefaultSize();
+    }
+
+    @Override
+    public boolean talkingHeads$isDefaults() {
+        double def = talkingHeads$getDefaultSize();
+        return this.talkingHeads$getSizeX() == def && this.talkingHeads$getSizeY() == def && this.talkingHeads$getSizeZ() == def;
     }
 
     @Override
@@ -59,17 +66,15 @@ public abstract class ModelPartMixin implements ResizableModelPart {
     )
     //?}
     public void scaleHeadNew(MatrixStack matrices, CallbackInfo ci) {
-        double x = this.talkingHeads$getSizeX();
-        double y = this.talkingHeads$getSizeY();
-        double z = this.talkingHeads$getSizeZ();
 
-        boolean xScale = x != this.talkingHeads$getDefaultSize();
-        boolean yScale = y != this.talkingHeads$getDefaultSize();
-        boolean zScale = z != this.talkingHeads$getDefaultSize();
+        if (talkingHeads$isDefaults()) return;
 
-        if (xScale || yScale || zScale) {
-            matrices.scale((float) x, (float) y, (float) z);
-        }
+        matrices.scale(
+                (float) talkingHeads$getSizeX(),
+                (float) talkingHeads$getSizeY(),
+                (float) talkingHeads$getSizeZ()
+        );
+
     }
 
 }

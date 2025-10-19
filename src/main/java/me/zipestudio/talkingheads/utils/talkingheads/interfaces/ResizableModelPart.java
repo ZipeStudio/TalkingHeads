@@ -2,16 +2,21 @@ package me.zipestudio.talkingheads.utils.talkingheads.interfaces;
 
 public interface ResizableModelPart {
 
-	void talkingHeads$setSize(double sizeX, double sizeY, double sizeZ);
-	double talkingHeads$getSizeX();
-	double talkingHeads$getSizeY();
-	double talkingHeads$getSizeZ();
+    void talkingHeads$setSize(double sizeX, double sizeY, double sizeZ);
 
-	void talkingHeads$setDefaultSize();
+    double talkingHeads$getSizeX();
 
-	default double talkingHeads$getDefaultSize() {
-		return 1.0F;
-	}
+    double talkingHeads$getSizeY();
+
+    double talkingHeads$getSizeZ();
+
+    boolean talkingHeads$isDefaults();
+
+    void talkingHeads$setDefaultsSize();
+
+    default double talkingHeads$getDefaultSize() {
+        return 1.0;
+    }
 
 }
 

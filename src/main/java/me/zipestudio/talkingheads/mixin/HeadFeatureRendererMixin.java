@@ -16,8 +16,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.UUID;
 
 //? if >=1.21.9 {
-import net.minecraft.client.render.command.OrderedRenderCommandQueue;
-//?}
+/*import net.minecraft.client.render.command.OrderedRenderCommandQueue;
+*///?}
 
 //? if >=1.21.2 {
 import me.zipestudio.talkingheads.utils.talkingheads.interfaces.PlayerRenderStateWithParent;
@@ -28,7 +28,7 @@ import net.minecraft.client.render.entity.state.LivingEntityRenderState;
 public class HeadFeatureRendererMixin {
 
     //? if >=1.21.9 {
-    @Inject(
+    /*@Inject(
             method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/command/OrderedRenderCommandQueue;ILnet/minecraft/client/render/entity/state/LivingEntityRenderState;FF)V",
             at = @At(
                     value = "INVOKE",
@@ -48,8 +48,8 @@ public class HeadFeatureRendererMixin {
 
         THManager.renderHead(player.getUuid(), matrices);
     }
-    //?} else if >=1.21.2 {
-    /*@Inject(
+    *///?} else if >=1.21.2 {
+    @Inject(
             at = @At(value = "INVOKE",
                     target = "Lnet/minecraft/client/util/math/MatrixStack;scale(FFF)V",
                     ordinal = 0,
@@ -67,7 +67,7 @@ public class HeadFeatureRendererMixin {
 
         THManager.renderHead(playerEntity.getUuid(), matrixStack);
     }
-    *///?} else {
+    //?} else {
          /*@Inject(
             at = @At(value = "INVOKE",
                     target = "Lnet/minecraft/client/util/math/MatrixStack;scale(FFF)V   ",

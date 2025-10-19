@@ -20,8 +20,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.UUID;
 
 //? if >=1.21.9 {
-import net.minecraft.client.render.command.OrderedRenderCommandQueue;
-//?}
+/*import net.minecraft.client.render.command.OrderedRenderCommandQueue;
+*///?}
 
 //? >=1.21.2 {
 import me.zipestudio.talkingheads.utils.talkingheads.interfaces.PlayerRenderStateWithParent;
@@ -33,7 +33,7 @@ public abstract class ArmorFeatureRendererMixin {
 
 
     //? if >=1.21.9 {
-    @WrapOperation(
+    /*@WrapOperation(
             method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/command/OrderedRenderCommandQueue;ILnet/minecraft/client/render/entity/state/BipedEntityRenderState;FF)V",
             at = @At(
                     value = "INVOKE",
@@ -43,20 +43,26 @@ public abstract class ArmorFeatureRendererMixin {
     )
     private void onRenderArmor(ArmorFeatureRenderer<?, ?, ?> instance, MatrixStack matrixStack, OrderedRenderCommandQueue queue, ItemStack stack, EquipmentSlot slot, int light, BipedEntityRenderState state, Operation<Void> original, @Local(argsOnly = true) BipedEntityRenderState bipedState) {
 
-        if (!(state instanceof PlayerRenderStateWithParent playerState))
-            return;
+        boolean customRender = slot == EquipmentSlot.HEAD && state instanceof PlayerRenderStateWithParent;
 
-        PlayerEntity playerEntity = playerState.talkingheads$getEntity();
-        if (playerEntity == null) return;
+        if (customRender) {
 
-        if (slot != EquipmentSlot.HEAD) return;
+            matrixStack.push();
 
-        matrixStack.push();
-        THManager.renderHead(playerEntity.getUuid(), matrixStack);
-        matrixStack.pop();
+            PlayerEntity playerEntity = ((PlayerRenderStateWithParent) state).talkingheads$getEntity();
+
+            THManager.renderHead(playerEntity.getUuid(), matrixStack);
+        }
+
+        original.call(instance, matrixStack, queue, stack, slot, light, bipedState);
+
+        if (customRender) {
+            matrixStack.pop();
+        }
+
     }
-    //?} else if >=1.21.2 {
-    /*@WrapOperation(
+    *///?} else if >=1.21.2 {
+    @WrapOperation(
             method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/client/render/entity/state/BipedEntityRenderState;FF)V",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/feature/ArmorFeatureRenderer;renderArmor(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/EquipmentSlot;ILnet/minecraft/client/render/entity/model/BipedEntityModel;)V",
                     ordinal = 3
@@ -64,20 +70,26 @@ public abstract class ArmorFeatureRendererMixin {
     )
     private void renderInject(ArmorFeatureRenderer<?, ?, ?> instance, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, ItemStack itemStack, EquipmentSlot equipmentSlot, int i, BipedEntityModel<BipedEntityRenderState> bipedEntityModel, Operation<Void> original, @Local(argsOnly = true) BipedEntityRenderState bipedEntityRenderState) {
 
-        if (!(bipedEntityRenderState instanceof PlayerRenderStateWithParent playerState))
-            return;
+        boolean customRender = equipmentSlot == EquipmentSlot.HEAD && bipedEntityRenderState instanceof PlayerRenderStateWithParent;
 
-        PlayerEntity playerEntity = playerState.talkingheads$getEntity();
-        if (playerEntity == null) return;
+        if (customRender) {
 
-        if (equipmentSlot != EquipmentSlot.HEAD) return;
+            matrixStack.push();
 
-        matrixStack.push();
-        THManager.renderHead(playerEntity.getUuid(), matrixStack);
-        matrixStack.pop();
+            PlayerEntity playerEntity = ((PlayerRenderStateWithParent) bipedEntityRenderState).talkingheads$getEntity();
+
+            THManager.renderHead(playerEntity.getUuid(), matrixStack);
+        }
+
+        original.call(instance, matrixStack, vertexConsumerProvider, itemStack, equipmentSlot, i, bipedEntityModel);
+
+        if (customRender) {
+            matrixStack.pop();
+        }
+
     }
 
-    *///?} else {
+    //?} else {
 
     /*@Inject(
             at = @At("HEAD"),

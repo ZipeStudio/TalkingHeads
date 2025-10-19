@@ -1,2 +1,2 @@
-v1.0.8:
-- Fixed key names for older versions
+v1.0.9:
+- Fixed armor renderer compatibility for MC 1.21.2–1.21.10

@@ -15,9 +15,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.UUID;
 
 //? if >=1.21.9 {
-import net.minecraft.client.render.command.OrderedRenderCommandQueue;
+/*import net.minecraft.client.render.command.OrderedRenderCommandQueue;
 import net.minecraft.client.render.state.CameraRenderState;
-//?}
+*///?}
 
 //? if >=1.21.2 {
 import me.zipestudio.talkingheads.utils.talkingheads.interfaces.PlayerRenderStateWithParent;
@@ -33,7 +33,7 @@ public abstract class LivingEntityRendererMixin {
     public abstract EntityModel<?> getModel();
 
     //? if >=1.21.9 {
-    @Inject(
+    /*@Inject(
             method = "render(Lnet/minecraft/client/render/entity/state/LivingEntityRenderState;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/command/OrderedRenderCommandQueue;Lnet/minecraft/client/render/state/CameraRenderState;)V",
             at = @At("HEAD")
     )
@@ -53,8 +53,8 @@ public abstract class LivingEntityRendererMixin {
         UUID uuid = player.getUuid();
         THManager.renderHead(uuid, model);
     }
-    //?} else if >=1.21.2 {
-    /*@Inject(
+    *///?} else if >=1.21.2 {
+    @Inject(
             at = @At("HEAD"),
             method = "render(Lnet/minecraft/client/render/entity/state/LivingEntityRenderState;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V"
     )
@@ -71,7 +71,7 @@ public abstract class LivingEntityRendererMixin {
 
         THManager.renderHead(uuid, model);
     }
-    *///?} else {
+    //?} else {
     /*@Inject(
             at = @At("HEAD"),
             method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V"

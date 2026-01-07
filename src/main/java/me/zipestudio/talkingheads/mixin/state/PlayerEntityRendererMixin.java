@@ -2,12 +2,12 @@ package me.zipestudio.talkingheads.mixin.state;
 
 
 //? if >=1.21.9 {
-import net.minecraft.entity.PlayerLikeEntity;
-//?}
+/*import net.minecraft.entity.PlayerLikeEntity;
+*///?}
 
 //? if >=1.21.2 {
 
-import net.minecraft.client.render.entity.PlayerEntityRenderer;
+/*import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -22,7 +22,7 @@ import me.zipestudio.talkingheads.utils.talkingheads.interfaces.PlayerRenderStat
 public class PlayerEntityRendererMixin {
 
     //? if >=1.21.9 {
-    @Inject(
+    /^@Inject(
             method = "updateRenderState(Lnet/minecraft/entity/PlayerLikeEntity;Lnet/minecraft/client/render/entity/state/PlayerEntityRenderState;F)V",
             at = @At("HEAD")
     )
@@ -30,8 +30,8 @@ public class PlayerEntityRendererMixin {
         if (!(player instanceof AbstractClientPlayerEntity entity)) return;
         ((PlayerRenderStateWithParent) state).talkingheads$setEntity(entity);
     }
-    //?} else {
-    /*@Inject(
+    ^///?} else {
+    @Inject(
             method = "updateRenderState*",
             at = @At("HEAD")
     )
@@ -39,7 +39,7 @@ public class PlayerEntityRendererMixin {
         if (player == null) return;
         ((PlayerRenderStateWithParent) state).talkingheads$setEntity(player);
     }
-    *///?}
+    //?}
 
 }
-//?}
+*///?}

@@ -12,13 +12,14 @@ import org.slf4j.LoggerFactory;
 public class THClient implements ClientModInitializer {
 
     @Getter
-    private static final LeafyConfig leafyConfig = LeafyConfig.getInstance();
+    private static LeafyConfig leafyConfig;
 
     public static final Logger LOGGER = LoggerFactory.getLogger(THServer.MOD_NAME + "/Client");
 
     @Override
     public void onInitializeClient() {
 
+        leafyConfig = LeafyConfig.getInstance();
         THKeybinding.register();
 
         FabricLoader instance = FabricLoader.getInstance();

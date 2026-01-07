@@ -4,6 +4,7 @@ import lombok.Getter;
 import me.zipestudio.talkingheads.THServer;
 import me.zipestudio.talkingheads.config.LeafyConfig;
 import me.zipestudio.talkingheads.utils.talkingheads.AudioUtils;
+import net.minecraft.client.MinecraftClient;
 import org.jetbrains.annotations.NotNull;
 import su.plo.voice.api.addon.AddonInitializer;
 import su.plo.voice.api.addon.InjectPlasmoVoice;
@@ -62,31 +63,18 @@ public class PlasmoVoiceAddon implements AddonInitializer {
     public void onSelfAudioPacket(@NotNull UdpClientPacketReceivedEvent event) {
 
         LeafyConfig leafyConfig = THClient.getLeafyConfig();
-        if (!leafyConfig.isEnableMod() || !leafyConfig.isUsePlasmoVoice()) {
-            return;
-        }
+        if (!leafyConfig.isEnableMod() || !leafyConfig.isUsePlasmoVoice()) return;
 
-        var packet = event.getPacket();
-        if (!(packet instanceof SelfAudioInfoPacket infoPacket)) {
-            return;
-        }
+        if (!(event.getPacket() instanceof SelfAudioInfoPacket)) return;
 
-        var selfSourceInfo = voiceClient.getSourceManager().getSelfSourceInfo(infoPacket.getSourceId());
-        if (selfSourceInfo.isEmpty()) {
-            return;
-        }
+        var player = MinecraftClient.getInstance().player;
+        if (player == null) return;
 
-        if (!(selfSourceInfo.get().getSelfSourceInfo().getSourceInfo() instanceof PlayerSourceInfo playerSourceInfo)) {
-            return;
-        }
+        UUID uuid = player.getUuid();
 
-        VoicePlayerInfo playerInfo = playerSourceInfo.getPlayerInfo();
-        UUID uuid = playerInfo.getPlayerId();
-
-        double audioLevel = lastClientAudioLevel;
-        AudioUtils.applyHeadVolume(uuid, audioLevel);
+        AudioUtils.applyHeadVolume(uuid, lastClientAudioLevel);
     }
-
+    
     @EventSubscribe
     public void onAudioCapture(@NotNull AudioCaptureProcessedEvent event) {
         LeafyConfig leafyConfig = THClient.getLeafyConfig();
@@ -94,7 +82,6 @@ public class PlasmoVoiceAddon implements AddonInitializer {
             return;
         }
 
-//        this.lastClientAudioLevel = AudioUtil.calculateHighestAudioLevel(event.getProcessed().getMono());
         this.lastClientAudioLevel = AudioUtils.calculateAudioLevel(event.getProcessed().getMono());
     }
 

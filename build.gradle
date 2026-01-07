@@ -17,7 +17,7 @@ mossyDependencies {
 	fabricLoader = prop("build.fabric_loader")
 
 	additional {
-//        disable("plasmo-voice")
+        disable("plasmo-voice")
 		disable("simple-voice-chat")
 	}
 

@@ -10,6 +10,7 @@ public class AudioUtils {
     private static final HashMap<UUID, THPlayerProfile> ACTIVE_PLAYERS_MAP = THManager.PLAYERS_MAP;
 
     public static double calculateAudioLevel(short[] samples) {
+
         if (samples == null || samples.length == 0) {
             return -127D;
         }

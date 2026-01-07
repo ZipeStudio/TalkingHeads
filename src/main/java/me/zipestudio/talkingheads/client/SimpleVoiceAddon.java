@@ -30,11 +30,11 @@ public class SimpleVoiceAddon implements VoicechatPlugin {
 
     @Override
     public void registerEvents(EventRegistration registration) {
-        registration.registerEvent(ClientReceiveSoundEvent.EntitySound.class, this::onReceiveAudioEntity);
-        registration.registerEvent(ClientSoundEvent.class, this::onClientSoundEvent);
+        registration.registerEvent(ClientReceiveSoundEvent.EntitySound.class, this::onAnotherPlayerSoundEvent);
+        registration.registerEvent(ClientSoundEvent.class, this::onClientPlayerSoundEvent);
     }
 
-    public void onReceiveAudioEntity(ClientReceiveSoundEvent.EntitySound event) {
+    public void onAnotherPlayerSoundEvent(ClientReceiveSoundEvent.EntitySound event) {
         LeafyConfig leafyConfig = THClient.getLeafyConfig();
         if (!leafyConfig.isEnableMod() || !leafyConfig.isUseSimpleVoiceChat()) {
             return;
@@ -46,16 +46,14 @@ public class SimpleVoiceAddon implements VoicechatPlugin {
         AudioUtils.applyHeadVolume(sourceUuid, audioLevel);
     }
 
-    public void onClientSoundEvent(ClientSoundEvent event) {
+    public void onClientPlayerSoundEvent(ClientSoundEvent event) {
         LeafyConfig leafyConfig = THClient.getLeafyConfig();
         if (!leafyConfig.isEnableMod() || !leafyConfig.isUseSimpleVoiceChat()) {
             return;
         }
 
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
-        if (player == null) {
-            return;
-        }
+        if (player == null) return;
 
         UUID sourceUuid = player.getUuid();
         double audioLevel = AudioUtils.calculateAudioLevel(event.getRawAudio());

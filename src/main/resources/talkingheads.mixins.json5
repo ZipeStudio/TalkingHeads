@@ -11,9 +11,9 @@
     "LivingEntityRendererMixin",
 
     //? if >=1.21.2 {
-    /*"state.PlayerEntityRenderStateMixin",
+    "state.PlayerEntityRenderStateMixin",
     "state.PlayerEntityRendererMixin",
-    *///?}
+    //?}
 
     "ModelPartMixin"
   ],

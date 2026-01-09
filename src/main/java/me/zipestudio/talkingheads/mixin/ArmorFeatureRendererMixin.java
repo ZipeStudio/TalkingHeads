@@ -23,20 +23,20 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.UUID;
 
 //? if >=1.21.9 {
-/*import net.minecraft.client.render.command.OrderedRenderCommandQueue;
- *///?}
+import net.minecraft.client.render.command.OrderedRenderCommandQueue;
+ //?}
 
 //? >=1.21.2 {
-/*import me.zipestudio.talkingheads.utils.talkingheads.interfaces.PlayerRenderStateWithParent;
+import me.zipestudio.talkingheads.utils.talkingheads.interfaces.PlayerRenderStateWithParent;
 import net.minecraft.client.render.entity.state.BipedEntityRenderState;
-*///?}
+//?}
 
 @Mixin(ArmorFeatureRenderer.class)
 public abstract class ArmorFeatureRendererMixin {
 
 
     //? if >=1.21.9 {
-    /*@WrapOperation(
+    @WrapOperation(
             method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/command/OrderedRenderCommandQueue;ILnet/minecraft/client/render/entity/state/BipedEntityRenderState;FF)V",
             at = @At(
                     value = "INVOKE",
@@ -68,7 +68,7 @@ public abstract class ArmorFeatureRendererMixin {
         }
 
     }
-    *///?} else if >=1.21.2 {
+    //?} else if >=1.21.2 {
     /*@WrapOperation(
             method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/client/render/entity/state/BipedEntityRenderState;FF)V",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/feature/ArmorFeatureRenderer;renderArmor(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/EquipmentSlot;ILnet/minecraft/client/render/entity/model/BipedEntityModel;)V",
@@ -102,7 +102,7 @@ public abstract class ArmorFeatureRendererMixin {
 
     *///?} else {
 
-    @Inject(
+    /*@Inject(
             at = @At("HEAD"),
             method = "renderArmor",
             cancellable = true
@@ -121,7 +121,7 @@ public abstract class ArmorFeatureRendererMixin {
         }
 
     }
-    //?}
+    *///?}
 
     @Unique
     private boolean shouldSkipHelmetRender(PlayerEntity player) {

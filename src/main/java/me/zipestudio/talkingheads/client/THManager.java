@@ -5,8 +5,9 @@ import lombok.Setter;
 import me.zipestudio.talkingheads.config.LeafyConfig;
 import me.zipestudio.talkingheads.utils.talkingheads.interfaces.ResizableModelPart;
 import me.zipestudio.talkingheads.utils.talkingheads.THPlayerProfile;
-import net.minecraft.client.render.entity.model.BipedEntityModel;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.model.HumanoidModel;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.model.geom.ModelPart;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -29,7 +30,7 @@ public class THManager {
         return playerProfile.getPlayerVolume() > MIN_VOICE_VALUE;
     }
 
-    public static void renderHead(UUID uuid, BipedEntityModel<?> model) {
+    public static void renderHead(UUID uuid, HumanoidModel<?> model) {
 
         if (isPlayerTalking(uuid)) {
             LAST_TALK_TIME.put(uuid, System.currentTimeMillis());
@@ -74,7 +75,7 @@ public class THManager {
         }
     }
 
-    public static void renderHead(UUID uuid, MatrixStack matrixStack) {
+    public static void renderHead(UUID uuid, PoseStack matrixStack) {
 
         if (isPlayerTalking(uuid)) {
             LAST_TALK_TIME.put(uuid, System.currentTimeMillis());

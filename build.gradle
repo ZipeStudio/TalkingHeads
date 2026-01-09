@@ -4,14 +4,9 @@ plugins {
 	id "net.lopymine.mossy-plugin-core" version "$mossy_plugin_version"
 }
 
-stonecutter {
-	swap("mod_version", "\"${findProperty("data.mod_version")}\";")
-	swap("mod_authors", "\"${findProperty("data.mod_authors")}\";")
-}
-
 mossyDependencies {
 	minecraft = stonecutter.current.version.toString()
-	mappings = prop("build.yarn")
+	mappings = "official"
 	lombok = prop("base.lombok_version")
 	fabricApi = prop("build.fabric_api")
 	fabricLoader = prop("build.fabric_loader")

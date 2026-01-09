@@ -2,8 +2,8 @@ package me.zipestudio.talkingheads.mixin;
 
 import lombok.Getter;
 import me.zipestudio.talkingheads.utils.talkingheads.interfaces.ResizableModelPart;
-import net.minecraft.client.model.ModelPart;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.model.geom.ModelPart;
+import com.mojang.blaze3d.vertex.PoseStack;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -56,16 +56,10 @@ public abstract class ModelPartMixin implements ResizableModelPart {
         return this.sizeZ;
     }
 
-    //? if <1.21.5 {
-    /*@Inject(method = "rotate(Lnet/minecraft/client/util/math/MatrixStack;)V",
+    @Inject(method = "translateAndRotate",
             at = @At(value = "HEAD")
     )
-    *///?} else {
-    @Inject(method = "applyTransform",
-            at = @At(value = "HEAD")
-    )
-    //?}
-    public void scaleHeadNew(MatrixStack matrices, CallbackInfo ci) {
+    public void scaleHeadNew(PoseStack matrices, CallbackInfo ci) {
 
         if (talkingHeads$isDefaults()) return;
 

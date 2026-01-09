@@ -4,7 +4,7 @@ import lombok.Getter;
 import me.zipestudio.talkingheads.THServer;
 import me.zipestudio.talkingheads.config.LeafyConfig;
 import me.zipestudio.talkingheads.utils.talkingheads.AudioUtils;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 import org.jetbrains.annotations.NotNull;
 import su.plo.voice.api.addon.AddonInitializer;
 import su.plo.voice.api.addon.InjectPlasmoVoice;
@@ -67,10 +67,10 @@ public class PlasmoVoiceAddon implements AddonInitializer {
 
         if (!(event.getPacket() instanceof SelfAudioInfoPacket)) return;
 
-        var player = MinecraftClient.getInstance().player;
+        var player = Minecraft.getInstance().player;
         if (player == null) return;
 
-        UUID uuid = player.getUuid();
+        UUID uuid = player.getUUID();
 
         AudioUtils.applyHeadVolume(uuid, lastClientAudioLevel);
     }

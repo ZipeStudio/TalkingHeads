@@ -1,29 +1,35 @@
 package me.zipestudio.talkingheads.mixin;
 
 import me.zipestudio.talkingheads.client.THManager;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.LivingEntityRenderer;
-import net.minecraft.client.render.entity.model.*;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.UUID;
 
+//? if >=1.21.11 {
+/*import net.minecraft.client.model.player.PlayerModel;
+*///?} else {
+import net.minecraft.client.model.PlayerModel;
+//?}
+
 //? if >=1.21.9 {
-import net.minecraft.client.render.command.OrderedRenderCommandQueue;
-import net.minecraft.client.render.state.CameraRenderState;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.state.CameraRenderState;
+import net.minecraft.client.renderer.entity.state.AvatarRenderState;
 //?}
 
 //? if >=1.21.2 {
 import me.zipestudio.talkingheads.utils.talkingheads.interfaces.PlayerRenderStateWithParent;
-import net.minecraft.client.render.entity.state.EntityRenderState;
-import net.minecraft.client.render.entity.state.LivingEntityRenderState;
-import net.minecraft.client.render.entity.state.PlayerEntityRenderState;
+import net.minecraft.client.renderer.entity.state.EntityRenderState;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 //?}
 
 @Mixin(LivingEntityRenderer.class)
@@ -34,12 +40,12 @@ public abstract class LivingEntityRendererMixin {
 
     //? if >=1.21.9 {
     @Inject(
-            method = "render(Lnet/minecraft/client/render/entity/state/LivingEntityRenderState;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/command/OrderedRenderCommandQueue;Lnet/minecraft/client/render/state/CameraRenderState;)V",
+            method = "submit(Lnet/minecraft/client/renderer/entity/state/LivingEntityRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/state/CameraRenderState;)V",
             at = @At("HEAD")
     )
-    private void onRender(LivingEntityRenderState state, MatrixStack matrixStack, OrderedRenderCommandQueue orderedRenderCommandQueue, CameraRenderState cameraRenderState, CallbackInfo ci) {
+    private void onRender(LivingEntityRenderState state, PoseStack matrixStack, SubmitNodeCollector orderedRenderCommandQueue, CameraRenderState cameraRenderState, CallbackInfo ci) {
 
-        if (!(this.getModel() instanceof PlayerEntityModel model)) {
+        if (!(this.getModel() instanceof PlayerModel model)) {
             return;
         }
 
@@ -47,44 +53,44 @@ public abstract class LivingEntityRendererMixin {
             return;
         }
 
-        PlayerEntity player = playerState.talkingheads$getEntity();
+        Player player = playerState.talkingheads$getEntity();
         if (player == null) return;
 
-        UUID uuid = player.getUuid();
+        UUID uuid = player.getUUID();
         THManager.renderHead(uuid, model);
     }
     //?} else if >=1.21.2 {
     /*@Inject(
             at = @At("HEAD"),
-            method = "render(Lnet/minecraft/client/render/entity/state/LivingEntityRenderState;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V"
+            method = "render(Lnet/minecraft/client/renderer/entity/state/LivingEntityRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V"
     )
-    private void onRender(LivingEntityRenderState livingEntityRenderState, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, CallbackInfo ci) {
+    private void onRender(LivingEntityRenderState livingEntityRenderState, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, CallbackInfo ci) {
 
-        if (!(this.getModel() instanceof PlayerEntityModel model)) {
+        if (!(this.getModel() instanceof PlayerModel model)) {
             return;
         }
 
-        PlayerEntity playerEntity = ((PlayerRenderStateWithParent) livingEntityRenderState).talkingheads$getEntity();
+        Player playerEntity = ((PlayerRenderStateWithParent) livingEntityRenderState).talkingheads$getEntity();
         if (playerEntity == null) return;
 
-        UUID uuid = playerEntity.getUuid();
+        UUID uuid = playerEntity.getUUID();
 
         THManager.renderHead(uuid, model);
     }
     *///?} else {
     /*@Inject(
             at = @At("HEAD"),
-            method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V"
+            method = "render(Lnet/minecraft/world/entity/LivingEntity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V"
     )
-    private void onRender(LivingEntity livingEntity, float f, float g, MatrixStack matrices, VertexConsumerProvider consumers, int light, CallbackInfo ci) {
+    private void onRender(LivingEntity livingEntity, float f, float g, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, CallbackInfo ci) {
 
-        if (!(livingEntity instanceof PlayerEntity player)) {
+        if (!(livingEntity instanceof Player player)) {
             return;
         }
 
-        UUID uuid = player.getUuid();
+        UUID uuid = player.getUUID();
 
-        if (!(this.getModel() instanceof PlayerEntityModel<?> model)) {
+        if (!(this.getModel() instanceof PlayerModel<?> model)) {
             return;
         }
 

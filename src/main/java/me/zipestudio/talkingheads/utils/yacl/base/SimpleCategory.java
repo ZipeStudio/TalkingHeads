@@ -2,7 +2,7 @@ package me.zipestudio.talkingheads.utils.yacl.base;
 
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.ConfigCategory.Builder;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 import me.zipestudio.talkingheads.utils.ModMenuUtils;
 
@@ -13,7 +13,7 @@ public class SimpleCategory {
 
 	private SimpleCategory(String categoryId) {
 		String categoryKey = ModMenuUtils.getCategoryKey(categoryId);
-		Text categoryName = ModMenuUtils.getName(categoryKey);
+		Component categoryName = ModMenuUtils.getName(categoryKey);
 		this.builder = ConfigCategory.createBuilder().name(categoryName);
 	}
 

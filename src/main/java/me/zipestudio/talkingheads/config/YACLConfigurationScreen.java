@@ -6,8 +6,8 @@ import me.zipestudio.talkingheads.utils.yacl.base.SimpleCategory;
 import me.zipestudio.talkingheads.utils.yacl.base.SimpleGroup;
 import me.zipestudio.talkingheads.utils.yacl.base.SimpleOption;
 import me.zipestudio.talkingheads.utils.yacl.utils.SimpleContent;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.text.Text;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 
 import me.zipestudio.talkingheads.utils.ModMenuUtils;
 import me.zipestudio.talkingheads.utils.yacl.extension.SimpleOptionExtension;
@@ -18,7 +18,7 @@ import java.util.function.Function;
 @ExtensionMethod(SimpleOptionExtension.class)
 public class YACLConfigurationScreen {
 
-    private static final Function<Boolean, Text> ENABLED_OR_DISABLE_FORMATTER = ModMenuUtils.getEnabledOrDisabledFormatter();
+    private static final Function<Boolean, Component> ENABLED_OR_DISABLE_FORMATTER = ModMenuUtils.getEnabledOrDisabledFormatter();
 
     private YACLConfigurationScreen() {
         throw new IllegalStateException("Screen class");

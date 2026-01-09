@@ -6,38 +6,37 @@ import me.zipestudio.talkingheads.config.LeafyConfig;
 import me.zipestudio.talkingheads.config.YACLConfigurationScreen;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
-import net.minecraft.text.Text;
+import net.minecraft.client.KeyMapping;
+import com.mojang.blaze3d.platform.InputConstants;
+import net.minecraft.network.chat.Component;
 import org.lwjgl.glfw.GLFW;
 
 public class THKeybinding {
 
     //? if >=1.21.9 {
-    private static final KeyBinding.Category TALKING_HEADS_CATEGORY = KeyBinding.Category.create(THServer.id(THServer.MOD_ID));
+    private static final KeyMapping.Category TALKING_HEADS_CATEGORY = KeyMapping.Category.register(THServer.id(THServer.MOD_ID));
 
-    public static final KeyBinding THKEY_MOD_TOGGLE = new KeyBinding(
+    public static final KeyMapping THKEY_MOD_TOGGLE = new KeyMapping(
             THServer.MOD_ID + ".keybinding.modToggle",
-            InputUtil.Type.KEYSYM,
+            InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_H,
             TALKING_HEADS_CATEGORY
     );
-    public static final KeyBinding THKEY_SETTINGS_MENU = new KeyBinding(
+    public static final KeyMapping THKEY_SETTINGS_MENU = new KeyMapping(
             THServer.MOD_ID + ".keybinding.modSettings",
-            InputUtil.Type.KEYSYM,
-            InputUtil.UNKNOWN_KEY.getCode(),
+            InputConstants.Type.KEYSYM,
+            InputConstants.UNKNOWN.getValue(),
             TALKING_HEADS_CATEGORY
     );
     //?} else {
-    /*public static final KeyBinding THKEY_MOD_TOGGLE = new KeyBinding(
+    /*public static final KeyMapping THKEY_MOD_TOGGLE = new KeyMapping(
             THServer.MOD_ID + ".keybinding.modToggle",
-            InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_H,
+            InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_H,
             THServer.MOD_NAME
     );
-    public static final KeyBinding THKEY_SETTINGS_MENU = new KeyBinding(
+    public static final KeyMapping THKEY_SETTINGS_MENU = new KeyMapping(
             THServer.MOD_ID + ".keybinding.modSettings",
-            InputUtil.Type.KEYSYM,
-            InputUtil.UNKNOWN_KEY.getCode(),
+            InputConstants.Type.KEYSYM, InputConstants.UNKNOWN.getValue(),
             THServer.MOD_NAME
     );
     *///?}
@@ -47,7 +46,7 @@ public class THKeybinding {
 
         ClientTickEvents.START_CLIENT_TICK.register((client -> {
 
-            if (THKEY_MOD_TOGGLE.wasPressed()) {
+            if (THKEY_MOD_TOGGLE.consumeClick()) {
                 if (client.player == null) {
                     return;
                 }
@@ -56,20 +55,20 @@ public class THKeybinding {
                 boolean toggle = !leafyConfig.isEnableMod();
                 leafyConfig.setEnableMod(toggle);
 
-                client.player.sendMessage(
-                        Text.translatable(THServer.MOD_NAME)
+                client.player.displayClientMessage(
+                        Component.translatable(THServer.MOD_NAME)
                                 .append(" ")
-                                .append(Text.translatable(THServer.MOD_ID + ".keybinding.modToggle.actionbar." + toggle)),
+                                .append(Component.translatable(THServer.MOD_ID + ".keybinding.modToggle.actionbar." + toggle)),
                         true
                 );
             }
 
-            if (THKEY_SETTINGS_MENU.wasPressed()) {
+            if (THKEY_SETTINGS_MENU.consumeClick()) {
                 if (client.player == null) {
                     return;
                 }
 
-                client.setScreen(YACLConfigurationScreen.createScreen(client.currentScreen));
+                client.setScreen(YACLConfigurationScreen.createScreen(client.screen));
             }
 
         }));
@@ -80,7 +79,7 @@ public class THKeybinding {
         registerKeyBinding(THKEY_SETTINGS_MENU);
     }
 
-    public static void registerKeyBinding(KeyBinding keyBinding) {
+    public static void registerKeyBinding(KeyMapping keyBinding) {
         KeyBindingHelper.registerKeyBinding(keyBinding);
     }
 

@@ -6,13 +6,13 @@
   "mixins": [
   ],
   "client": [
-    "ArmorFeatureRendererMixin",
-    "HeadFeatureRendererMixin",
+    "HumanoidArmorLayerMixin",
+    "CustomHeadLayerMixin",
     "LivingEntityRendererMixin",
 
     //? if >=1.21.2 {
-    "state.PlayerEntityRenderStateMixin",
-    "state.PlayerEntityRendererMixin",
+    "state.AvatarRendererMixin",
+    "state.AvatarRenderStateMixin",
     //?}
 
     "ModelPartMixin"

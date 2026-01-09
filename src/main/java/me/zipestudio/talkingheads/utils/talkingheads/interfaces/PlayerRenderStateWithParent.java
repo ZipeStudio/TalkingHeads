@@ -1,9 +1,9 @@
 package me.zipestudio.talkingheads.utils.talkingheads.interfaces;
 
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 
 @SuppressWarnings("java:S100")
 public interface PlayerRenderStateWithParent {
-    void talkingheads$setEntity(PlayerEntity entity);
-    PlayerEntity talkingheads$getEntity();
+    void talkingheads$setEntity(Player entity);
+    Player talkingheads$getEntity();
 }

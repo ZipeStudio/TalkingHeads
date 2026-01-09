@@ -7,8 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import me.zipestudio.talkingheads.THServer;
 import me.zipestudio.talkingheads.config.LeafyConfig;
 import me.zipestudio.talkingheads.utils.talkingheads.AudioUtils;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 
 import java.util.UUID;
 
@@ -52,10 +52,10 @@ public class SimpleVoiceAddon implements VoicechatPlugin {
             return;
         }
 
-        ClientPlayerEntity player = MinecraftClient.getInstance().player;
+        LocalPlayer player = Minecraft.getInstance().player;
         if (player == null) return;
 
-        UUID sourceUuid = player.getUuid();
+        UUID sourceUuid = player.getUUID();
         double audioLevel = AudioUtils.calculateAudioLevel(event.getRawAudio());
 
         AudioUtils.applyHeadVolume(sourceUuid, audioLevel);

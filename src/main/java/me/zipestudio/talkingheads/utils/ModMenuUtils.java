@@ -1,8 +1,8 @@
 package me.zipestudio.talkingheads.utils;
 
 import me.zipestudio.talkingheads.THServer;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 
 import me.zipestudio.talkingheads.utils.yacl.utils.SimpleContent;
 
@@ -22,31 +22,31 @@ public class ModMenuUtils {
 		return String.format("modmenu.group.%s", groupId);
 	}
 
-	public static Text getName(String key) {
+	public static Component getName(String key) {
 		return THServer.text(key + ".name");
 	}
 
-	public static Text getDescription(String key) {
+	public static Component getDescription(String key) {
 		return THServer.text(key + ".description");
 	}
 
-	public static Identifier getContentId(SimpleContent content, String contentId) {
+	public static ResourceLocation getContentId(SimpleContent content, String contentId) {
 		return THServer.id(String.format("textures/config/%s.%s", contentId, content.getFileExtension()));
 	}
 
-	public static Text getModTitle() {
+	public static Component getModTitle() {
 		return THServer.text("modmenu.title");
 	}
 
-	public static Function<Boolean, Text> getEnabledOrDisabledFormatter() {
+	public static Function<Boolean, Component> getEnabledOrDisabledFormatter() {
 		return state -> THServer.text("modmenu.formatter.enabled_or_disabled." + state);
 	}
 
-	public static Text getNoConfigScreenMessage() {
+	public static Component getNoConfigScreenMessage() {
 		return THServer.text("modmenu.no_config_library_screen.message");
 	}
 
-	public static Text getOldConfigScreenMessage(String version) {
+	public static Component getOldConfigScreenMessage(String version) {
 		return THServer.text("modmenu.old_config_library_screen.message", version, THServer.YACL_DEPEND_VERSION);
 	}
 }

@@ -1,7 +1,7 @@
-import net.lopymine.mossy.MossyPlugin
+import net.lopymine.utils.MossyUtils
 
 plugins {
-	id("net.lopymine.mossy-plugin")
+	id "net.lopymine.mossy-plugin-core" version "$mossy_plugin_version"
 }
 
 stonecutter {
@@ -52,8 +52,8 @@ repositories {
 }
 
 dependencies {
-	implementation("su.plo.voice.api:client:${MossyPlugin.substringSinceLast(prop("dep.plasmo-voice"), "-") + "-SNAPSHOT"}")
-	implementation("de.maxhenkel.voicechat:voicechat-api:${MossyPlugin.substringSinceLast(prop("dep.simple-voice-chat"), "-")}")
+	implementation("su.plo.voice.api:client:${MossyUtils.substringSinceLast(prop("dep.plasmo-voice"), "-") + "-SNAPSHOT"}")
+	implementation("de.maxhenkel.voicechat:voicechat-api:${MossyUtils.substringSinceLast(prop("dep.simple-voice-chat"), "-")}")
 //	modImplementation("me.lucko:fabric-permissions-api:${prop("dep.fabric-permissions-api")}")
 
 	// TODO: hmm, CustomModels?

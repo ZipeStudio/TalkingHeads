@@ -15,10 +15,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.UUID;
 
 //? if >=1.21.11 {
-/*import net.minecraft.client.model.player.PlayerModel;
-*///?} else {
-import net.minecraft.client.model.PlayerModel;
-//?}
+import net.minecraft.client.model.player.PlayerModel;
+//?} else {
+/*import net.minecraft.client.model.PlayerModel;
+*///?}
 
 //? if >=1.21.9 {
 import net.minecraft.client.renderer.SubmitNodeCollector;

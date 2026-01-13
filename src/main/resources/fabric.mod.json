@@ -8,20 +8,28 @@
         "${mod_authors}"
     ],
     "contact": {
-        "discord": "https://discord.com/users/339471364312530945",
-        "telegram": "https://t.me/zipeleaf",
-        "minecraft_server": "https://discord.gg/ZsR6XuTkTX",
-        "discord_team": "https://discord.gg/XmGF7rkkuY"
+        "homepage": "https://modrinth.com/mod/${mod_id}",
+        "sources": "https://github.com/ZipeStudio/${mod_id}",
+        "issues": "https://github.com/ZipeStudio/${mod_id}/issues"
+    },
+    "custom": {
+        "modmenu": {
+            "links": {
+                "Telegram": "https://t.me/zipeleaf",
+                "Me in Discord": "https://discord.com/users/339471364312530945",
+                "Discord Mods Team": "https://discord.gg/XmGF7rkkuY"
+            }
+        }
     },
     "license": "${mod_license}",
     "icon": "icon/icon.png",
     "environment": "*",
     "entrypoints": {
         "main": [
-            "me.zipestudio.talkingheads.THServer"
+            "me.zipestudio.talkingheads.entrypoint.FabricEntrypoint"
         ],
         "client": [
-            "me.zipestudio.talkingheads.client.THClient"
+            "me.zipestudio.talkingheads.entrypoint.FabricClientEntrypoint"
         ],
         "modmenu": [
             "me.zipestudio.talkingheads.utils.modmenu.ModMenuIntegration"

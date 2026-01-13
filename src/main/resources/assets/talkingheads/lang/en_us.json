@@ -1,5 +1,5 @@
 {
-  "modmenu.descriptionTranslation.${mod_id}": "Addon for PlasmoVoice & SimpleVoiceChat that scales player heads when they're talking.",
+  "modmenu.descriptionTranslation.${mod_id}": "${mod_description}",
 
   "${mod_id}.modmenu.title": "§l${mod_name} Configuration",
   "${mod_id}.modmenu.no_config_library_screen.message": "You need to install §6§lYet Another Config Lib [YACL]§f to open ${mod_name} Configuration Screen\n\n§a§lOpen §6§lYACL §a§lModrinth page?",

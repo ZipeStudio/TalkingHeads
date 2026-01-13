@@ -8,7 +8,12 @@ import org.slf4j.*;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+
+//? if fabric {
 import net.fabricmc.loader.api.FabricLoader;
+//?} else if neoforge {
+/*import net.neoforged.fml.loading.FMLPaths;
+*///?}
 
 import java.io.*;
 import java.util.concurrent.CompletableFuture;
@@ -32,7 +37,12 @@ public class LeafyConfig {
 			option("helmetShowDelay", 0.1, Codec.DOUBLE, LeafyConfig::getHelmetShowDelay)
 	).apply(instance, LeafyConfig::new));
 
+	//? if fabric {
 	private static final File CONFIG_FILE = FabricLoader.getInstance().getConfigDir().resolve(THServer.MOD_ID + ".json5").toFile();
+	//?} else if neoforge {
+	/*private static final File CONFIG_FILE = FMLPaths.CONFIGDIR.get().resolve(THServer.MOD_ID + ".json5").toFile();
+	*///?}
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(THServer.MOD_NAME + "/Config");
 	private static LeafyConfig INSTANCE;
 

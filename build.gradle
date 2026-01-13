@@ -8,14 +8,17 @@ mossyDependencies {
 	minecraft = stonecutter.current.version.toString()
 	mappings = "official"
 	lombok = prop("base.lombok_version")
+
 	fabricApi = prop("build.fabric_api")
 	fabricLoader = prop("build.fabric_loader")
 
+	neoForge = prop("build.neoforge")
+	parchment = prop("build.parchment")
+
 	additional {
-        disable("plasmo-voice")
+		disable("plasmo-voice")
 		disable("simple-voice-chat")
 	}
-
 }
 
 repositories {

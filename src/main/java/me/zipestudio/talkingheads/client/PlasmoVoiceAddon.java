@@ -1,6 +1,7 @@
 package me.zipestudio.talkingheads.client;
 
 import lombok.Getter;
+import me.zipestudio.talkingheads.THClient;
 import me.zipestudio.talkingheads.THServer;
 import me.zipestudio.talkingheads.config.LeafyConfig;
 import me.zipestudio.talkingheads.utils.talkingheads.AudioUtils;

@@ -5,7 +5,7 @@ import com.google.gson.*;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import me.zipestudio.talkingheads.THServer;
-import me.zipestudio.talkingheads.client.THClient;
+import me.zipestudio.talkingheads.THClient;
 
 import java.util.*;
 import java.util.function.*;

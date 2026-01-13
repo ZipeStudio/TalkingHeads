@@ -1,5 +1,5 @@
 {
-  "modmenu.descriptionTranslation.${mod_id}": "Аддон для PlasmoVoice и SimpleVoiceChat, который масштабирует головы игроков во время разговора.",
+  "modmenu.descriptionTranslation.${mod_id}": "Клиентский Аддон для PlasmoVoice и SimpleVoiceChat, который масштабирует головы игроков во время разговора.",
 
   "${mod_id}.modmenu.title": "§lКонфигурация ${mod_name}",
   "${mod_id}.modmenu.no_config_library_screen.message": "Необходимо установить §6§lYet Another Config Lib [YACL]§f, чтобы открыть экран настроек ${mod_name}\n\n§a§lОткрыть страницу §6§lYACL §a§lна Modrinth?",

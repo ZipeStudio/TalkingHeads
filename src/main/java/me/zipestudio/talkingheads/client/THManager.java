@@ -2,12 +2,12 @@ package me.zipestudio.talkingheads.client;
 
 import lombok.Getter;
 import lombok.Setter;
+import me.zipestudio.talkingheads.THClient;
 import me.zipestudio.talkingheads.config.LeafyConfig;
 import me.zipestudio.talkingheads.utils.talkingheads.interfaces.ResizableModelPart;
 import me.zipestudio.talkingheads.utils.talkingheads.THPlayerProfile;
 import net.minecraft.client.model.HumanoidModel;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.model.geom.ModelPart;
 
 import java.util.HashMap;
 import java.util.UUID;

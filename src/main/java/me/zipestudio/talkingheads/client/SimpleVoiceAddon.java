@@ -2,17 +2,20 @@ package me.zipestudio.talkingheads.client;
 
 import de.maxhenkel.voicechat.api.*;
 import de.maxhenkel.voicechat.api.events.*;
+
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
+import me.zipestudio.talkingheads.THClient;
 import me.zipestudio.talkingheads.THServer;
 import me.zipestudio.talkingheads.config.LeafyConfig;
 import me.zipestudio.talkingheads.utils.talkingheads.AudioUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-
 import java.util.UUID;
 
-@Slf4j
+//? if neoforge {
+/*import de.maxhenkel.voicechat.api.ForgeVoicechatPlugin;
+@ForgeVoicechatPlugin
+*///?}
 public class SimpleVoiceAddon implements VoicechatPlugin {
 
     @Getter

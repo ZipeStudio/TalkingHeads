@@ -15,7 +15,8 @@
     "state.AvatarRenderStateMixin",
     //?}
 
-    "ModelPartMixin"
+    "ModelPartMixin",
+    "AbstractClientPlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

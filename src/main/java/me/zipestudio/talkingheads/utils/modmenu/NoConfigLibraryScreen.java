@@ -1,15 +1,15 @@
 package me.zipestudio.talkingheads.utils.modmenu;
 
 import com.google.common.collect.Sets;
-import me.zipestudio.talkingheads.client.THClient;
+import me.zipestudio.talkingheads.THClient;
+import me.zipestudio.talkingheads.utils.ModMenuUtils;
 import net.minecraft.SharedConstants;
+import net.minecraft.util.*;
+import net.minecraft.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ConfirmScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.CommonComponents;
-import net.minecraft.util.*;
-import net.minecraft.*;
-import me.zipestudio.talkingheads.utils.ModMenuUtils;
 import java.net.*;
 import java.util.*;
 import org.jetbrains.annotations.*;
@@ -17,13 +17,12 @@ import org.jetbrains.annotations.*;
 public class NoConfigLibraryScreen {
 
 	private static final Set<String> ALLOWED_PROTOCOLS = Sets.newHashSet("http", "https");
-	private static final String YACL_MODRINTH_LINK = "https://modrinth.com/mod/yacl/versions?l=fabric&g=";
+	private static final String YACL_MODRINTH_LINK = "https://modrinth.com/mod/yacl/versions";
 
 	private NoConfigLibraryScreen() {
 		throw new IllegalStateException("Screen class, use createScreen(...) method!");
 	}
 
-	@Contract("_ -> new")
 	public static @NotNull Screen createScreen(Screen parent) {
 		return new ConfirmScreen((open) -> NoConfigLibraryScreen.onConfirm(open, parent), ModMenuUtils.getModTitle(), ModMenuUtils.getNoConfigScreenMessage(), CommonComponents.GUI_CONTINUE, CommonComponents.GUI_BACK);
 	}

@@ -4,6 +4,7 @@ package me.zipestudio.talkingheads.entrypoint;
 
 /*import me.zipestudio.talkingheads.THClient;
 import me.zipestudio.talkingheads.THServer;
+import me.zipestudio.talkingheads.client.PlasmoVoiceAddon;
 import me.zipestudio.talkingheads.config.LeafyConfig;
 import me.zipestudio.talkingheads.config.YACLConfigurationScreen;
 import me.zipestudio.talkingheads.client.keybinding.THKeybinding;
@@ -15,7 +16,9 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 
@@ -28,6 +31,10 @@ public class NeoForgeClientEntrypoint {
 
         ModMenuIntegration integration = new ModMenuIntegration();
         integration.register(container);
+
+        if (isModLoaded("plasmovoice", true)) {
+            su.plo.voice.api.client.PlasmoVoiceClient.getAddonsLoader().load(new PlasmoVoiceAddon());
+        }
     }
 
     private void registerKeybindings(RegisterKeyMappingsEvent event) {
@@ -61,6 +68,18 @@ public class NeoForgeClientEntrypoint {
             client.setScreen(
                     YACLConfigurationScreen.createScreen(client.screen)
             );
+        }
+    }
+
+    private boolean isModLoaded(String modid, boolean loadingPhase) {
+        if (loadingPhase) {
+            //? if >=1.21.9 {
+            return FMLLoader.getCurrent().getLoadingModList().getModFileById(modid) != null;
+            //?} else {
+            /^return FMLLoader.getLoadingModList().getModFileById(modid) != null;
+            ^///?}
+        } else {
+            return ModList.get().isLoaded(modid);
         }
     }
 }

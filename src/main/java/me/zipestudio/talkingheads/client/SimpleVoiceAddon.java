@@ -34,10 +34,12 @@ public class SimpleVoiceAddon implements VoicechatPlugin {
     @Override
     public void registerEvents(EventRegistration registration) {
         registration.registerEvent(ClientReceiveSoundEvent.EntitySound.class, this::onAnotherPlayerSoundEvent);
+        registration.registerEvent(ClientReceiveSoundEvent.StaticSound.class, this::onAnotherPlayerSoundEvent);
+        registration.registerEvent(ClientReceiveSoundEvent.LocationalSound.class, this::onAnotherPlayerSoundEvent);
         registration.registerEvent(ClientSoundEvent.class, this::onClientPlayerSoundEvent);
     }
 
-    public void onAnotherPlayerSoundEvent(ClientReceiveSoundEvent.EntitySound event) {
+    public void onAnotherPlayerSoundEvent(ClientReceiveSoundEvent event) {
         LeafyConfig leafyConfig = THClient.getLeafyConfig();
         if (!leafyConfig.isEnableMod() || !leafyConfig.isUseSimpleVoiceChat()) {
             return;

@@ -1,6 +1,6 @@
 package me.zipestudio.talkingheads.utils.talkingheads.interfaces;
 
-public interface ResizableModelPart {
+public interface ResizablePlayer {
 
     void talkingHeads$setSize(double sizeX, double sizeY, double sizeZ);
 
@@ -19,4 +19,3 @@ public interface ResizableModelPart {
     }
 
 }
-

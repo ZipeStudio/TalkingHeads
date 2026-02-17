@@ -38,7 +38,7 @@
 
 > **Client-side Addon, that scales player heads when they're talking.**
 >
-> Fully compatible with both **PlasmoVoice** and **SimpleVoiceChat**, and can be used with both at the same time!
+> Fully compatible with both **Plasmo Voice** and **Simple Voice Chat**, and can be used with both at the same time!
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/ZipeStudio/TalkingHeads/refs/heads/master/img/showcase.gif" width="1000px" alt="mod banner"/>

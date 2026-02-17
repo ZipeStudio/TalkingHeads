@@ -1,6 +1,4 @@
-v1.0.10:
-- Added support for 1.21.11
-- Added NeoForge support
-- Fixed issues with client head display
-- Code refactoring
-- Updated mod icon
+v1.1.0:
+- Fixed all issues with scaling heads on servers.
+- Added support for groups for Simple Voice Chat.
+- Code refactoring.

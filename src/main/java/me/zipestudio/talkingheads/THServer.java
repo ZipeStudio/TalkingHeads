@@ -12,7 +12,7 @@ public class THServer {
     public static final String MOD_NAME = /*$ mod_name*/ "Talking Heads";
     public static final String MOD_ID = /*$ mod_id*/ "talkingheads";
     public static final String YACL_DEPEND_VERSION = /*$ yacl*/ "3.8.1+1.21.11-fabric";
-    public static final String MOD_VERSION = /*$ mod_version*/ "1.0.10+1.21.11+fabric";
+    public static final String MOD_VERSION = /*$ mod_version*/ "1.1.0+1.21.11+fabric";
     public static final String MOD_AUTHORS = /*$ mod_authors*/ "ZipeStudio";
 
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);

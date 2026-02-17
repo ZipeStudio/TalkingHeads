@@ -37,8 +37,12 @@ public class PlasmoVoiceAddon implements AddonInitializer {
 
     @Override
     public void onAddonInitialize() {
-
         System.out.println("pv-addon-" + THServer.MOD_ID + " initialized");
+    }
+
+    @Override
+    public void onAddonShutdown() {
+        System.out.println("pv-addon-" + THServer.MOD_ID + " Addon shut down");
     }
 
     @EventSubscribe
@@ -54,10 +58,8 @@ public class PlasmoVoiceAddon implements AddonInitializer {
         if (!(sourceInfo instanceof PlayerSourceInfo playerSourceInfo)) return;
 
         VoicePlayerInfo playerInfo = playerSourceInfo.getPlayerInfo();
-        UUID uuid = playerInfo.getPlayerId();
-
         double audioLevel = AudioUtils.calculateAudioLevel(event.getSamples());
-        AudioUtils.applyHeadVolume(uuid, audioLevel);
+        AudioUtils.applyHeadVolume(playerInfo.getPlayerId(), audioLevel);
     }
 
     @EventSubscribe
@@ -72,10 +74,9 @@ public class PlasmoVoiceAddon implements AddonInitializer {
         if (player == null) return;
 
         UUID uuid = player.getUUID();
-
         AudioUtils.applyHeadVolume(uuid, lastClientAudioLevel);
     }
-    
+
     @EventSubscribe
     public void onAudioCapture(@NotNull AudioCaptureProcessedEvent event) {
         LeafyConfig leafyConfig = THClient.getLeafyConfig();
@@ -85,12 +86,5 @@ public class PlasmoVoiceAddon implements AddonInitializer {
 
         this.lastClientAudioLevel = AudioUtils.calculateAudioLevel(event.getProcessed().getMono());
     }
-
-    @Override
-    public void onAddonShutdown() {
-
-        System.out.println("Addon shut down");
-    }
-
 
 }

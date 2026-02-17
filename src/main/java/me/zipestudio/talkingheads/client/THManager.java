@@ -4,76 +4,96 @@ import lombok.Getter;
 import lombok.Setter;
 import me.zipestudio.talkingheads.THClient;
 import me.zipestudio.talkingheads.config.LeafyConfig;
-import me.zipestudio.talkingheads.utils.talkingheads.interfaces.ResizableModelPart;
+import me.zipestudio.talkingheads.utils.talkingheads.interfaces.ResizablePlayer;
 import me.zipestudio.talkingheads.utils.talkingheads.THPlayerProfile;
-import net.minecraft.client.model.HumanoidModel;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.model.HumanoidModel;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
+//? if >=1.21.9 {
+import net.minecraft.client.renderer.entity.state.AvatarRenderState;
+//?} else if >=1.21.2 {
+/*import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.renderer.entity.state.PlayerRenderState;
+*///?}
 
 @Getter
 @Setter
 public class THManager {
 
-    public static final HashMap<UUID, THPlayerProfile> PLAYERS_MAP = new HashMap<>();
+    public static final Map<UUID, THPlayerProfile> PLAYERS_MAP = new ConcurrentHashMap<>();
+
     public static final HashMap<UUID, Long> LAST_TALK_TIME = new HashMap<>();
 
     private static double MIN_VOICE_VALUE = 0.01;
 
+    private static final LeafyConfig CONFIG = LeafyConfig.getInstance();
+
     public static boolean isPlayerTalking(UUID uuid) {
-        return (PLAYERS_MAP.get(uuid) != null && isPlayerTalking(PLAYERS_MAP.get(uuid)));
+        THPlayerProfile profile = PLAYERS_MAP.get(uuid);
+        return profile != null && profile.getPlayerVolume() > MIN_VOICE_VALUE;
     }
 
-    public static boolean isPlayerTalking(THPlayerProfile playerProfile) {
-        return playerProfile.getPlayerVolume() > MIN_VOICE_VALUE;
+    public static void decrementAll() {
+        Iterator<Map.Entry<UUID, THPlayerProfile>> iterator = PLAYERS_MAP.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<UUID, THPlayerProfile> entry = iterator.next();
+            THPlayerProfile profile = entry.getValue();
+            double newVolume = profile.getPlayerVolume() - CONFIG.getRemovedVolume();
+            if (newVolume <= MIN_VOICE_VALUE) {
+                iterator.remove(); // удаляем замолчавших
+            } else {
+                profile.setPlayerVolume(newVolume);
+            }
+        }
     }
 
-    public static void renderHead(UUID uuid, HumanoidModel<?> model) {
+    //? if >=1.21.2 {
+    //? if >=1.21.9 {
+    public static void renderHead(UUID uuid, AvatarRenderState renderState)
+    //?} else {
+    /*public static void renderHead(UUID uuid, PlayerRenderState renderState)
+     *///?}
+    {
+        if (isPlayerTalking(uuid)) {
+            LAST_TALK_TIME.put(uuid, System.currentTimeMillis());
+        }
+
+        THPlayerProfile profile = PLAYERS_MAP.get(uuid);
+        if (profile != null && profile.getPlayerVolume() > MIN_VOICE_VALUE) {
+            double sizeX = 1 + CONFIG.getScaleX() * profile.getPlayerVolume();
+            double sizeY = 1 + CONFIG.getScaleY() * profile.getPlayerVolume();
+            double sizeZ = 1 + CONFIG.getScaleZ() * profile.getPlayerVolume();
+            ((ResizablePlayer) renderState).talkingHeads$setSize(sizeX, sizeY, sizeZ);
+        } else {
+            ((ResizablePlayer) renderState).talkingHeads$setDefaultsSize();
+        }
+    }
+    //?} else {
+    /*public static void renderHead(UUID uuid, HumanoidModel<?> model) {
 
         if (isPlayerTalking(uuid)) {
             LAST_TALK_TIME.put(uuid, System.currentTimeMillis());
         }
 
-        THPlayerProfile thPlayerProfileInfo = PLAYERS_MAP.get(uuid);
-
-        if (thPlayerProfileInfo != null) {
-
-            double playerVolume = thPlayerProfileInfo.getPlayerVolume();
-
-            LeafyConfig leafyConfig = THClient.getLeafyConfig();
-
-            double sizeX = 1 + leafyConfig.getScaleX() * playerVolume;
-            double sizeY = 1 + leafyConfig.getScaleY() * playerVolume;
-            double sizeZ = 1 + leafyConfig.getScaleZ() * playerVolume;
-
-            if (playerVolume <= MIN_VOICE_VALUE) {
-                PLAYERS_MAP.remove(uuid);
-                ((ResizableModelPart) model.head).talkingHeads$setDefaultsSize();
-
-                //? <1.21.2 {
-                /*((ResizableModelPart) model.hat).talkingHeads$setDefaultsSize();
-                *///?}
-                return;
-            }
-
-            ((ResizableModelPart) model.head).talkingHeads$setSize(sizeX, sizeY, sizeZ);
-
-            //? <1.21.2 {
-            /*((ResizableModelPart) model.hat).talkingHeads$setSize(sizeX, sizeY, sizeZ);
-            *///?}
-
-            thPlayerProfileInfo.setPlayerVolume(playerVolume - leafyConfig.getRemovedVolume());
+        THPlayerProfile profile = PLAYERS_MAP.get(uuid);
+        if (profile != null && profile.getPlayerVolume() > MIN_VOICE_VALUE) {
+            double sizeX = 1 + CONFIG.getScaleX() * profile.getPlayerVolume();
+            double sizeY = 1 + CONFIG.getScaleY() * profile.getPlayerVolume();
+            double sizeZ = 1 + CONFIG.getScaleZ() * profile.getPlayerVolume();
+            ((ResizablePlayer) model.head).talkingHeads$setSize(sizeX, sizeY, sizeZ);
+            ((ResizablePlayer) model.hat).talkingHeads$setSize(sizeX, sizeY, sizeZ);
         } else {
-            PLAYERS_MAP.remove(uuid);
-            ((ResizableModelPart) model.head).talkingHeads$setDefaultsSize();
-
-            //? <1.21.2 {
-            /*((ResizableModelPart) model.hat).talkingHeads$setDefaultsSize();
-            *///?}
+            ((ResizablePlayer) model.head).talkingHeads$setDefaultsSize();
+            ((ResizablePlayer) model.hat).talkingHeads$setDefaultsSize();
         }
     }
+    *///?}
 
     public static void renderHead(UUID uuid, PoseStack matrixStack) {
 
@@ -81,29 +101,13 @@ public class THManager {
             LAST_TALK_TIME.put(uuid, System.currentTimeMillis());
         }
 
-        THPlayerProfile thPlayerProfileInfo = PLAYERS_MAP.get(uuid);
-
-        if (thPlayerProfileInfo != null) {
-            double playerVolume = thPlayerProfileInfo.getPlayerVolume();
-
-            LeafyConfig leafyConfig = THClient.getLeafyConfig();
-
-            double sizeX = 1 + leafyConfig.getScaleX() * playerVolume;
-            double sizeY = 1 + leafyConfig.getScaleY() * playerVolume;
-            double sizeZ = 1 + leafyConfig.getScaleZ() * playerVolume;
-
-            if (playerVolume <= MIN_VOICE_VALUE) {
-                PLAYERS_MAP.remove(uuid);
-
-                matrixStack.scale(1, 1, 1);
-                return;
-            }
-
+        THPlayerProfile profile = PLAYERS_MAP.get(uuid);
+        if (profile != null && profile.getPlayerVolume() > MIN_VOICE_VALUE) {
+            double sizeX = 1 + CONFIG.getScaleX() * profile.getPlayerVolume();
+            double sizeY = 1 + CONFIG.getScaleY() * profile.getPlayerVolume();
+            double sizeZ = 1 + CONFIG.getScaleZ() * profile.getPlayerVolume();
             matrixStack.scale((float) sizeX, (float) sizeY, (float) sizeZ);
-
-            thPlayerProfileInfo.setPlayerVolume(playerVolume - leafyConfig.getRemovedVolume());
         } else {
-            PLAYERS_MAP.remove(uuid);
             matrixStack.scale(1, 1, 1);
         }
     }

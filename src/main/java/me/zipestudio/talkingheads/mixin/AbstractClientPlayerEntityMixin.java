@@ -19,13 +19,13 @@ import net.minecraft.core.ClientAsset.*;
 import net.minecraft.client.resources.PlayerSkin;
 *///?} else {
 /*import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.jetbrains.annotations.Nullable;
 *///?}
 
 @Mixin(AbstractClientPlayer.class)
 public abstract class AbstractClientPlayerEntityMixin {
 
     @Shadow @Nullable private PlayerInfo playerInfo;
+
     @Unique
     private static final Identifier TH_CAPE_ID = Identifier.fromNamespaceAndPath(THServer.MOD_ID, "textures/cape/talking_heads_cape.png");
 

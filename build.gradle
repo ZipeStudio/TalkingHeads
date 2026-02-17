@@ -61,6 +61,8 @@ dependencies {
 
 mossyResources {
 	//expandFiles = ["custom", "file", "patterns", "here"]
+	customProperty("plasmo_voice", prop("dep.plasmo-voice"))
+	customProperty("simple_voice_chat", prop("dep.simple-voice-chat"))
 }
 
 String prop(String key) {

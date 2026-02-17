@@ -85,9 +85,7 @@ public class CustomHeadLayerMixin {
         }
 
         UUID uuid = livingEntity.getUUID();
-
         THManager.renderHead(uuid, poseStack);
-
     }
     *///?}
 }

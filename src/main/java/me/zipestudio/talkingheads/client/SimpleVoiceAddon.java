@@ -10,6 +10,7 @@ import me.zipestudio.talkingheads.config.LeafyConfig;
 import me.zipestudio.talkingheads.utils.talkingheads.AudioUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+
 import java.util.UUID;
 
 //? if neoforge {
@@ -34,10 +35,12 @@ public class SimpleVoiceAddon implements VoicechatPlugin {
     @Override
     public void registerEvents(EventRegistration registration) {
         registration.registerEvent(ClientReceiveSoundEvent.EntitySound.class, this::onAnotherPlayerSoundEvent);
+        registration.registerEvent(ClientReceiveSoundEvent.StaticSound.class, this::onAnotherPlayerSoundEvent);
+        registration.registerEvent(ClientReceiveSoundEvent.LocationalSound.class, this::onAnotherPlayerSoundEvent);
         registration.registerEvent(ClientSoundEvent.class, this::onClientPlayerSoundEvent);
     }
 
-    public void onAnotherPlayerSoundEvent(ClientReceiveSoundEvent.EntitySound event) {
+    public void onAnotherPlayerSoundEvent(ClientReceiveSoundEvent event) {
         LeafyConfig leafyConfig = THClient.getLeafyConfig();
         if (!leafyConfig.isEnableMod() || !leafyConfig.isUseSimpleVoiceChat()) {
             return;

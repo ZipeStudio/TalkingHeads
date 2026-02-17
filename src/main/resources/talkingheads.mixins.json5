@@ -1,24 +1,25 @@
 {
-  "required": true,
-  "package": "me.zipestudio.talkingheads.mixin",
-  "refmap": "${mod_id}.refmap.json",
-  "compatibilityLevel": "JAVA_${java}",
-  "mixins": [
-  ],
   "client": [
-    "HumanoidArmorLayerMixin",
     "CustomHeadLayerMixin",
     "LivingEntityRendererMixin",
-
     //? if >=1.21.2 {
     "state.AvatarRendererMixin",
     "state.AvatarRenderStateMixin",
+    "PlayerModelMixin",
     //?}
 
     "ModelPartMixin",
-    "AbstractClientPlayerEntityMixin"
+    "AbstractClientPlayerEntityMixin",
+    "LevelRendererMixin",
+    "HumanoidArmorLayerMixin"
   ],
+  "compatibilityLevel": "JAVA_${java}",
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "mixins": [
+  ],
+  "package": "me.zipestudio.talkingheads.mixin",
+  "refmap": "${mod_id}.refmap.json",
+  "required": true
 }

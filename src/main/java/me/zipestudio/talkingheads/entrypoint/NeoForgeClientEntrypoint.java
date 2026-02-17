@@ -8,7 +8,9 @@ import me.zipestudio.talkingheads.client.PlasmoVoiceAddon;
 import me.zipestudio.talkingheads.config.LeafyConfig;
 import me.zipestudio.talkingheads.config.YACLConfigurationScreen;
 import me.zipestudio.talkingheads.client.keybinding.THKeybinding;
+import me.zipestudio.talkingheads.utils.modmenu.AbstractModMenuIntegration;
 import me.zipestudio.talkingheads.utils.modmenu.ModMenuIntegration;
+import me.zipestudio.talkingheads.utils.modmenu.NoConfigLibraryScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.network.chat.Component;
@@ -65,13 +67,15 @@ public class NeoForgeClientEntrypoint {
         }
 
         if (THKeybinding.THKEY_SETTINGS_MENU.consumeClick()) {
-            client.setScreen(
-                    YACLConfigurationScreen.createScreen(client.screen)
-            );
+				if (isModLoaded("yet_another_config_lib_v3", true)) {
+					client.setScreen(YACLConfigurationScreen.createScreen(client.screen));
+				} else {
+					client.setScreen(NoConfigLibraryScreen.createScreen(client.screen));
+				}
         }
     }
 
-    private boolean isModLoaded(String modid, boolean loadingPhase) {
+    private static boolean isModLoaded(String modid, boolean loadingPhase) {
         if (loadingPhase) {
             //? if >=1.21.9 {
             return FMLLoader.getCurrent().getLoadingModList().getModFileById(modid) != null;

@@ -1,7 +1,6 @@
 package me.zipestudio.talkingheads.mixin;
 
-import lombok.Getter;
-import me.zipestudio.talkingheads.utils.talkingheads.interfaces.ResizableModelPart;
+import me.zipestudio.talkingheads.utils.talkingheads.interfaces.ResizablePlayer;
 import net.minecraft.client.model.geom.ModelPart;
 import com.mojang.blaze3d.vertex.PoseStack;
 import org.spongepowered.asm.mixin.*;
@@ -10,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ModelPart.class)
-public abstract class ModelPartMixin implements ResizableModelPart {
+public abstract class ModelPartMixin implements ResizablePlayer {
 
     @Unique
     private double sizeX = 1;
@@ -59,7 +58,7 @@ public abstract class ModelPartMixin implements ResizableModelPart {
     @Inject(method = "translateAndRotate",
             at = @At(value = "HEAD")
     )
-    public void scaleHeadNew(PoseStack matrices, CallbackInfo ci) {
+    private void scaleHeadNew(PoseStack matrices, CallbackInfo ci) {
 
         if (talkingHeads$isDefaults()) return;
 

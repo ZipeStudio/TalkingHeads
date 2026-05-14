@@ -1,12 +1,10 @@
 package me.zipestudio.talkingheads.utils.yacl.extension;
 
 import dev.isxander.yacl3.api.*;
-
-import me.zipestudio.talkingheads.THServer;
+import me.zipestudio.talkingheads.utils.yacl.state.PreviewStateManager;
 
 import java.util.*;
 
-import me.zipestudio.talkingheads.utils.yacl.state.PreviewStateManager;
 
 @SuppressWarnings("unused")
 public class YACLAPIExtension {

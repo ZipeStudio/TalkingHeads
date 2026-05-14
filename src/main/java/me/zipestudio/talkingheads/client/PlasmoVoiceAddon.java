@@ -1,5 +1,6 @@
 package me.zipestudio.talkingheads.client;
 
+//? if !(neoforge && <1.21) {
 import lombok.Getter;
 import me.zipestudio.talkingheads.THClient;
 import me.zipestudio.talkingheads.THServer;
@@ -88,3 +89,5 @@ public class PlasmoVoiceAddon implements AddonInitializer {
     }
 
 }
+
+//?}

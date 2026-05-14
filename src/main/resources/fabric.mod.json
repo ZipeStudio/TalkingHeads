@@ -8,9 +8,9 @@
         "${mod_authors}"
     ],
     "contact": {
-        "homepage": "https://modrinth.com/mod/${mod_id}",
-        "sources": "https://github.com/ZipeStudio/${mod_id}",
-        "issues": "https://github.com/ZipeStudio/${mod_id}/issues"
+        "homepage": "https://modrinth.com/mod/${mod_slug}",
+        "sources": "https://github.com/ZipeStudio/${mod_slug}",
+        "issues": "https://github.com/ZipeStudio/${mod_slug}/issues"
     },
     "custom": {
         "modmenu": {
@@ -23,13 +23,13 @@
     },
     "license": "${mod_license}",
     "icon": "icon/icon.png",
-    "environment": "${fabric_trick_side}",
+    "environment": "*",
     "entrypoints": {
         "main": [
-            "me.zipestudio.talkingheads.entrypoint.FabricEntrypoint"
+            "me.zipestudio.talkingheads.entrypoint.CommonEntrypoint"
         ],
         "client": [
-            "me.zipestudio.talkingheads.entrypoint.FabricClientEntrypoint"
+            "me.zipestudio.talkingheads.entrypoint.ClientEntrypoint"
         ],
         "modmenu": [
             "me.zipestudio.talkingheads.utils.modmenu.ModMenuIntegration"
@@ -44,7 +44,7 @@
         "java": ">=${java}",
         "${fabric_api_id}": "*"
     },
-    "accessWidener": "aws/fabric-${minecraft}.accesswidener",
+    "accessWidener": "${fabric_trick_accesswidener_id}",
     "mixins": [
         "${fabric_trick_mixin_configs}"
     ]

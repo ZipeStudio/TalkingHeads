@@ -13,7 +13,7 @@ import net.minecraft.client.player.LocalPlayer;
 
 import java.util.UUID;
 
-//? if neoforge {
+//? if (!fabric) {
 /*import de.maxhenkel.voicechat.api.ForgeVoicechatPlugin;
 @ForgeVoicechatPlugin
 *///?}

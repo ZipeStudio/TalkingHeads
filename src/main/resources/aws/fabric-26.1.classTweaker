@@ -1,0 +1,4 @@
+classTweaker v1 official
+# 26.1 AW(AT)
+
+extendable class net/minecraft/client/model/geom/ModelPart

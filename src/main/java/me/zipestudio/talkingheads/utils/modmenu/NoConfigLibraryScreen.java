@@ -4,7 +4,6 @@ import com.google.common.collect.Sets;
 import me.zipestudio.talkingheads.THClient;
 import me.zipestudio.talkingheads.utils.ModMenuUtils;
 import net.minecraft.SharedConstants;
-import net.minecraft.util.*;
 import net.minecraft.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ConfirmScreen;
@@ -12,6 +11,8 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.CommonComponents;
 import java.net.*;
 import java.util.*;
+
+import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 
 public class NoConfigLibraryScreen {

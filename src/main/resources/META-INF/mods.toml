@@ -13,39 +13,37 @@ logoFile = "icon/icon.png"
 authors = "${mod_authors}"
 description = '''${mod_description}'''
 
-${neoforge_trick_mixin_configs}
-
 [[dependencies.${mod_id}]]
-modId = "neoforge"
-type = "required"
-versionRange = "[1,)"
+modId = "forge"
+mandatory = true
+versionRange = "${forge}"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.${mod_id}]]
 modId = "minecraft"
-type = "required"
+mandatory = true
 versionRange = "${minecraft}"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.${mod_id}]]
 modId = "yet_another_config_lib_v3"
-type = "optional"
+mandatory = false
 versionRange = "[${yacl},)"
-ordering = "AFTER"
+ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.${mod_id}]]
 modId = "voicechat_api"
-type = "optional"
+mandatory = false
 versionRange = "[${simple_voice_chat},)"
-ordering = "AFTER"
+ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.${mod_id}]]
 modId = "plasmovoice"
-type = "optional"
+mandatory = false
 versionRange = "[${plasmo_voice},)"
-ordering = "AFTER"
+ordering = "NONE"
 side = "CLIENT"

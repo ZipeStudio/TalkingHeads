@@ -3,10 +3,8 @@ package me.zipestudio.talkingheads.utils.yacl.screen;
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.YetAnotherConfigLib.Builder;
 import dev.isxander.yacl3.gui.YACLScreen;
-import me.zipestudio.talkingheads.THServer;
-import net.minecraft.client.gui.screens.Screen;
-
 import me.zipestudio.talkingheads.utils.ModMenuUtils;
+import net.minecraft.client.gui.screens.Screen;
 
 import java.util.function.Consumer;
 

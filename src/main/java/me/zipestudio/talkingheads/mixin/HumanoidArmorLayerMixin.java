@@ -118,17 +118,17 @@ public abstract class HumanoidArmorLayerMixin {
     //?} else if neoforge {
     /^@Inject(
             at = @At("HEAD"),
-            method = "renderArmorPiece(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;ILnet/minecraft/client/model/HumanoidModel;FFFFFF)V",
+            method = "renderArmorPiece",
             cancellable = true
     )
-    private void renderInject(PoseStack poseStack, MultiBufferSource bufferSource, LivingEntity livingEntity, EquipmentSlot slot, int packedLight, HumanoidModel<?> humanoidModel, float limbSwing, float limbSwingAmount, float partialTick, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
+    private void renderInject(PoseStack poseStack, MultiBufferSource buffer, LivingEntity livingEntity, EquipmentSlot slot, int packedLight, HumanoidModel<LivingEntity> entityHumanoidModel, CallbackInfo ci) {
 
         if (!(livingEntity instanceof Player player) || slot != EquipmentSlot.HEAD) {
             return;
         }
 
         UUID uuid = player.getUUID();
-        THManager.renderHead(uuid, humanoidModel);
+        THManager.renderHead(uuid, poseStack);
 
         if (shouldSkipHelmetRender(player)) {
             ci.cancel();

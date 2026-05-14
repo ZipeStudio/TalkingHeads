@@ -1,4 +1,10 @@
 {
+  "required": true,
+  "package": "me.zipestudio.talkingheads.mixin",
+  "refmap": "${mod_id}.refmap.json",
+  "compatibilityLevel": "JAVA_${java}",
+  "mixins": [
+  ],
   "client": [
     "CustomHeadLayerMixin",
     "LivingEntityRendererMixin",
@@ -13,13 +19,7 @@
     "LevelRendererMixin",
     "HumanoidArmorLayerMixin"
   ],
-  "compatibilityLevel": "JAVA_${java}",
   "injectors": {
     "defaultRequire": 1
-  },
-  "mixins": [
-  ],
-  "package": "me.zipestudio.talkingheads.mixin",
-  "refmap": "${mod_id}.refmap.json",
-  "required": true
+  }
 }

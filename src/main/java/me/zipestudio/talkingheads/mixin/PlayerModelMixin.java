@@ -19,12 +19,12 @@ import net.minecraft.client.renderer.entity.state.AvatarRenderState;
 *///?}
 
 //? if >=1.21.11 {
-import net.minecraft.client.model.player.PlayerModel;
+/*import net.minecraft.client.model.player.PlayerModel;
 @Mixin(PlayerModel.class)
-//?} else {
-/*import net.minecraft.client.model.PlayerModel;
+*///?} else {
+import net.minecraft.client.model.PlayerModel;
 @Mixin(PlayerModel.class)
-*///?}
+//?}
 
 public class PlayerModelMixin //? if >=1.21.9 {
  extends HumanoidModel<@NotNull AvatarRenderState>

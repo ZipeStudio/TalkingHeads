@@ -46,7 +46,7 @@ public class THManager {
             THPlayerProfile profile = entry.getValue();
             double newVolume = profile.getPlayerVolume() - CONFIG.getRemovedVolume();
             if (newVolume <= MIN_VOICE_VALUE) {
-                iterator.remove(); // удаляем замолчавших
+                iterator.remove();
             } else {
                 profile.setPlayerVolume(newVolume);
             }
@@ -54,6 +54,7 @@ public class THManager {
     }
 
     //? if >=1.21.2 {
+
     //? if >=1.21.9 {
     public static void renderHead(UUID uuid, AvatarRenderState renderState)
     //?} else {

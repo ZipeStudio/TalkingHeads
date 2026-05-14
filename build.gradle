@@ -5,17 +5,20 @@ plugins {
 }
 
 mossyDependencies {
+
 	minecraft = stonecutter.current.version.toString()
-	mappings = "official"
 	lombok = prop("base.lombok_version")
 
 	fabricApi = prop("build.fabric_api")
 	fabricLoader = prop("build.fabric_loader")
 
+	forge = prop("build.forge")
+
 	neoForge = prop("build.neoforge")
 	parchment = prop("build.parchment")
 
 	additional {
+		//override("modCompileOnly", "yacl")
 		disable("plasmo-voice")
 		disable("simple-voice-chat")
 	}
@@ -50,8 +53,21 @@ repositories {
 }
 
 dependencies {
-	implementation("su.plo.voice.api:client:${MossyUtils.substringSinceLast(prop("dep.plasmo-voice"), "-") + "-SNAPSHOT"}")
-	implementation("de.maxhenkel.voicechat:voicechat-api:${MossyUtils.substringSinceLast(prop("dep.simple-voice-chat"), "-")}")
+
+	if (prop("dep.plasmo-voice") != "unknown") {
+		if (prop("dep.plasmo-voice").contains("SNAPSHOT")) {
+			implementation("su.plo.voice.api:client:${MossyUtils.substringSinceLast(prop("dep.plasmo-voice"), "-") + "-SNAPSHOT"}")
+		} else {
+			implementation("su.plo.voice.api:client:${MossyUtils.substringSinceLast(prop("dep.plasmo-voice"), "-")}")
+		}
+	}
+
+	if (prop("dep.simple-voice-chat").contains("+")) {
+		implementation("de.maxhenkel.voicechat:voicechat-api:${MossyUtils.substringBefore(MossyUtils.substringSince(prop("dep.simple-voice-chat"), "-"), "+")}")
+	} else {
+		implementation("de.maxhenkel.voicechat:voicechat-api:${MossyUtils.substringSinceLast(prop("dep.simple-voice-chat"), "-")}")
+	}
+
 //	modImplementation("me.lucko:fabric-permissions-api:${prop("dep.fabric-permissions-api")}")
 
 	// TODO: hmm, CustomModels?
@@ -60,7 +76,7 @@ dependencies {
 }
 
 mossyResources {
-	//expandFiles = ["custom", "file", "patterns", "here"]
+	//	expandFiles = ["file pattern"]
 	customProperty("plasmo_voice", prop("dep.plasmo-voice"))
 	customProperty("simple_voice_chat", prop("dep.simple-voice-chat"))
 }

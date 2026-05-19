@@ -1,9 +1,5 @@
-v1.1.1:
+v1.1.1-logerfix:
 ### Changes
-- Ported to 26.1
-- Added Forge support for 1.20.1
-- Restored support for Fabric 1.20.1–1.20.4
-- Dropped support for some less popular versions
-- Updated Mod Icon
+### Fixes
+- Removed leftover debug logger used for launch troubleshooting.
 ### Internal
-- Refactored parts of the codebase

@@ -10,9 +10,6 @@ public class CommonEntrypoint implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		for (int i = 0; i <10; i++) {
-			THClient.LOGGER.error("WORKED COMMON");
-		}
 		THServer.onInitialize();
 	}
 

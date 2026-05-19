@@ -44,9 +44,6 @@ public class ClientEntrypoint implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		for (int i = 0; i <10; i++) {
-			THClient.LOGGER.error("WORKED CLIENT");
-		}
         THClient.onInitializeClient();
 		registerKeybinding();
 

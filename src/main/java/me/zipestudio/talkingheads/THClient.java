@@ -3,6 +3,8 @@ package me.zipestudio.talkingheads;
 import com.mojang.authlib.GameProfile;
 import lombok.Getter;
 import me.zipestudio.talkingheads.config.LeafyConfig;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,6 +41,14 @@ public class THClient {
         //?} else {
         /*return AUTHORS.contains(profile.getId()) || AUTHOR_NAMES.contains(profile.getName());
         *///?}
+    }
+
+    public static void setScreen(Minecraft client, Screen screen) {
+        //? if >=26.2 {
+        /*client.setScreenAndShow(screen);
+        *///?} else {
+        client.setScreen(screen);
+         //?}
     }
 
 }

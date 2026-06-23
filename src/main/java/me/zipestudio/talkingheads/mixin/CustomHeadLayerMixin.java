@@ -1,8 +1,6 @@
 package me.zipestudio.talkingheads.mixin;
 
 import me.zipestudio.talkingheads.client.THManager;
-import net.minecraft.client.renderer.MultiBufferSource;
-
 import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.LivingEntity;
@@ -16,7 +14,9 @@ import java.util.UUID;
 
 //? if >=1.21.9 {
 import net.minecraft.client.renderer.SubmitNodeCollector;
- //?}
+//?} else {
+/*import net.minecraft.client.renderer.MultiBufferSource;
+*///?}
 
 //? if >=1.21.2 {
 import me.zipestudio.talkingheads.utils.talkingheads.interfaces.PlayerRenderStateWithParent;

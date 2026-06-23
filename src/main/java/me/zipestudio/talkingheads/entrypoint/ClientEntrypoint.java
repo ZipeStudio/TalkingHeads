@@ -18,6 +18,7 @@ import me.zipestudio.talkingheads.client.keybinding.THKeybinding;
 import me.zipestudio.talkingheads.utils.modmenu.NoConfigLibraryScreen;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.Minecraft;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,6 +35,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.KeyMapping;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +46,7 @@ public class ClientEntrypoint implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-        THClient.onInitializeClient();
+		THClient.onInitializeClient();
 		registerKeybinding();
 
 		FabricLoader instance = FabricLoader.getInstance();
@@ -69,7 +71,7 @@ public class ClientEntrypoint implements ClientModInitializer {
 				LEAFY_CONFIG.setEnableMod(toggle);
 
 				//? if >=26.1 {
-				/*client.getChatListener().handleOverlay(
+				/*client.player.sendOverlayMessage(
 						Component.translatable(THServer.MOD_NAME)
 								.append(" ")
 								.append(Component.translatable(THServer.MOD_ID + ".keybinding.modToggle.actionbar." + toggle))
@@ -91,10 +93,18 @@ public class ClientEntrypoint implements ClientModInitializer {
 					return;
 				}
 
+
+				Screen screen =
+				//? if >=26.2 {
+				/*client.gui.screen();
+				*///?} else {
+				client.screen;
+				//?}
+
 				if (FabricLoader.getInstance().isModLoaded("yet_another_config_lib_v3")) {
-					client.setScreen(YACLConfigurationScreen.createScreen(client.screen));
+					THClient.setScreen(client, YACLConfigurationScreen.createScreen(screen));
 				} else {
-					client.setScreen(NoConfigLibraryScreen.createScreen(client.screen));
+					THClient.setScreen(client, NoConfigLibraryScreen.createScreen(screen));
 				}
 
 			}
@@ -113,7 +123,7 @@ public class ClientEntrypoint implements ClientModInitializer {
 		/*KeyMappingHelper.registerKeyMapping(keyBinding);
 		*///?} else {
 		KeyBindingHelper.registerKeyBinding(keyBinding);
-		//?}
+		 //?}
 
 	}
 
@@ -130,6 +140,7 @@ import me.zipestudio.talkingheads.utils.modmenu.AbstractModMenuIntegration;
 import me.zipestudio.talkingheads.utils.modmenu.ModMenuIntegration;
 import me.zipestudio.talkingheads.utils.modmenu.NoConfigLibraryScreen;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -176,7 +187,7 @@ public class ClientEntrypoint {
             leafyConfig.setEnableMod(toggle);
 
             //? if >=26.1 {
-            /^client.getChatListener().handleOverlay(
+            /^client.player.sendOverlayMessage(
                     Component.translatable(THServer.MOD_NAME)
                             .append(" ")
                             .append(Component.translatable(THServer.MOD_ID + ".keybinding.modToggle.actionbar." + toggle))
@@ -191,11 +202,18 @@ public class ClientEntrypoint {
             //?}
         }
 
+        Screen screen =
+        //? if >=26.2 {
+        /^client.gui.screen();
+        ^///?} else {
+		client.screen;
+		//?}
+
         if (THKeybinding.THKEY_SETTINGS_MENU.consumeClick()) {
             if (AbstractModMenuIntegration.isModLoaded("yet_another_config_lib_v3", true)) {
-                client.setScreen(YACLConfigurationScreen.createScreen(client.screen));
+                THClient.setScreen(client, YACLConfigurationScreen.createScreen(screen));
             } else {
-                client.setScreen(NoConfigLibraryScreen.createScreen(client.screen));
+                THClient.setScreen(client, NoConfigLibraryScreen.createScreen(screen));
             }
         }
     }

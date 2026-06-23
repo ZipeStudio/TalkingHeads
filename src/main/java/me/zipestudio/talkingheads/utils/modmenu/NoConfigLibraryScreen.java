@@ -45,7 +45,7 @@ public class NoConfigLibraryScreen {
 				THClient.LOGGER.error("Can't open YACL Modrinth page:", e);
 			}
 		} else {
-			Minecraft.getInstance().setScreen(parent);
+			THClient.setScreen(Minecraft.getInstance(), parent);
 		}
 	}
 

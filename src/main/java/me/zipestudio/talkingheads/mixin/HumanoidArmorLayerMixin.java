@@ -8,7 +8,7 @@ import me.zipestudio.talkingheads.client.THManager;
 
 import me.zipestudio.talkingheads.utils.talkingheads.interfaces.PlayerRenderStateWithParent;
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.model.Model;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -25,7 +25,9 @@ import java.util.UUID;
 
 //? if >=1.21.9 {
 import net.minecraft.client.renderer.SubmitNodeCollector;
- //?}
+//?} else {
+/*import net.minecraft.client.renderer.MultiBufferSource;
+*///?}
 
 //? >=1.21.2 {
 import me.zipestudio.talkingheads.utils.talkingheads.interfaces.PlayerRenderStateWithParent;
@@ -60,7 +62,7 @@ public abstract class HumanoidArmorLayerMixin {
         original.call(instance, matrixStack, queue, stack, slot, light, bipedState);
 
     }
-    //?} else if >=1.21.2 {
+    //?} elif >=1.21.2 {
     /*@WrapOperation(
             method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/client/renderer/entity/state/HumanoidRenderState;FF)V",
             at = @At(
@@ -115,25 +117,73 @@ public abstract class HumanoidArmorLayerMixin {
         }
 
     }
-    //?} else if neoforge {
-    /^@Inject(
-            at = @At("HEAD"),
-            method = "renderArmorPiece",
-            cancellable = true
+    //?} elif neoforge {
+    /^@WrapOperation(
+            method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/LivingEntity;FFFFFF)V",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/renderer/entity/layers/HumanoidArmorLayer;renderArmorPiece(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;ILnet/minecraft/client/model/HumanoidModel;FFFFFF)V",
+                    ordinal = 3
+            )
     )
-    private void renderInject(PoseStack poseStack, MultiBufferSource buffer, LivingEntity livingEntity, EquipmentSlot slot, int packedLight, HumanoidModel<LivingEntity> entityHumanoidModel, CallbackInfo ci) {
+    private void renderInject(
+            HumanoidArmorLayer<?, ?, ?> instance,
+            PoseStack poseStack,
+            MultiBufferSource multiBufferSource,
+            LivingEntity livingEntity,
+            EquipmentSlot equipmentSlot,
+            int packedLight,
+            HumanoidModel<?> humanoidModel,
+            float limbSwing,
+            float limbSwingAmount,
+            float partialTick,
+            float ageInTicks,
+            float netHeadYaw,
+            float headPitch,
+            Operation<Void> original
+    ) {
 
-        if (!(livingEntity instanceof Player player) || slot != EquipmentSlot.HEAD) {
-            return;
+        if (livingEntity instanceof Player player) {
+
+            THManager.renderHead(player.getUUID(), humanoidModel);
+            if (shouldSkipHelmetRender(player)) {
+                return;
+            }
+
         }
 
-        UUID uuid = player.getUUID();
-        THManager.renderHead(uuid, poseStack);
+        original.call(instance, poseStack, multiBufferSource, livingEntity, equipmentSlot, packedLight, humanoidModel, limbSwing, limbSwingAmount, partialTick, ageInTicks, netHeadYaw, headPitch);
+    }
+    ^///?} elif forge {
+    /^@WrapOperation(
+            method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/LivingEntity;FFFFFF)V",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/renderer/entity/layers/HumanoidArmorLayer;renderArmorPiece(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;ILnet/minecraft/client/model/HumanoidModel;)V",
+                    ordinal = 3
+            )
+    )
+    private void renderInject(
+            HumanoidArmorLayer<?, ?, ?> instance,
+            PoseStack poseStack,
+            MultiBufferSource multiBufferSource,
+            LivingEntity livingEntity,
+            EquipmentSlot equipmentSlot,
+            int packedLight,
+            HumanoidModel<?> humanoidModel,
+            Operation<Void> original
+    ) {
 
-        if (shouldSkipHelmetRender(player)) {
-            ci.cancel();
+        if (livingEntity instanceof Player player) {
+
+            THManager.renderHead(player.getUUID(), humanoidModel);
+            if (shouldSkipHelmetRender(player)) {
+                return;
+            }
+
         }
 
+        original.call(instance, poseStack, multiBufferSource, livingEntity, equipmentSlot, packedLight, humanoidModel);
     }
     ^///?}
     *///?}

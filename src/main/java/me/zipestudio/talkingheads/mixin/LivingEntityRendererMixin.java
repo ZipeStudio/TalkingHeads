@@ -2,7 +2,6 @@ package me.zipestudio.talkingheads.mixin;
 
 import me.zipestudio.talkingheads.client.THManager;
 import net.minecraft.client.model.EntityModel;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -19,6 +18,7 @@ import java.util.UUID;
 /*import net.minecraft.client.model.player.PlayerModel;
 *///?} else {
 import net.minecraft.client.model.PlayerModel;
+import net.minecraft.client.renderer.MultiBufferSource;
 //?}
 
 //? if >=1.21.9 {

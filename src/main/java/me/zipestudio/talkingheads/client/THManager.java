@@ -7,6 +7,7 @@ import me.zipestudio.talkingheads.config.LeafyConfig;
 import me.zipestudio.talkingheads.utils.talkingheads.interfaces.ResizablePlayer;
 import me.zipestudio.talkingheads.utils.talkingheads.THPlayerProfile;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.model.HumanoidModel;
 
 import java.util.HashMap;
@@ -39,12 +40,12 @@ public class THManager {
         return profile != null && profile.getPlayerVolume() > MIN_VOICE_VALUE;
     }
 
-    public static void decrementAll() {
+    public static void decrementAll(float delta) {
         Iterator<Map.Entry<UUID, THPlayerProfile>> iterator = PLAYERS_MAP.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<UUID, THPlayerProfile> entry = iterator.next();
             THPlayerProfile profile = entry.getValue();
-            double newVolume = profile.getPlayerVolume() - CONFIG.getRemovedVolume();
+            double newVolume = profile.getPlayerVolume() - (CONFIG.getRemovedVolume() * delta);
             if (newVolume <= MIN_VOICE_VALUE) {
                 iterator.remove();
             } else {

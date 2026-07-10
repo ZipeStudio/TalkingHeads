@@ -6,6 +6,7 @@
   "mixins": [
   ],
   "client": [
+
     "CustomHeadLayerMixin",
     "LivingEntityRendererMixin",
     //? if >=1.21.2 {
@@ -16,7 +17,7 @@
 
     "ModelPartMixin",
     "AbstractClientPlayerEntityMixin",
-    "LevelRendererMixin",
+    "MinecraftTickMixin",
     "HumanoidArmorLayerMixin"
   ],
   "injectors": {

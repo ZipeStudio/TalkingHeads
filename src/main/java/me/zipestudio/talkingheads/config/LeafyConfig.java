@@ -24,12 +24,12 @@ public class LeafyConfig {
 			option("enableMod", true, Codec.BOOL, LeafyConfig::isEnableMod),
 			option("usePlasmoVoice", true, Codec.BOOL, LeafyConfig::isUsePlasmoVoice),
 			option("useSimpleVoiceChat", true, Codec.BOOL, LeafyConfig::isUseSimpleVoiceChat),
-			option("removedVolume", 0.0020, Codec.DOUBLE, LeafyConfig::getRemovedVolume),
-			option("scaleX", 0.3, Codec.DOUBLE, LeafyConfig::getScaleX),
-			option("scaleY", 0.3, Codec.DOUBLE, LeafyConfig::getScaleY),
-			option("scaleZ", 0.3, Codec.DOUBLE, LeafyConfig::getScaleZ),
+			option("removedVolume", 0.0020D, Codec.DOUBLE, LeafyConfig::getRemovedVolume),
+			option("scaleX", 0.3D, Codec.DOUBLE, LeafyConfig::getScaleX),
+			option("scaleY", 0.3D, Codec.DOUBLE, LeafyConfig::getScaleY),
+			option("scaleZ", 0.3D, Codec.DOUBLE, LeafyConfig::getScaleZ),
 			option("helmetHideWhileTalking", false, Codec.BOOL, LeafyConfig::isHelmetHideWhileTalking),
-			option("helmetShowDelay", 0.15, Codec.DOUBLE, LeafyConfig::getHelmetShowDelay)
+			option("helmetShowDelay", 0.15D, Codec.DOUBLE, LeafyConfig::getHelmetShowDelay)
 	).apply(instance, LeafyConfig::new));
 
 	private static final File CONFIG_FILE = getConfigDir().resolve(THServer.MOD_ID + ".json5").toFile();

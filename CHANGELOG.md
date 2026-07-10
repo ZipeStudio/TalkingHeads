@@ -1,7 +1,5 @@
-v1.1.2:
+v1.1.3:
 ### Changes
-- Added support for Minecraft versions up to 26.2
+- Reworked head down-scaling to be more stable and easier to keep working on almost Minecraft versions
 ### Fixes
-- Fixed helmet-scale issue in neoforge/forge 1.20.1-1.21.1
-- Removed leftover debug logger used for launch troubleshooting.
-### Internal
+- Fixed a crash on Minecraft 26.2

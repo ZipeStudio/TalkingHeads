@@ -2,12 +2,10 @@ package me.zipestudio.talkingheads.client;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.zipestudio.talkingheads.THClient;
 import me.zipestudio.talkingheads.config.LeafyConfig;
 import me.zipestudio.talkingheads.utils.talkingheads.interfaces.ResizablePlayer;
 import me.zipestudio.talkingheads.utils.talkingheads.THPlayerProfile;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.model.HumanoidModel;
 
 import java.util.HashMap;
@@ -19,8 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 //? if >=1.21.9 {
 import net.minecraft.client.renderer.entity.state.AvatarRenderState;
 //?} else if >=1.21.2 {
-/*import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.renderer.entity.state.PlayerRenderState;
+/*import net.minecraft.client.renderer.entity.state.PlayerRenderState;
 *///?}
 
 @Getter

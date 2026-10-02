@@ -43,10 +43,10 @@ Fully compatible with **Plasmo Voice** and **Simple Voice Chat**, and can be use
 
 !["Compatibility" Title](https://github.com/ZipeStudio/Vault/blob/main/design/mods/main/ZScompatible.png?raw=true)
 
-### Figura
+### Figura mod Compatibility
 <img src="https://github.com/ZipeStudio/TalkingHeads/blob/master/assets/figura_compat.gif?raw=true" width="100%" alt="figura compat">
 
-### Customizable Player Models
+### Customizable Player Models mod Compatibility
 <img src="https://github.com/ZipeStudio/TalkingHeads/blob/master/assets/cpm_compat.gif?raw=true" width="100%" alt="cpm compat">
 
 !["Support" Title](https://github.com/ZipeStudio/Vault/blob/main/design/mods/main/ZSsupport.png?raw=true)

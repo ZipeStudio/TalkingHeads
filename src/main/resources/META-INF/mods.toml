@@ -37,13 +37,13 @@ side = "CLIENT"
 [[dependencies.${mod_id}]]
 modId = "voicechat_api"
 mandatory = false
-versionRange = "[${simple_voice_chat},)"
+versionRange = "[2.6.20,)"
 ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.${mod_id}]]
 modId = "plasmovoice"
 mandatory = false
-versionRange = "[${plasmo_voice},)"
+versionRange = "[2.1.17,)"
 ordering = "NONE"
 side = "CLIENT"

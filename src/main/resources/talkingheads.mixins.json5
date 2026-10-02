@@ -18,7 +18,9 @@
     "ModelPartMixin",
     "AbstractClientPlayerEntityMixin",
     "MinecraftTickMixin",
-    "HumanoidArmorLayerMixin"
+    "HumanoidArmorLayerMixin",
+    "compat.FiguraCompatMixin",
+    "compat.CPMCompatMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -3,10 +3,10 @@ package me.zipestudio.talkingheads.entrypoint;
 //? if fabric {
 
 //? if >=26.1 {
-/*import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
-*///?} else {
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-//?}
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+//?} else {
+/*import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+*///?}
 
 //? if >=1.21.9 {
 
@@ -71,19 +71,19 @@ public class ClientEntrypoint implements ClientModInitializer {
 				LEAFY_CONFIG.setEnableMod(toggle);
 
 				//? if >=26.1 {
-				/*client.player.sendOverlayMessage(
+				client.player.sendOverlayMessage(
 						Component.translatable(THServer.MOD_NAME)
 								.append(" ")
 								.append(Component.translatable(THServer.MOD_ID + ".keybinding.modToggle.actionbar." + toggle))
 				);
-				*///?} else {
-				client.player.displayClientMessage(
+				//?} else {
+				/*client.player.displayClientMessage(
 						Component.translatable(THServer.MOD_NAME)
 								.append(" ")
 								.append(Component.translatable(THServer.MOD_ID + ".keybinding.modToggle.actionbar." + toggle)),
 						true
 				);
-				//?}
+				*///?}
 
 			}
 
@@ -96,10 +96,10 @@ public class ClientEntrypoint implements ClientModInitializer {
 
 				Screen screen =
 				//? if >=26.2 {
-				/*client.gui.screen();
-				*///?} else {
-				client.screen;
-				//?}
+				client.gui.screen();
+				//?} else {
+				/*client.screen;
+				*///?}
 
 				if (FabricLoader.getInstance().isModLoaded("yet_another_config_lib_v3")) {
 					THClient.setScreen(client, YACLConfigurationScreen.createScreen(screen));
@@ -120,10 +120,10 @@ public class ClientEntrypoint implements ClientModInitializer {
 	public static void registerKeyBinding(KeyMapping keyBinding) {
 
 		//? if >=26.1 {
-		/*KeyMappingHelper.registerKeyMapping(keyBinding);
-		*///?} else {
-		KeyBindingHelper.registerKeyBinding(keyBinding);
-		 //?}
+		KeyMappingHelper.registerKeyMapping(keyBinding);
+		//?} else {
+		/*KeyBindingHelper.registerKeyBinding(keyBinding);
+		 *///?}
 
 	}
 
@@ -187,27 +187,27 @@ public class ClientEntrypoint {
             leafyConfig.setEnableMod(toggle);
 
             //? if >=26.1 {
-            /^client.player.sendOverlayMessage(
+            client.player.sendOverlayMessage(
                     Component.translatable(THServer.MOD_NAME)
                             .append(" ")
                             .append(Component.translatable(THServer.MOD_ID + ".keybinding.modToggle.actionbar." + toggle))
             );
-            ^///?} else {
-            client.player.displayClientMessage(
+            //?} else {
+            /^client.player.displayClientMessage(
                     Component.translatable(THServer.MOD_NAME)
                             .append(" ")
                             .append(Component.translatable(THServer.MOD_ID + ".keybinding.modToggle.actionbar." + toggle)),
                     true
             );
-            //?}
+            ^///?}
         }
 
         Screen screen =
         //? if >=26.2 {
-        /^client.gui.screen();
-        ^///?} else {
-		client.screen;
-		//?}
+        client.gui.screen();
+        //?} else {
+		/^client.screen;
+		^///?}
 
         if (THKeybinding.THKEY_SETTINGS_MENU.consumeClick()) {
             if (AbstractModMenuIntegration.isModLoaded("yet_another_config_lib_v3", true)) {

@@ -9,7 +9,7 @@ version = "${mod_version}"
 displayName = "${mod_name}"
 side="${neoforge_trick_side}"
 displayURL = "https://modrinth.com/mod/${mod_slug}"
-logoFile = "icon/icon.png"
+${icon_path_neoforge_thing} "icon/icon.png"
 authors = "${mod_authors}"
 description = '''${mod_description}'''
 
@@ -39,13 +39,13 @@ side = "CLIENT"
 [[dependencies.${mod_id}]]
 modId = "voicechat_api"
 type = "optional"
-versionRange = "[${simple_voice_chat},)"
+versionRange = "[2.6.20,)"
 ordering = "AFTER"
 side = "CLIENT"
 
 [[dependencies.${mod_id}]]
 modId = "plasmovoice"
 type = "optional"
-versionRange = "[${plasmo_voice},)"
+versionRange = "[2.1.17,)"
 ordering = "AFTER"
 side = "CLIENT"

@@ -41,8 +41,14 @@ public class SimpleVoiceAddon implements VoicechatPlugin {
     }
 
     public void onAnotherPlayerSoundEvent(ClientReceiveSoundEvent event) {
+
         LeafyConfig leafyConfig = THClient.getLeafyConfig();
         if (!leafyConfig.isEnableMod() || !leafyConfig.isUseSimpleVoiceChat()) {
+            return;
+        }
+
+        VoicechatClientApi voicechat = event.getVoicechat();
+        if (voicechat.getVolumeConfig().getVolume(event.getId()) <= 0.0D) {
             return;
         }
 
@@ -53,6 +59,7 @@ public class SimpleVoiceAddon implements VoicechatPlugin {
     }
 
     public void onClientPlayerSoundEvent(ClientSoundEvent event) {
+
         LeafyConfig leafyConfig = THClient.getLeafyConfig();
         if (!leafyConfig.isEnableMod() || !leafyConfig.isUseSimpleVoiceChat()) {
             return;

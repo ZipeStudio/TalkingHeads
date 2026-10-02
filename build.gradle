@@ -45,12 +45,6 @@ repositories {
 		url = 'https://maven.maxhenkel.de/repository/public'
 	}
 
-	//TODO: hmm, CustomModels?
-// 	maven {
-//		name = "tom5454 maven"
-//		url = "https://raw.githubusercontent.com/tom5454/maven/main"
-//	}
-
 }
 
 dependencies {
@@ -69,17 +63,10 @@ dependencies {
 		implementation("de.maxhenkel.voicechat:voicechat-api:${MossyUtils.substringSinceLast(prop("dep.simple-voice-chat"), "-")}")
 	}
 
-//	modImplementation("me.lucko:fabric-permissions-api:${prop("dep.fabric-permissions-api")}")
-
-	// TODO: hmm, CustomModels?
-//    implementation ("com.tom5454.cpm:CustomPlayerModels-API:0.6.21a")
-//    implementation ("com.tom5454.cpm:CustomPlayerModels-Fabric-0.6.21a:0.6.21a")
 }
 
 mossyResources {
 	//	expandFiles = ["file pattern"]
-	customProperty("plasmo_voice", prop("dep.plasmo-voice"))
-	customProperty("simple_voice_chat", prop("dep.simple-voice-chat"))
 }
 
 String prop(String key) {

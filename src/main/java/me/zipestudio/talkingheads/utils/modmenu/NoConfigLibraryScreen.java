@@ -4,6 +4,7 @@ import com.google.common.collect.Sets;
 import me.zipestudio.talkingheads.THClient;
 import me.zipestudio.talkingheads.utils.ModMenuUtils;
 import net.minecraft.SharedConstants;
+import net.minecraft.util.*;
 import net.minecraft.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ConfirmScreen;
@@ -11,9 +12,11 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.CommonComponents;
 import java.net.*;
 import java.util.*;
-
-import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
+
+//? if >=26.3 {
+import com.mojang.blaze3d.Blaze3D;
+//?}
 
 public class NoConfigLibraryScreen {
 
@@ -40,7 +43,11 @@ public class NoConfigLibraryScreen {
 				if (!NoConfigLibraryScreen.ALLOWED_PROTOCOLS.contains(string.toLowerCase(Locale.ROOT))) {
 					throw new URISyntaxException(url, "Unsupported protocol: " + string.toLowerCase(Locale.ROOT));
 				}
-				Util.getPlatform().openUri(link);
+				//? if >=26.3 {
+				Blaze3D.openUri(link);
+				//?} else {
+				/*Util.getPlatform().openUri(link);
+				 *///?}
 			} catch (URISyntaxException e) {
 				THClient.LOGGER.error("Can't open YACL Modrinth page:", e);
 			}

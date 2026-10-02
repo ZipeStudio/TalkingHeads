@@ -25,7 +25,7 @@
           <a href="https://t.me/zipeleaf">
             <img src="https://github.com/ZipeStudio/Vault/blob/main/design/mods/main/telegram.png?raw=true" title="Telegram channel">
           </a>
-          <a href="https://ko-fi.com/zipestudio/tip">
+          <a href="https://www.patreon.com/cw/ZipeStudio/membership">
             <img src="https://github.com/ZipeStudio/Vault/blob/main/design/mods/main/support.png?raw=true" title="Support me (thx)">
           </a>
         </div>
@@ -36,14 +36,23 @@
 
 !["Description" Title](https://github.com/ZipeStudio/Vault/blob/main/design/mods/main/ZSdescription.png?raw=true)
 
-**Talking Heads** is a Client-side addon, that scales player heads when they're talking.<br>
+**Talking Heads** — A Client-side addon, that scales player heads when they're talking.<br>
 Fully compatible with **Plasmo Voice** and **Simple Voice Chat**, and can be used with both at the same time!
 
-!["Talking Heads Banner"](https://github.com/ZipeStudio/TalkingHeads/blob/master/img/showcase.gif?raw=true)
+<img src="https://github.com/ZipeStudio/TalkingHeads/blob/master/assets/showcase.gif?raw=true" width="100%" alt="banner">
+
+!["Compatibility" Title](https://github.com/ZipeStudio/Vault/blob/main/design/mods/main/ZScompatible.png?raw=true)
+
+### Figura
+<img src="https://github.com/ZipeStudio/TalkingHeads/blob/master/assets/figura_compat.gif?raw=true" width="100%" alt="figura compat">
+
+### Customizable Player Models
+<img src="https://github.com/ZipeStudio/TalkingHeads/blob/master/assets/cpm_compat.gif?raw=true" width="100%" alt="figura compat">
 
 !["Support" Title](https://github.com/ZipeStudio/Vault/blob/main/design/mods/main/ZSsupport.png?raw=true)
 
 ### Want to support mod and authors? Just tell everyone about this mod!
+
 Yeah, you got it right. Just by advertising, you will support the mod and the creators well. The more people will know about this mod, the more downloads it will have, more downloads will give good motivation to authors and increase income from the site (literally free donation). **Remember, advertising must not be intrusive and annoiyng!**
 
 ### What you can do?
@@ -56,4 +65,6 @@ Yeah, you got it right. Just by advertising, you will support the mod and the cr
 
 !["Licensing" Title](https://github.com/ZipeStudio/Vault/blob/main/design/mods/main/ZSlicensing.png?raw=true)
 
-### [See the original mod repository](https://github.com/ZipeStudio/TalkingHeads)
+The license terms for this project are defined in the [LICENSE](https://github.com/ZipeStudio/TalkingHeads/blob/master/LICENSE.md) file in this repository. That file always takes precedence over any license shown anywhere else.
+
+[**See the original mod repository**](https://github.com/ZipeStudio/TalkingHeads)

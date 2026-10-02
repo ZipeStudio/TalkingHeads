@@ -12,6 +12,7 @@ import su.plo.voice.api.addon.AddonInitializer;
 import su.plo.voice.api.addon.InjectPlasmoVoice;
 import su.plo.voice.api.addon.annotation.Addon;
 import su.plo.voice.api.client.PlasmoVoiceClient;
+import su.plo.voice.api.client.audio.source.ClientAudioSource;
 import su.plo.voice.api.client.event.audio.capture.AudioCaptureProcessedEvent;
 import su.plo.voice.api.client.event.audio.source.AudioSourceWriteEvent;
 import su.plo.voice.api.client.event.connection.UdpClientPacketReceivedEvent;
@@ -55,7 +56,8 @@ public class PlasmoVoiceAddon implements AddonInitializer {
             return;
         }
 
-        var sourceInfo = event.getSource().getSourceInfo();
+        ClientAudioSource<?> source = event.getSource();
+        var sourceInfo = source.getSourceInfo();
         if (!(sourceInfo instanceof PlayerSourceInfo playerSourceInfo)) return;
 
         VoicePlayerInfo playerInfo = playerSourceInfo.getPlayerInfo();
@@ -80,6 +82,7 @@ public class PlasmoVoiceAddon implements AddonInitializer {
 
     @EventSubscribe
     public void onAudioCapture(@NotNull AudioCaptureProcessedEvent event) {
+
         LeafyConfig leafyConfig = THClient.getLeafyConfig();
         if (!leafyConfig.isEnableMod() || !leafyConfig.isUsePlasmoVoice()) {
             return;

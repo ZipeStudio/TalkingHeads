@@ -45,10 +45,10 @@ public class THClient {
 
     public static void setScreen(Minecraft client, Screen screen) {
         //? if >=26.2 {
-        /*client.setScreenAndShow(screen);
-        *///?} else {
-        client.setScreen(screen);
-         //?}
+        client.setScreenAndShow(screen);
+        //?} else {
+        /*client.setScreen(screen);
+         *///?}
     }
 
 }
